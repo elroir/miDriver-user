@@ -31,8 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-/lib/http/
-
+lib/core/http/http_options.dart
 # Symbolication related
 app.*.symbols
 
