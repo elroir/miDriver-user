@@ -40,8 +40,12 @@ class VehicleProvider extends StateNotifier<HttpPostStatus>{
     _plate = value ?? '';
   }
 
-  String? validateNotEmpty(String? value){
-    return FormValidators.validateNotShorter(value);
+  String? validateModel(String? value){
+    return FormValidators.validateNotShorter(value,length: 1);
+  }
+
+  String? validatePlate(String? value){
+    return FormValidators.validateNotShorter(value,length: 5);
   }
 
   String? validateYear(String? value){

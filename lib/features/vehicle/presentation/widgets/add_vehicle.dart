@@ -14,7 +14,7 @@ class AddVehicleWidget extends StatelessWidget {
         height: 100,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        margin: const EdgeInsets.symmetric(horizontal: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppBorder.cardBorderRadius),
           gradient: const LinearGradient(

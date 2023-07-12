@@ -22,7 +22,11 @@ abstract interface class VehicleRemoteDataSource{
   /// Throws a [SocketException] if no response is sent
   Future<HttpSuccess> storeVehicle(UserVehicleModel vehicleModel);
 
-
+  ///Calls [HttpOptions.apiUrl]/items/vehicle?filter={ "user": { "_eq": [UserId] }} to get a list of [UserVehicleModel]
+  ///
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<HttpSuccess<List<UserVehicleModel>>> getUserVehicles();
 }
 
 class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
@@ -83,6 +87,45 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
 
 
     return HttpSuccess();
+  }
+
+  @override
+  Future<HttpSuccess<List<UserVehicleModel>>> getUserVehicles() async {
+
+
+      final userId = await _secureStorage.getUserId();
+
+      final url = Uri.https(HttpOptions.apiUrl,'/items/vehicle',{
+        'filter[user][_eq]' : '$userId',
+        'fields' : 'id,make.name,make.id,model,year,plate,transmission,user'
+      });
+
+      final token = await _secureStorage.getToken();
+
+      final response = await _client.get(url,headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type' : 'application/json'
+      }
+      );
+
+      if(response.statusCode==401){
+        throw AuthenticationException();
+      }
+
+      if(response.statusCode!=200){
+        throw ServerException();
+      }
+
+
+      final data = json.decode(response.body)['data'];
+
+
+
+      final vehicles = List<UserVehicleModel>.from(data.map((e)=>UserVehicleModel.fromJson(e)));
+
+
+      return HttpSuccess(data: vehicles);
+
   }
 
 }

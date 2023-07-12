@@ -48,7 +48,7 @@ class VehicleFormPage extends ConsumerWidget {
                         const SizedBox(height: 15),
                         TextFormField(
                             onSaved: ref.read(vehicleProvider.notifier).saveModelField,
-                            validator: ref.read(vehicleProvider.notifier).validateNotEmpty,
+                            validator: ref.read(vehicleProvider.notifier).validateModel,
                             decoration: const InputDecoration(
                                 labelText: AppStrings.carModel
                             )
@@ -68,7 +68,7 @@ class VehicleFormPage extends ConsumerWidget {
                         const SizedBox(height: 15),
                         TextFormField(
                             onSaved: ref.read(vehicleProvider.notifier).savePlateField,
-                            validator: ref.read(vehicleProvider.notifier).validateNotEmpty,
+                            validator: ref.read(vehicleProvider.notifier).validatePlate,
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(7),
                             ],

@@ -9,9 +9,9 @@ final getCarMakesProvider = FutureProvider<List<CarMake>>(
 
       return result.fold(
               (failure) => throw failure,
-              (documents) {
-                documents.sort((a, b) => a.makeName.compareTo(b.makeName));
-                return documents;
+              (makes) {
+                makes.sort((a, b) => a.makeName.compareTo(b.makeName));
+                return makes;
               }
       );
     }

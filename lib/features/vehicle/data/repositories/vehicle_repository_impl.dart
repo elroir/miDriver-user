@@ -29,7 +29,7 @@ class VehicleRepositoryImpl implements VehicleRepository{
 
   @override
   Future<Either<Failure, List<CarMake>>> getCarMakes() async {
-    if(await _networkInfo.isConnected){
+    // if(await _networkInfo.isConnected){
       try{
         final response = await _remoteDataSource.getCarMakes();
         return Right(response.data!);
@@ -40,14 +40,14 @@ class VehicleRepositoryImpl implements VehicleRepository{
       }on SocketException{
         return Left(SocketFailure());
       }
-    }
-    return Left(SocketFailure());
+    // }
+    // return Left(SocketFailure());
 
   }
 
   @override
   Future<Either<Failure, HttpSuccess>> storeVehicle(UserVehicle vehicle,String userId) async {
-    if(await _networkInfo.isConnected){
+    // if(await _networkInfo.isConnected){
       try{
 
         if(_makeId==null){
@@ -63,8 +63,24 @@ class VehicleRepositoryImpl implements VehicleRepository{
       }on SocketException{
         return Left(SocketFailure());
       }
+    // }
+    // return Left(SocketFailure());
+  }
+
+  @override
+  Future<Either<Failure, List<UserVehicle>>> getUserVehicles() async {
+
+    try{
+      final response = await _remoteDataSource.getUserVehicles();
+      return Right(response.data!);
+    }on AuthenticationException{
+      return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
+    }on ServerException{
+      return Left(ServerFailure());
+    }on SocketException{
+      return Left(SocketFailure());
     }
-    return Left(SocketFailure());
+
   }
 
   String _toTransmissionStatus(){
@@ -83,5 +99,7 @@ class VehicleRepositoryImpl implements VehicleRepository{
   void saveMakeId(int makeId) {
     _makeId = makeId;
   }
+
+
 
 }

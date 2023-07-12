@@ -15,7 +15,6 @@ class StoreVehicle{
 
   Future<Either<Failure, HttpSuccess>>call(UserVehicle vehicle) async {
     final userId = await _storageRepository.getUserId();
-    print(userId);
     final vehicleOrFailure = await _vehicleRepository.storeVehicle(vehicle, userId!);
     return vehicleOrFailure;
 

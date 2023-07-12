@@ -39,7 +39,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, User>> getUser() async {
-    if(await _networkInfo.isConnected){
+    // if(await _networkInfo.isConnected){
       try{
         final response = await _remoteDataSource.getUser();
         _localDataSource.cacheUser(response.data!);
@@ -49,17 +49,23 @@ class UserRepositoryImpl implements UserRepository {
       }on PushNotificationException{
         return Left(PushNotificationFailure());
       }on ServerException{
-        return Left(ServerFailure());
+        try{
+          final user = await _localDataSource.getStoredUserData();
+          return Right(user);
+        }
+        on CacheException {
+          return Left(CacheFailure());
+        }
       }
-    }
+    // }
 
-    try{
-      final user = await _localDataSource.getStoredUserData();
-      return Right(user);
-    }
-    on CacheException {
-      return Left(CacheFailure());
-    }
+    // try{
+    //   final user = await _localDataSource.getStoredUserData();
+    //   return Right(user);
+    // }
+    // on CacheException {
+    //   return Left(CacheFailure());
+    // }
 
   }
 

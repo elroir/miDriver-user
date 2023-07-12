@@ -9,7 +9,6 @@ final makeProvider = StateNotifierProvider.autoDispose<MakeNotifier,CarMake?>(
         (ref) => MakeNotifier(ref.read(Repositories.saveMakeIdUseCase),ref.read(router))
 );
 
-
 class MakeNotifier extends StateNotifier<CarMake?> {
 
   final SaveMakeId _saveMakeId;
