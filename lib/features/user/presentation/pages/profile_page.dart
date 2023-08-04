@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../../../core/http/entities/http_post_status.dart';
+import '../../../../core/router/router.dart';
 import '../../../auth/presentation/widgets/background_logo_widget.dart';
 
 import '../../../../core/resources/strings_manager.dart';
 import '../../../auth/presentation/widgets/logout_button.dart';
+import '../../../home/presentation/pages/error_view.dart';
 import '../../../vehicle/presentation/widgets/vehicle_section.dart';
 import '../provider/user_data_provider.dart';
 import '../widgets/profile_field.dart';
@@ -15,9 +18,12 @@ class ProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,ref) {
-    final user = ref.watch(userDataProvider);
+    final userStatus = ref.watch(userDataProvider);
+    if(userStatus is HttpPostStatusLoading){
+      return const Center(child: CircularProgressIndicator.adaptive());
+    }
     return Scaffold(
-      body: user != null ? CustomScrollView(
+      body: (userStatus is HttpPostStatusSuccess) ? CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
             child: BackGroundLogoWidget()
@@ -30,17 +36,17 @@ class ProfilePage extends ConsumerWidget {
                   ProfileField(
                     icon: const Icon(CupertinoIcons.mail),
                     title: AppStrings.emailField,
-                    content: user.email,
+                    content: userStatus.data!.email,
                   ),
                   ProfileField(
                     icon: const Icon(Iconsax.mobile),
                     title: AppStrings.phoneField,
-                    content: user.phoneNumber.toString(),
+                    content: userStatus.data!.phoneNumber.toString(),
                   ),
                   ProfileField(
                     icon: const Icon(Iconsax.location),
                     title: AppStrings.addressField,
-                    content: user.address,
+                    content: userStatus.data!.address,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -57,7 +63,11 @@ class ProfilePage extends ConsumerWidget {
             child: Center(child: LogoutButton()),
           )
         ]
-      ) : const Center(child: CircularProgressIndicator.adaptive()),
+      ) : ErrorView(
+        errorText: userStatus.message,
+        buttonText: AppStrings.goBack,
+        onTap: ()=> context.go(Routes.login)
+      )
     );
   }
 }

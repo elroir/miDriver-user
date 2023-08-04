@@ -29,7 +29,7 @@ class VehicleRepositoryImpl implements VehicleRepository{
 
   @override
   Future<Either<Failure, List<CarMake>>> getCarMakes() async {
-    // if(await _networkInfo.isConnected){
+    if(await _networkInfo.isConnected){
       try{
         final response = await _remoteDataSource.getCarMakes();
         return Right(response.data!);
@@ -40,8 +40,8 @@ class VehicleRepositoryImpl implements VehicleRepository{
       }on SocketException{
         return Left(SocketFailure());
       }
-    // }
-    // return Left(SocketFailure());
+    }
+    return Left(SocketFailure());
 
   }
 

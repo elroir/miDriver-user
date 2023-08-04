@@ -17,6 +17,7 @@ class Routes {
   static const String profile = '/profile';
   static const String services = '/services';
   static const String newService = 'new';
+  static const String fare = 'fare';
 
 
 

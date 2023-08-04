@@ -39,7 +39,7 @@ class ServicePage extends StatelessWidget {
             FractionallySizedBox(
               widthFactor: 0.9,
               child: ElevatedButton(
-                onPressed: () => context.pushNamed(Routes.newService),
+                onPressed: () => context.pushNamed(Routes.fare),
                 child: const Text(AppStrings.requestDriver),
               ),
             ),

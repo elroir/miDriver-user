@@ -45,3 +45,7 @@ class ValidationFailure extends Failure{
 class ImageFailure extends Failure{
   ImageFailure({super.errorMessage = ErrorMessages.galleryMessageError});
 }
+
+class LocationPermissionFailure extends Failure{}
+
+class LocationServicesFailure extends Failure{}

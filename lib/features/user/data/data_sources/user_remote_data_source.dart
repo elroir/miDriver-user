@@ -90,8 +90,13 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     }
     );
 
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
 
     final decoded = json.decode(response.body)['data'];
+
+
 
     final user = UserModel.fromJson(decoded);
     await _secureStorage.saveUserId(user.uid);

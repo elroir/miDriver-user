@@ -1,6 +1,6 @@
 part of 'router.dart';
 class ServiceRouter {
-  static GoRoute serviceRoutes = GoRoute(
+  static GoRoute serviceRoutes (ProviderRef ref,GlobalKey<NavigatorState> key) =>  GoRoute(
       path: Routes.services,
       pageBuilder: (context,state) {
         return CustomTransitionPage(
@@ -12,8 +12,20 @@ class ServiceRouter {
       },
       routes: [
         GoRoute(
-          path: Routes.newService,
+          path: Routes.fare,
+          name: Routes.fare,
+          parentNavigatorKey: key,
+          pageBuilder: (context,state) {
+            return MaterialPage(
+                key: state.pageKey,
+                child: const FarePage()
+            );
+          },
+        ),
+        GoRoute(
+          path: '${Routes.newService}/:id',
           name: Routes.newService,
+          parentNavigatorKey: key,
           pageBuilder: (context,state) {
             return MaterialPage(
                 key: state.pageKey,

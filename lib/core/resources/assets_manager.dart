@@ -6,6 +6,7 @@ class AssetsManager{
   static const nothing          = 'assets/illustrations/Nothing.svg';
   static const mt               = 'assets/icons/gearshift-manual.svg';
   static const at               = 'assets/icons/gearshift-automatic.svg';
+  static const warning          = 'assets/icons/warning.svg';
 
 
   static const dataProcessing   = 'assets/illustrations/data_processing.svg';

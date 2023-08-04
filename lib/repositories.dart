@@ -21,6 +21,15 @@ import 'features/auth/domain/use_cases/save_personal_data_use_case.dart';
 import 'features/auth/domain/use_cases/sign_in_with_email_use_case.dart';
 import 'features/auth/domain/use_cases/sign_out_use_case.dart';
 import 'features/auth/domain/use_cases/verify_email_use_case.dart';
+import 'features/fare/data/data_sources/fare_remote_datasource.dart';
+import 'features/fare/data/repositories/fare_repository_impl.dart';
+import 'features/fare/domain/repositories/fare_repository.dart';
+import 'features/fare/domain/use_cases/get_fares_use_case.dart';
+import 'features/map/data/data_sources/map_remote_datasource.dart';
+import 'features/map/data/repositories/flutter_map_repository.dart';
+import 'features/map/domain/repositories/map_repository.dart';
+import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
+import 'features/map/domain/use_cases/pick_origin_use_case.dart';
 import 'features/splash/domain/use_cases/initial_screen_use_case.dart';
 import 'features/user/data/data_sources/user_local_data_source.dart';
 import 'features/user/data/data_sources/user_remote_data_source.dart';
@@ -48,8 +57,7 @@ class Repositories{
   static final _httpRepository = Provider<Client>((ref) => HttpOptions.client);
   static final _secureStorageRepository = Provider<SecureStorageRepository>((ref) => FlutterSecureStorageImpl());
   static final _storageRepository = Provider<LocalStorageRepository>((ref) => ObjectBoxImpl()..create());
-  static final _networkInfoRepository = Provider<NetworkInfoRepository>((ref) => NetworkInfoImpl(InternetConnectionCheckerPlus()));
-
+  static final _networkInfoRepository = Provider<NetworkInfoRepository>((ref) => NetworkInfoImpl(InternetConnection()));
   static final _pushNotificationRepository = Provider<PushNotificationRepository>((ref) => PushNotificationImpl());
 
 
@@ -58,12 +66,16 @@ class Repositories{
   static final _userRemoteDataSource      = Provider<UserRemoteDataSource>((ref) => UserRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository),ref.read(_pushNotificationRepository)));
   static final _userLocalDataSource       = Provider<UserLocalDataSource>((ref) => UserLocalDataSourceImpl(ref.read(_storageRepository)));
   static final _vehicleRemoteDataSource   = Provider<VehicleRemoteDataSource>((ref) => VehicleRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
+  static final _fareRemoteDataSource      = Provider<FareRemoteDataSource>((ref) => FareRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
+  static final _mapRemoteDataSource       = Provider<MapRemoteDataSource>((ref) => MapRemoteDataSourceImpl());
 
 
   //Repositories
   static final _authRepository      = Provider<AuthRepository>((ref) => AuthRepositoryImpl(ref.read(_authRemoteDataSource)));
   static final _userRepository      = Provider<UserRepository>((ref) => UserRepositoryImpl(ref.read(_userRemoteDataSource),ref.read(_userLocalDataSource),ref.read(_networkInfoRepository)));
-  static final _vehicleRepository    = Provider<VehicleRepository>((ref) => VehicleRepositoryImpl(ref.read(_vehicleRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _vehicleRepository   = Provider<VehicleRepository>((ref) => VehicleRepositoryImpl(ref.read(_vehicleRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _fareRepository      = Provider<FareRepository>((ref) => FareRepositoryImpl(ref.read(_fareRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _mapRepository       = Provider<MapRepository>((ref) => MapRepositoryImpl(ref.read(_mapRemoteDataSource),ref.read(_networkInfoRepository)));
 
 
   //Use cases
@@ -86,6 +98,11 @@ class Repositories{
   static final saveTransmissionTypeUseCase    = Provider<SaveTransmissionType>((ref) => SaveTransmissionType(ref.read(_vehicleRepository)));
   static final saveMakeIdUseCase              = Provider<SaveMakeId>((ref) => SaveMakeId(ref.read(_vehicleRepository)));
   static final getUserVehiclesUseCase         = Provider<GetUserVehicles>((ref) => GetUserVehicles(ref.read(_vehicleRepository)));
+
+  static final getFaresUseCase                = Provider<GetFares>((ref) => GetFares(ref.read(_fareRepository)));
+
+  static final pickOriginUseCase              = Provider<PickOrigin>((ref) => PickOrigin(ref.read(_mapRepository)));
+  static final getOriginUseCase               = Provider<GetPickedOrigin>((ref) => GetPickedOrigin(ref.read(_mapRepository)));
 
 
 }

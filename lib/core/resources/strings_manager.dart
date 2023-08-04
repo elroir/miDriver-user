@@ -14,6 +14,8 @@ class AppStrings{
   static const String haveAccount     = 'YA TENGO CUENTA';
   static const String logout          = 'Cerrar sesión';
   static const String forgotPassword  = 'Olvidé mi contraseña';
+  static const String reloadButton    = 'Volver a cargar';
+
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';
@@ -44,6 +46,7 @@ class AppStrings{
   static const String profile                 = 'Perfil';
   static const String services                = 'Servicios';
   static const String requestDriver           = 'Solicitar conductor';
+  static const String pickFare                = 'Seleccione su tarifa';
 
 
   static const String carRegister     = 'Registrar vehículo';
@@ -57,13 +60,11 @@ class AppStrings{
   static const String manual          = 'Manual';
 
 
-
-
   static const String profilePicture        = 'Foto de perfil';
   static const String camera                = 'Cámara';
   static const String gallery               = 'Galería';
 
 
-  static const String mapAttribution        ='© OpenStreetMap contributors';
+  static const String mapAttribution        ='OpenStreetMap contributors';
 
 }

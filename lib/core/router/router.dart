@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/fare/presentation/pages/fare_page.dart';
 import '../../features/service/presentation/pages/service_form_page.dart';
 import '../../features/auth/domain/entities/auth_status.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
@@ -24,7 +25,7 @@ part 'register_router.dart';
 part 'splash_router.dart';
 part 'service_router.dart';
 part 'vehicle_router.dart';
-
+part 'user_router.dart';
 
 final router = Provider(
         (ref) {
@@ -39,19 +40,8 @@ final router = Provider(
                   return HomePage(child: child);
                 },
                 routes: [
-                  GoRoute(
-                      path: Routes.profile,
-                      pageBuilder: (context,state) {
-                        return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: const ProfilePage(),
-                          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-                              FadeTransition(opacity: animation, child: child),
-                        );
-                      },
-
-                  ),
-                  ServiceRouter.serviceRoutes
+                  UserRouter.userRoutes,
+                  ServiceRouter.serviceRoutes(ref,rootNavigatorKey)
                  ]
             ),
             SplashRouter.splashRoutes(ref),

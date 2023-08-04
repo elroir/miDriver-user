@@ -7,11 +7,11 @@ abstract interface class NetworkInfoRepository{
 
 class NetworkInfoImpl implements NetworkInfoRepository{
 
-  final InternetConnectionCheckerPlus connectionChecker;
+  final InternetConnection connectionChecker;
 
   NetworkInfoImpl(this.connectionChecker);
 
   @override
-  Future<bool> get isConnected => connectionChecker.hasConnection;
+  Future<bool> get isConnected => connectionChecker.hasInternetAccess;
 
 }
