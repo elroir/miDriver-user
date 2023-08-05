@@ -39,6 +39,7 @@ class AppStrings{
   static const String search                  = 'Buscar';
   static const String price                   = 'Precio';
   static const String continueString          = 'Continuar';
+  static const String confirm                 = 'Confirmar';
   static const String goBack                  = 'Volver';
   static const String finish                  = 'Finalizar';
 

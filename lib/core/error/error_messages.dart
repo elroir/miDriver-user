@@ -23,6 +23,8 @@ class ErrorMessages{
 
   static const String noMakeSelected  = 'No se seleccionó una marca';
 
+  static const String originNotSelected  = 'No se seleccionó un origen';
+
 
 }
 

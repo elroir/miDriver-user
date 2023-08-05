@@ -390,6 +390,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.15"
+  flutter_polyline_points_plus:
+    dependency: "direct main"
+    description:
+      name: flutter_polyline_points_plus
+      sha256: b708003e687b3f717b912d2e727b4fc3610f413aad7680fcc3a828be02b91bfa
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   flutter_riverpod:
     dependency: "direct main"
     description:

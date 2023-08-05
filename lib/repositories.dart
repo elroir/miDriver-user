@@ -28,6 +28,7 @@ import 'features/fare/domain/use_cases/get_fares_use_case.dart';
 import 'features/map/data/data_sources/map_remote_datasource.dart';
 import 'features/map/data/repositories/flutter_map_repository.dart';
 import 'features/map/domain/repositories/map_repository.dart';
+import 'features/map/domain/use_cases/get_directions_use_case.dart';
 import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
 import 'features/map/domain/use_cases/pick_origin_use_case.dart';
 import 'features/splash/domain/use_cases/initial_screen_use_case.dart';
@@ -67,7 +68,7 @@ class Repositories{
   static final _userLocalDataSource       = Provider<UserLocalDataSource>((ref) => UserLocalDataSourceImpl(ref.read(_storageRepository)));
   static final _vehicleRemoteDataSource   = Provider<VehicleRemoteDataSource>((ref) => VehicleRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _fareRemoteDataSource      = Provider<FareRemoteDataSource>((ref) => FareRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
-  static final _mapRemoteDataSource       = Provider<MapRemoteDataSource>((ref) => MapRemoteDataSourceImpl());
+  static final _mapRemoteDataSource       = Provider<MapRemoteDataSource>((ref) => MapRemoteDataSourceImpl(ref.read(_httpRepository)));
 
 
   //Repositories
@@ -103,6 +104,7 @@ class Repositories{
 
   static final pickOriginUseCase              = Provider<PickOrigin>((ref) => PickOrigin(ref.read(_mapRepository)));
   static final getOriginUseCase               = Provider<GetPickedOrigin>((ref) => GetPickedOrigin(ref.read(_mapRepository)));
+  static final getDirectionsUseCase           = Provider<GetDirections>((ref) => GetDirections(ref.read(_mapRepository)));
 
 
 }

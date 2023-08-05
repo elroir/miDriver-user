@@ -7,7 +7,6 @@ import '../../domain/use_cases/pick_origin_use_case.dart';
 
 final pickOriginProvider = StateNotifierProvider.autoDispose<PickOriginNotifier,LatLng?>(
         (ref) {
-          ref.onDispose(() => print('eeeey disposed'));
           return PickOriginNotifier(ref.read(Repositories.pickOriginUseCase));
         }
 );
