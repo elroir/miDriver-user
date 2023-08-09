@@ -4,6 +4,8 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 
 import 'core/http/http_options.dart';
 
+import 'core/location/geolocator_repository.dart';
+import 'core/location/location_repository.dart';
 import 'core/network/network_info.dart';
 import 'core/network/push_notification_impl.dart';
 import 'core/network/push_notification_repository.dart';
@@ -24,6 +26,7 @@ import 'features/auth/domain/use_cases/verify_email_use_case.dart';
 import 'features/fare/data/data_sources/fare_remote_datasource.dart';
 import 'features/fare/data/repositories/fare_repository_impl.dart';
 import 'features/fare/domain/repositories/fare_repository.dart';
+import 'features/fare/domain/use_cases/get_cached_fares_use_case.dart';
 import 'features/fare/domain/use_cases/get_fares_use_case.dart';
 import 'features/map/data/data_sources/map_remote_datasource.dart';
 import 'features/map/data/repositories/flutter_map_repository.dart';
@@ -31,6 +34,7 @@ import 'features/map/domain/repositories/map_repository.dart';
 import 'features/map/domain/use_cases/get_directions_use_case.dart';
 import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
 import 'features/map/domain/use_cases/pick_origin_use_case.dart';
+import 'features/map/domain/use_cases/request_location_permission_use_case.dart';
 import 'features/splash/domain/use_cases/initial_screen_use_case.dart';
 import 'features/user/data/data_sources/user_local_data_source.dart';
 import 'features/user/data/data_sources/user_remote_data_source.dart';
@@ -60,6 +64,7 @@ class Repositories{
   static final _storageRepository = Provider<LocalStorageRepository>((ref) => ObjectBoxImpl()..create());
   static final _networkInfoRepository = Provider<NetworkInfoRepository>((ref) => NetworkInfoImpl(InternetConnection()));
   static final _pushNotificationRepository = Provider<PushNotificationRepository>((ref) => PushNotificationImpl());
+  static final _locationRepository = Provider<LocationRepository>((ref) => GeolocatorRepository());
 
 
   //Data sources
@@ -101,10 +106,12 @@ class Repositories{
   static final getUserVehiclesUseCase         = Provider<GetUserVehicles>((ref) => GetUserVehicles(ref.read(_vehicleRepository)));
 
   static final getFaresUseCase                = Provider<GetFares>((ref) => GetFares(ref.read(_fareRepository)));
+  static final getCachedFaresUseCase          = Provider<GetCachedFares>((ref) => GetCachedFares(ref.read(_fareRepository)));
 
   static final pickOriginUseCase              = Provider<PickOrigin>((ref) => PickOrigin(ref.read(_mapRepository)));
   static final getOriginUseCase               = Provider<GetPickedOrigin>((ref) => GetPickedOrigin(ref.read(_mapRepository)));
   static final getDirectionsUseCase           = Provider<GetDirections>((ref) => GetDirections(ref.read(_mapRepository)));
+  static final locationPermissionUseCase      = Provider<RequestLocationPermission>((ref) => RequestLocationPermission(ref.read(_locationRepository)));
 
 
 }

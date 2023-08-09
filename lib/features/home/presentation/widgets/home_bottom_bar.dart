@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/strings_manager.dart';
+import '../../../map/presentation/provider/location_permission_provider.dart';
 import '../../../user/presentation/provider/push_notification_provider.dart';
 import '../provider/navigation_bar_provider.dart';
 
@@ -14,6 +15,8 @@ class HomeBottomBar extends ConsumerWidget {
 
     final state = ref.watch(navigationBarProvider);
     ref.read(pushTokenProvider);
+
+    ref.read(locationPermissionProvider);
 
 
     return WillPopScope(

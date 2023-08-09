@@ -6,7 +6,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../../domain/entities/direction.dart';
 
-final polylineProvider = StateNotifierProvider<PolylineNotifier,Polyline?>(
+final polylineProvider = StateNotifierProvider.autoDispose<PolylineNotifier,Polyline?>(
         (ref) => PolylineNotifier()
 );
 

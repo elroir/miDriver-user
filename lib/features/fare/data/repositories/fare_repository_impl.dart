@@ -17,6 +17,8 @@ class FareRepositoryImpl implements FareRepository{
 
   FareRepositoryImpl(this._remoteDataSource, this._networkInfo);
 
+  List<Fare> _cachedFares = [];
+
   @override
   Future<Either<Failure, List<Fare>>> getFares() async {
     if(!await _networkInfo.isConnected){
@@ -25,6 +27,7 @@ class FareRepositoryImpl implements FareRepository{
 
     try{
       final fares = await _remoteDataSource.getFares();
+      _cachedFares = fares;
       return Right(fares);
 
     }on AuthenticationException{
@@ -32,6 +35,15 @@ class FareRepositoryImpl implements FareRepository{
     }on ServerException{
       return Left(ServerFailure());
     }
+  }
+
+  @override
+  Either<Failure, List<Fare>> getCachedFares() {
+   if(_cachedFares.isNotEmpty){
+     return Right(_cachedFares);
+   }else{
+     return Left(CacheFailure());
+   }
   }
 
 }

@@ -1,5 +1,8 @@
 class AppPadding {
   static const double topPadding = 25.0;
+  static const double serviceFormPadding = 15.0;
+
+
 }
 
 class AppBorder {

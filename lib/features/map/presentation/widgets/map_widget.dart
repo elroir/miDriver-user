@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -24,7 +25,7 @@ class MapWidget extends ConsumerWidget {
       if(next is HttpPostStatusSuccess){
         final direction = next.data as Direction;
         ref.read(polylineProvider.notifier).drawPolyline(direction);
-
+        ref.read(pickLocationProvider.notifier).confirm();
       }
 
     });
@@ -74,13 +75,15 @@ class MapWidget extends ConsumerWidget {
                 polylines: [
                   polyline
                 ],
-              )
+              ),
+            CurrentLocationLayer(),
+
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 80,right: 15),
+          padding: const EdgeInsets.only(bottom: 80,right: 15),
           child: Align(
-            alignment: Alignment.topRight,
+            alignment: Alignment.bottomRight,
             child: CircleAvatar(
               backgroundColor: Colors.white,
               child: IconButton(

@@ -27,9 +27,11 @@ class ServiceRouter {
           name: Routes.newService,
           parentNavigatorKey: key,
           pageBuilder: (context,state) {
+            final fareId = int.parse(state.pathParameters['id']!);
+
             return MaterialPage(
                 key: state.pageKey,
-                child: const ServiceFormPage()
+                child: ServiceFormPage(fareId: fareId)
             );
           },
         )

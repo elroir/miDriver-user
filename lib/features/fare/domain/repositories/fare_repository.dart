@@ -6,5 +6,7 @@ import '../entities/fare.dart';
 abstract interface class FareRepository{
 
   Future<Either<Failure,List<Fare>>> getFares();
+  Either<Failure,List<Fare>> getCachedFares();
+
 
 }

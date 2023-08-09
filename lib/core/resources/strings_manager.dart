@@ -48,6 +48,8 @@ class AppStrings{
   static const String services                = 'Servicios';
   static const String requestDriver           = 'Solicitar conductor';
   static const String pickFare                = 'Seleccione su tarifa';
+  static const String pickOrigin              = 'Seleccione el punto de partida';
+  static const String pickDestination         = 'Seleccione el destino';
 
 
   static const String carRegister     = 'Registrar vehículo';

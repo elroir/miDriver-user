@@ -11,6 +11,8 @@ class MainPicker<T> extends StatelessWidget {
   final TextEditingController textEditingController;
   final void Function(String,T?) onChanged;
   final bool required;
+  final Widget? icon;
+  final Color? backgroundColor;
 
   MainPicker({
     super.key,
@@ -19,7 +21,9 @@ class MainPicker<T> extends StatelessWidget {
     this.title = '',
     required this.textEditingController,
     required this.onChanged,
-    this.required = true
+    this.required = true,
+    this.icon,
+    this.backgroundColor
   })  : assert(itemTexts.length == items!.length,
       'itemTexts list and items list should have same number of elements');
 
@@ -33,8 +37,10 @@ class MainPicker<T> extends StatelessWidget {
         TextFormField(
           controller: textEditingController,
           readOnly: true,
-          decoration: const InputDecoration(
-            suffixIcon: Icon(Icons.arrow_drop_down,color: Colors.black87,size: 32),
+          decoration: InputDecoration(
+            fillColor: backgroundColor,
+            suffixIcon: const Icon(Icons.arrow_drop_down,color: Colors.black87,size: 32),
+            prefixIcon: icon
           ),
             validator: (val) {
               if(required && val!.isEmpty){
