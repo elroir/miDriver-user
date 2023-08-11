@@ -28,6 +28,8 @@ import 'features/fare/data/repositories/fare_repository_impl.dart';
 import 'features/fare/domain/repositories/fare_repository.dart';
 import 'features/fare/domain/use_cases/get_cached_fares_use_case.dart';
 import 'features/fare/domain/use_cases/get_fares_use_case.dart';
+import 'features/fare/domain/use_cases/get_picked_fare_use_case.dart';
+import 'features/fare/domain/use_cases/pick_fare_use_case.dart';
 import 'features/map/data/data_sources/map_remote_datasource.dart';
 import 'features/map/data/repositories/flutter_map_repository.dart';
 import 'features/map/domain/repositories/map_repository.dart';
@@ -35,6 +37,10 @@ import 'features/map/domain/use_cases/get_directions_use_case.dart';
 import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
 import 'features/map/domain/use_cases/pick_origin_use_case.dart';
 import 'features/map/domain/use_cases/request_location_permission_use_case.dart';
+import 'features/service/data/data_sources/service_remote_data_source.dart';
+import 'features/service/data/repositories/service_repository_impl.dart';
+import 'features/service/domain/repositories/service_repository.dart';
+import 'features/service/domain/use_cases/store_service_use_case.dart';
 import 'features/splash/domain/use_cases/initial_screen_use_case.dart';
 import 'features/user/data/data_sources/user_local_data_source.dart';
 import 'features/user/data/data_sources/user_remote_data_source.dart';
@@ -74,6 +80,7 @@ class Repositories{
   static final _vehicleRemoteDataSource   = Provider<VehicleRemoteDataSource>((ref) => VehicleRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _fareRemoteDataSource      = Provider<FareRemoteDataSource>((ref) => FareRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _mapRemoteDataSource       = Provider<MapRemoteDataSource>((ref) => MapRemoteDataSourceImpl(ref.read(_httpRepository)));
+  static final _serviceRemoteDataSource   = Provider<ServiceRemoteDataSource>((ref) => ServiceRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
 
 
   //Repositories
@@ -82,6 +89,7 @@ class Repositories{
   static final _vehicleRepository   = Provider<VehicleRepository>((ref) => VehicleRepositoryImpl(ref.read(_vehicleRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _fareRepository      = Provider<FareRepository>((ref) => FareRepositoryImpl(ref.read(_fareRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _mapRepository       = Provider<MapRepository>((ref) => MapRepositoryImpl(ref.read(_mapRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _serviceRepository   = Provider<ServiceRepository>((ref) => ServiceRepositoryImpl(ref.read(_serviceRemoteDataSource),ref.read(_networkInfoRepository)));
 
 
   //Use cases
@@ -107,11 +115,15 @@ class Repositories{
 
   static final getFaresUseCase                = Provider<GetFares>((ref) => GetFares(ref.read(_fareRepository)));
   static final getCachedFaresUseCase          = Provider<GetCachedFares>((ref) => GetCachedFares(ref.read(_fareRepository)));
+  static final pickFareUseCase                = Provider<PickFare>((ref) => PickFare(ref.read(_fareRepository)));
+  static final getPickedFareUseCase           = Provider<GetPickedFare>((ref) => GetPickedFare(ref.read(_fareRepository)));
 
   static final pickOriginUseCase              = Provider<PickOrigin>((ref) => PickOrigin(ref.read(_mapRepository)));
   static final getOriginUseCase               = Provider<GetPickedOrigin>((ref) => GetPickedOrigin(ref.read(_mapRepository)));
   static final getDirectionsUseCase           = Provider<GetDirections>((ref) => GetDirections(ref.read(_mapRepository)));
   static final locationPermissionUseCase      = Provider<RequestLocationPermission>((ref) => RequestLocationPermission(ref.read(_locationRepository)));
+
+  static final storeServiceUseCase            = Provider<StoreService>((ref) => StoreService(ref.read(_serviceRepository)));
 
 
 }

@@ -5,10 +5,9 @@ import 'car_make_model.dart';
 class UserVehicleModel extends UserVehicle{
 
   final String userId;
-  final int id;
 
   UserVehicleModel({
-    this.id = 0,
+    super.id = 0,
     required this.userId,
     required super.transmissionType,
     required super.year,

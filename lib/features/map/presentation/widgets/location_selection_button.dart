@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/widgets/loading_button.dart';
+import '../../../service/presentation/provider/service_form_provider.dart';
 import '../provider/direction_provider.dart';
 import '../provider/pick_location_provider.dart';
 
@@ -19,7 +20,7 @@ class LocationSelectionButton extends ConsumerWidget {
       return FractionallySizedBox(
         widthFactor: 0.9,
         child: ElevatedButton(
-            onPressed: () => ref.read(directionProvider.notifier).getDirections(locationSelection.destination!),
+            onPressed: () {},
             child: const Text(AppStrings.pickOrigin)
         ),
       );
@@ -29,7 +30,7 @@ class LocationSelectionButton extends ConsumerWidget {
       return FractionallySizedBox(
         widthFactor: 0.9,
         child: ElevatedButton(
-            onPressed: () => ref.read(directionProvider.notifier).getDirections(locationSelection.destination!),
+            onPressed: () {},
             child: const Text(AppStrings.pickDestination)
         ),
       );
@@ -49,7 +50,7 @@ class LocationSelectionButton extends ConsumerWidget {
         widthFactor: 0.9,
         fixedHeight: 46,
         isLoading: directions is HttpPostStatusLoading,
-        onPressed: () => ref.read(directionProvider.notifier).getDirections(locationSelection.destination!),
+        onPressed: () => ref.read(serviceFormProvider.notifier).storeService(),
         buttonText: AppStrings.requestDriver
     );
 

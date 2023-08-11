@@ -7,6 +7,7 @@ class FareModel extends Fare {
 
   FareModel({
     required super.id,
+    required super.price,
     required super.title,
     required super.description,
     required super.imageUrl,
@@ -15,6 +16,7 @@ class FareModel extends Fare {
 
   factory FareModel.fromJson(Map<String,dynamic> json) => FareModel(
       id: json['id'],
+      price: json['price']/1,
       title: json['name'],
       description: json['description'],
     imageUrl: json['icon'] != null ? 'https://${HttpOptions.apiUrl}/assets/${json['icon']}' : 'https://admin.midriverdesignado.com/assets/54552e90-b59f-46b0-8c7d-073b1b17e898',

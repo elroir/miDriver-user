@@ -7,6 +7,7 @@ abstract interface class FareRepository{
 
   Future<Either<Failure,List<Fare>>> getFares();
   Either<Failure,List<Fare>> getCachedFares();
-
+  void pickFare(Fare? fare);
+  Fare? get pickedFare;
 
 }

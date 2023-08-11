@@ -1,6 +1,8 @@
 import 'car_make.dart';
 
 class UserVehicle{
+
+  final int id;
   final int year;
   final String model;
   final String plate;
@@ -8,6 +10,7 @@ class UserVehicle{
   final CarMake make;
 
   UserVehicle({
+    this.id = 0,
     required this.year,
     required this.model,
     required this.plate,

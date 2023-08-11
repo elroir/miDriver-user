@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../repositories.dart';
-import '../../../service/presentation/provider/service_form_provider.dart';
+import '../../../fare/domain/use_cases/get_picked_fare_use_case.dart';
 import '../../domain/use_cases/get_picked_origin_use_case.dart';
 import '../../domain/use_cases/pick_origin_use_case.dart';
 
@@ -11,9 +11,7 @@ part 'location_selection_state.dart';
 final pickLocationProvider = StateNotifierProvider.autoDispose<PickLocationNotifier,LocationSelectionState>(
         (ref) {
       // ref.onDispose(() => print('eeeey disposed'));
-      final fare = ref.read(serviceFormProvider.notifier).getFare();
-
-      return PickLocationNotifier(ref.read(Repositories.pickOriginUseCase),ref.read(Repositories.getOriginUseCase))..init(fare?.location);
+      return PickLocationNotifier(ref.read(Repositories.pickOriginUseCase),ref.read(Repositories.getOriginUseCase),ref.read(Repositories.getPickedFareUseCase))..init();
     }
 );
 
@@ -22,8 +20,9 @@ class PickLocationNotifier extends StateNotifier<LocationSelectionState>{
 
   final PickOrigin _pickOrigin;
   final GetPickedOrigin _getOrigin;
+  final GetPickedFare _fare;
 
-  PickLocationNotifier(this._pickOrigin, this._getOrigin) : super(const LocationSelectionNone());
+  PickLocationNotifier(this._pickOrigin, this._getOrigin, this._fare) : super(const LocationSelectionNone());
 
   Future<void> pickLocation(LatLng location) async {
     final origin = _getOrigin();
@@ -35,11 +34,28 @@ class PickLocationNotifier extends StateNotifier<LocationSelectionState>{
     state = LocationSelectionDestination(origin: origin,destination: location);
   }
 
-  void init(LatLng? location) {
+  void init() {
+    _checkInitialOrigin();
+  }
+
+  void restart() {
+    final hasOrigin = _checkInitialOrigin();
+    if(!hasOrigin){
+      state = const LocationSelectionNone();
+    }
+  }
+
+  bool _checkInitialOrigin() {
+    final fare = _fare();
+    final location = fare?.location;
     if(location != null){
       state = LocationSelectionOrigin(origin: location,canPickOrigin: false);
       _pickOrigin(location);
+      return true;
     }
+
+    return false;
+
   }
 
   void confirm() {

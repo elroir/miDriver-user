@@ -4,11 +4,8 @@ import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/strings_manager.dart';
 
-import '../../domain/entities/direction.dart';
-import '../provider/direction_provider.dart';
 import '../provider/pick_location_provider.dart';
 import '../provider/polyline_provider.dart';
 
@@ -21,14 +18,6 @@ class MapWidget extends ConsumerWidget {
   Widget build(BuildContext context,ref) {
     final locationSelection = ref.watch(pickLocationProvider);
     final polyline = ref.watch(polylineProvider);
-    ref.listen(directionProvider, (previous, next) {
-      if(next is HttpPostStatusSuccess){
-        final direction = next.data as Direction;
-        ref.read(polylineProvider.notifier).drawPolyline(direction);
-        ref.read(pickLocationProvider.notifier).confirm();
-      }
-
-    });
 
 
     return Stack(

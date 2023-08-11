@@ -18,6 +18,7 @@ class FareRepositoryImpl implements FareRepository{
   FareRepositoryImpl(this._remoteDataSource, this._networkInfo);
 
   List<Fare> _cachedFares = [];
+  Fare? _pickedFare;
 
   @override
   Future<Either<Failure, List<Fare>>> getFares() async {
@@ -45,5 +46,13 @@ class FareRepositoryImpl implements FareRepository{
      return Left(CacheFailure());
    }
   }
+
+  @override
+  void pickFare(Fare? fare) {
+    _pickedFare = fare;
+  }
+
+  @override
+  Fare? get pickedFare => _pickedFare;
 
 }
