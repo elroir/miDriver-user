@@ -40,6 +40,7 @@ import 'features/map/domain/use_cases/request_location_permission_use_case.dart'
 import 'features/service/data/data_sources/service_remote_data_source.dart';
 import 'features/service/data/repositories/service_repository_impl.dart';
 import 'features/service/domain/repositories/service_repository.dart';
+import 'features/service/domain/use_cases/get_current_service_use_case.dart';
 import 'features/service/domain/use_cases/store_service_use_case.dart';
 import 'features/splash/domain/use_cases/initial_screen_use_case.dart';
 import 'features/user/data/data_sources/user_local_data_source.dart';
@@ -124,6 +125,7 @@ class Repositories{
   static final locationPermissionUseCase      = Provider<RequestLocationPermission>((ref) => RequestLocationPermission(ref.read(_locationRepository)));
 
   static final storeServiceUseCase            = Provider<StoreService>((ref) => StoreService(ref.read(_serviceRepository)));
+  static final getCurrentServiceUseCase       = Provider<GetCurrentService>((ref) => GetCurrentService(ref.read(_serviceRepository)));
 
 
 }

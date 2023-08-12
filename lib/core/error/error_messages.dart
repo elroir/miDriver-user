@@ -25,6 +25,7 @@ class ErrorMessages{
 
   static const String originNotSelected  = 'No se seleccionó un origen';
 
+  static const String noService   = 'No se encontró un servicio activo';
 
 }
 

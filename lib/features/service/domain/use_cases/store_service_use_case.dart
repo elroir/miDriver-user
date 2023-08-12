@@ -10,7 +10,7 @@ class StoreService{
 
   StoreService(this.serviceRepository);
 
-  Future<Either<Failure,HttpSuccess>> call(ServiceFormModel service) async {
+  Future<Either<Failure,HttpSuccess>> call(ServiceModel service) async {
     return await serviceRepository.storeService(service);
   }
 }

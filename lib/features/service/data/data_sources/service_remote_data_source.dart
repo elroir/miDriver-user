@@ -12,9 +12,17 @@ abstract interface class ServiceRemoteDataSource{
   ///Calls [HttpOptions.apiUrl]/items/service to register a new Service
   ///needs a [ServiceFormModel]
   ///
-  /// Throws a [ServerException] for all error codes
+  ///  Throws an [AuthenticationException] for code 401
+  /// Throws a [ServerException] for all other error codes
   /// Throws a [SocketException] if no response is sent
-  Future<HttpSuccess> storeService(ServiceFormModel service);
+  Future<HttpSuccess> storeService(ServiceModel service);
+  ///Calls [HttpOptions.apiUrl]/items/service to get current service
+  ///
+  ///  Throws an [AuthenticationException] for code 401
+  /// Throws a [ServerException] for all other error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<ServiceModel> getCurrentService();
+
 }
 
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
@@ -25,7 +33,7 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
   ServiceRemoteDataSourceImpl(this._client, this._secureStorage);
 
   @override
-  Future<HttpSuccess> storeService(ServiceFormModel service) async {
+  Future<HttpSuccess> storeService(ServiceModel service) async {
 
     const baseUrl = HttpOptions.apiUrl;
 
@@ -42,12 +50,55 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
         }
     );
 
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
     if(response.statusCode!=200){
       throw ServerException();
     }
 
 
     return HttpSuccess();
+  }
+
+  @override
+  Future<ServiceModel> getCurrentService() async{
+    const baseUrl = HttpOptions.apiUrl;
+
+    final token = await _secureStorage.getToken();
+    final userId = await _secureStorage.getUserId();
+
+    final url = Uri.https(baseUrl,'/items/service',{
+      'fields' : 'id,date_created,status,vehicle.*,vehicle.make.*,total_distance,total_price,from,to,fare.*',
+      'filter' : '{ "client": { "_eq": "$userId" },"status": { "_eq": "published" }}'
+    });
+
+    final response = await _client.get(url,
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type' : 'application/json'
+        }
+    );
+
+
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=200){
+      throw ServerException();
+    }
+
+    final data = json.decode(response.body);
+
+    if(data['data'].isEmpty){
+      throw NoDataException();
+    }
+
+    final service = ServiceModel.fromJson(data['data'][0]);
+
+
+    return service;
   }
 
 }

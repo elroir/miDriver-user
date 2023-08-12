@@ -70,7 +70,7 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
       return;
     }
 
-    final serviceForm = ServiceFormModel(
+    final serviceForm = ServiceModel(
         distanceInKm: distanceInKm,
         price: price,
         car: _vehicle,

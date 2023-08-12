@@ -3,7 +3,7 @@ import 'package:latlong2/latlong.dart';
 import '../../../fare/domain/entities/fare.dart';
 import '../../../vehicle/domain/entities/user_vehicle.dart';
 
-class ServiceForm{
+class Service{
   final double distanceInKm;
   final double price;
   final LatLng origin;
@@ -11,7 +11,7 @@ class ServiceForm{
   final UserVehicle? car;
   final Fare fare;
 
-  ServiceForm({
+  Service({
     required this.distanceInKm,
     required this.price,
     required this.origin,

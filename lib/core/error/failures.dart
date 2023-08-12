@@ -29,6 +29,8 @@ class NullFailure extends Failure{
 
 class PushNotificationFailure extends Failure{}
 
+class NoServiceFailure extends Failure{}
+
 
 class AuthFailure extends Failure{
   AuthFailure({super.errorMessage = ErrorMessages.genericAuthMessageError});
