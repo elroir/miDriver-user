@@ -20,6 +20,8 @@ class ServiceRepositoryImpl implements ServiceRepository{
 
   ServiceRepositoryImpl(this._remoteDataSource, this._networkInfoRepository);
 
+  int _currentServiceId = 0;
+
   @override
   Future<Either<Failure, HttpSuccess>> storeService(ServiceModel service) async {
     try{
@@ -46,6 +48,7 @@ class ServiceRepositoryImpl implements ServiceRepository{
       }
 
       final response = await _remoteDataSource.getCurrentService();
+      _currentServiceId = response.id;
       return Right(response);
     }on AuthenticationException{
       return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
@@ -57,5 +60,23 @@ class ServiceRepositoryImpl implements ServiceRepository{
       return Left(NoServiceFailure());
     }
 
+  }
+
+  @override
+  Future<Either<Failure, HttpSuccess>> cancelService() async {
+    try{
+      if(!await _networkInfoRepository.isConnected){
+        return Left(SocketFailure());
+      }
+
+      final response = await _remoteDataSource.cancelCurrentService(_currentServiceId);
+      return Right(response);
+    }on AuthenticationException{
+      return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
+    }on ServerException{
+      return Left(ServerFailure());
+    }on SocketException{
+      return Left(SocketFailure());
+    }
   }
 }

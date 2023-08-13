@@ -7,6 +7,7 @@ import '../../domain/entities/service.dart';
 class ServiceModel extends Service{
 
   ServiceModel({
+    super.id,
     required super.distanceInKm,
     required super.price,
     required super.fare,
@@ -18,6 +19,7 @@ class ServiceModel extends Service{
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
     return ServiceModel(
+      id: json['id'],
       distanceInKm: json['total_distance'],
       price: json['total_price']/1,
       fare: FareModel.fromJson(json['fare']),

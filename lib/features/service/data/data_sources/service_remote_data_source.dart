@@ -22,7 +22,11 @@ abstract interface class ServiceRemoteDataSource{
   /// Throws a [ServerException] for all other error codes
   /// Throws a [SocketException] if no response is sent
   Future<ServiceModel> getCurrentService();
-
+  ///Calls [HttpOptions.apiUrl]/items/service/[serviceId] to cancel current service
+  ///  Throws an [AuthenticationException] for code 401
+  /// Throws a [ServerException] for all other error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<HttpSuccess> cancelCurrentService(int serviceId);
 }
 
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
@@ -70,7 +74,8 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
 
     final url = Uri.https(baseUrl,'/items/service',{
       'fields' : 'id,date_created,status,vehicle.*,vehicle.make.*,total_distance,total_price,from,to,fare.*',
-      'filter' : '{ "client": { "_eq": "$userId" },"status": { "_eq": "published" }}'
+      'filter' : '{ "client": { "_eq": "$userId" },'
+          '"status": { "_in": ["published","approved","in_progress"] }}'
     });
 
     final response = await _client.get(url,
@@ -99,6 +104,37 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
 
 
     return service;
+  }
+
+  @override
+  Future<HttpSuccess> cancelCurrentService(int serviceId) async {
+    const baseUrl = HttpOptions.apiUrl;
+
+    final token = await _secureStorage.getToken();
+
+    final url = Uri.https(baseUrl,'/items/service/$serviceId');
+
+    final response = await _client.patch(url,
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type' : 'application/json'
+        },body: json.encode({
+          'status':'cancelled'
+        })
+    );
+
+
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=200){
+      throw ServerException();
+    }
+
+
+
+    return HttpSuccess();
   }
 
 }

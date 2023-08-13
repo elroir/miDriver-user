@@ -8,5 +8,6 @@ import '../entities/service.dart';
 abstract interface class ServiceRepository{
   Future<Either<Failure,HttpSuccess>> storeService(ServiceModel service);
   Future<Either<Failure,Service>> getCurrentService();
+  Future<Either<Failure,HttpSuccess>> cancelService();
 
 }
