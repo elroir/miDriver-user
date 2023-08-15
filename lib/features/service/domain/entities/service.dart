@@ -11,6 +11,7 @@ class Service{
   final LatLng destination;
   final UserVehicle? car;
   final Fare fare;
+  final DateTime serviceDateTime;
 
   Service({
     this.id = 0,
@@ -20,6 +21,7 @@ class Service{
     required this.destination,
     this.car,
     required this.fare,
+    required this.serviceDateTime
   });
 
 

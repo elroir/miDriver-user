@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/widgets/main_picker.dart';
 import '../../domain/entities/user_vehicle.dart';
@@ -21,7 +22,7 @@ class VehiclePicker extends ConsumerWidget {
           textEditingController: textController,
           items: cars,
           required: true,
-          icon: const Icon(Icons.directions_car,color: Colors.black),
+          icon: const Icon(Iconsax.car,color: Colors.black),
           backgroundColor: Colors.white,
           onChanged: onChanged,
         ),

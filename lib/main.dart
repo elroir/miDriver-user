@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'core/http/http_override.dart';
 import 'core/router/router.dart';
 import 'core/theme/themes.dart';
@@ -24,6 +26,15 @@ class MyApp extends ConsumerWidget {
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
       routerConfig: ref.watch(router),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('es'),
+      ],
     );
   }
 }

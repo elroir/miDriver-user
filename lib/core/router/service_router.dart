@@ -23,6 +23,24 @@ class ServiceRouter {
           },
         ),
         GoRoute(
+          path: Routes.location,
+          parentNavigatorKey: key,
+          pageBuilder: (context,state) {
+            final lat = state.uri.queryParameters['lat'] ?? '';
+            final long = state.uri.queryParameters['lon'] ?? '';
+            if(num.tryParse(lat)==null||num.tryParse(long)==null){
+              return MaterialPage(
+                  key: state.pageKey,
+                  child: const ServicePage()
+              );
+            }
+            return MaterialPage(
+                key: state.pageKey,
+                child: LocationMapPage(location: LatLng(double.parse(lat), double.parse(long)))
+            );
+          },
+        ),
+        GoRoute(
           path: '${Routes.newService}/:id',
           name: Routes.newService,
           parentNavigatorKey: key,

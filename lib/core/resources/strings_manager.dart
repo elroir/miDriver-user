@@ -20,7 +20,10 @@ class AppStrings{
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';
   static const String recoverySuccessful    = 'Se ha enviado un correo de recuperación a su cuenta, si no lo encuentra revise el correo no deseado';
-
+  static const String pickupPlace           = 'Lugar de partida';
+  static const String destinationPlace      = 'Lugar de destino';
+  static const String myPrice               = 'Mi precio';
+  static const String driversOffers         = 'Ofertas de los conductores';
 
   static const String continueRegister      = 'CONTINUAR REGISTRO';
   static const String finishRegister        = 'Registrarme';
@@ -42,6 +45,8 @@ class AppStrings{
   static const String confirm                 = 'Confirmar';
   static const String goBack                  = 'Volver';
   static const String finish                  = 'Finalizar';
+  static const String cancel                  = 'Cancelar';
+  static const String fareSelected            = 'Tarifa seleccionada';
 
 
   static const String profile                 = 'Perfil';
@@ -66,7 +71,7 @@ class AppStrings{
   static const String profilePicture        = 'Foto de perfil';
   static const String camera                = 'Cámara';
   static const String gallery               = 'Galería';
-
+  static const String dateAndTime           = 'Fecha y hora';
 
   static const String mapAttribution        ='OpenStreetMap contributors';
 

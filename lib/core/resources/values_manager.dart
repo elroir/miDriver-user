@@ -1,6 +1,7 @@
 class AppPadding {
   static const double topPadding = 25.0;
   static const double serviceFormPadding = 15.0;
+  static const double horizontalPadding = 10.0;
 
 
 }
@@ -8,6 +9,8 @@ class AppPadding {
 class AppBorder {
   static const double cardBorderRadius = 8.0;
   static const double cardMaxBorderRadius = 15.0;
+  static const double serviceBorderRadius = 25.0;
+
   static const double textFieldBorderRadius = 8.0;
   static const double buttonBorderRadius = 10.0;
 

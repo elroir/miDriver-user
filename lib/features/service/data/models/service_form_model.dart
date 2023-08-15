@@ -13,7 +13,8 @@ class ServiceModel extends Service{
     required super.fare,
     required super.car,
     required super.origin,
-    required super.destination
+    required super.destination,
+    required super.serviceDateTime
   });
 
 
@@ -26,6 +27,7 @@ class ServiceModel extends Service{
       car: UserVehicleModel.fromJson(json['vehicle']),
       origin: LatLng(json['from']['coordinates'][1],json['from']['coordinates'][0]),
       destination: LatLng(json['to']['coordinates'][1],json['to']['coordinates'][0]),
+      serviceDateTime: DateTime.parse(json['date'])
     );
   }
 

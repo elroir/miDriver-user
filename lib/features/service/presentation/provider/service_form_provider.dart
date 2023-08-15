@@ -76,7 +76,8 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
         car: _vehicle,
         fare: _fare()!,
         origin: _origin()!,
-        destination: _destination!
+        destination: _destination!,
+      serviceDateTime: DateTime.now()
     );
     state = HttpPostStatusLoading();
     final response = await _storeService(serviceForm);

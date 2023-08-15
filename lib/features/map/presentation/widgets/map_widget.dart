@@ -11,7 +11,6 @@ import '../provider/polyline_provider.dart';
 
 class MapWidget extends ConsumerWidget {
 
-
   const MapWidget({Key? key}) : super(key: key);
 
   @override
