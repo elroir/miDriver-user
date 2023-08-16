@@ -24,6 +24,8 @@ class AppStrings{
   static const String destinationPlace      = 'Lugar de destino';
   static const String myPrice               = 'Mi precio';
   static const String driversOffers         = 'Ofertas de los conductores';
+  static const String offeredPrice          = 'Precio ofertado';
+
 
   static const String continueRegister      = 'CONTINUAR REGISTRO';
   static const String finishRegister        = 'Registrarme';
@@ -46,6 +48,8 @@ class AppStrings{
   static const String goBack                  = 'Volver';
   static const String finish                  = 'Finalizar';
   static const String cancel                  = 'Cancelar';
+  static const String accept                  = 'Aceptar';
+
   static const String fareSelected            = 'Tarifa seleccionada';
 
 

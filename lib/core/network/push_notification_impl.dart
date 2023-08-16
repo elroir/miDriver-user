@@ -9,7 +9,7 @@ class PushNotificationImpl implements PushNotificationRepository{
   Future<String?> getDeviceToken() async {
     final state = await OneSignal.shared.getDeviceState();
     if(state!=null){
-      return state.pushToken;
+      return state.userId;
     }
     return null;
   }

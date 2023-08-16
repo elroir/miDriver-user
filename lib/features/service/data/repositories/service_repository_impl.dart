@@ -79,4 +79,7 @@ class ServiceRepositoryImpl implements ServiceRepository{
       return Left(SocketFailure());
     }
   }
+
+  @override
+  int get currentServiceId => _currentServiceId;
 }

@@ -37,6 +37,10 @@ import 'features/map/domain/use_cases/get_directions_use_case.dart';
 import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
 import 'features/map/domain/use_cases/pick_origin_use_case.dart';
 import 'features/map/domain/use_cases/request_location_permission_use_case.dart';
+import 'features/offer/data/data_sources/offer_remote_datasource.dart';
+import 'features/offer/data/repositories/offer_repository_impl.dart';
+import 'features/offer/domain/repositories/offer_repository.dart';
+import 'features/offer/domain/use_cases/get_offers_use_case.dart';
 import 'features/service/data/data_sources/service_remote_data_source.dart';
 import 'features/service/data/repositories/service_repository_impl.dart';
 import 'features/service/domain/repositories/service_repository.dart';
@@ -83,6 +87,7 @@ class Repositories{
   static final _fareRemoteDataSource      = Provider<FareRemoteDataSource>((ref) => FareRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _mapRemoteDataSource       = Provider<MapRemoteDataSource>((ref) => MapRemoteDataSourceImpl(ref.read(_httpRepository)));
   static final _serviceRemoteDataSource   = Provider<ServiceRemoteDataSource>((ref) => ServiceRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
+  static final _offerRemoteDataSource     = Provider<OfferRemoteDataSource>((ref) => OfferRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
 
 
   //Repositories
@@ -92,6 +97,7 @@ class Repositories{
   static final _fareRepository      = Provider<FareRepository>((ref) => FareRepositoryImpl(ref.read(_fareRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _mapRepository       = Provider<MapRepository>((ref) => MapRepositoryImpl(ref.read(_mapRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _serviceRepository   = Provider<ServiceRepository>((ref) => ServiceRepositoryImpl(ref.read(_serviceRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _offerRepository     = Provider<OfferRepository>((ref) => OfferRepositoryImpl(ref.read(_offerRemoteDataSource),ref.read(_networkInfoRepository)));
 
 
   //Use cases
@@ -104,7 +110,6 @@ class Repositories{
   static final requestPasswordRecoveryUseCase = Provider<RequestPasswordRecovery>((ref) => RequestPasswordRecovery(ref.read(_authRepository)));
 
   static final splashUseCase                  = Provider<GetInitialPage>((ref) => GetInitialPage(ref.read(_secureStorageRepository)));
-
 
   static final updateUserTokenUseCase         = Provider<UpdateUserToken>((ref) => UpdateUserToken(ref.read(_pushNotificationRepository),ref.read(_userRepository)));
   static final getUserDataUseCase             = Provider<GetUserData>((ref) => GetUserData(ref.read(_userRepository)));
@@ -128,6 +133,8 @@ class Repositories{
   static final storeServiceUseCase            = Provider<StoreService>((ref) => StoreService(ref.read(_serviceRepository)));
   static final getCurrentServiceUseCase       = Provider<GetCurrentService>((ref) => GetCurrentService(ref.read(_serviceRepository)));
   static final cancelCurrentServiceUseCase    = Provider<CancelService>((ref) => CancelService(ref.read(_serviceRepository)));
+
+  static final getOffersUseCase               = Provider<GetOffers>((ref) => GetOffers(ref.read(_offerRepository),ref.read(_serviceRepository)));
 
 
 }

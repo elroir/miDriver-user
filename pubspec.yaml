@@ -52,6 +52,8 @@ dependencies:
   cached_network_image: ^3.2.3
   internet_connection_checker_plus: ^2.0.0
   onesignal_flutter: ^3.5.1
+  web_socket_channel: ^2.4.0
+
 #map dependencies
   flutter_map: ^5.0.0
   latlong2: ^0.9.0

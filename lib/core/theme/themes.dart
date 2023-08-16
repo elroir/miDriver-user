@@ -56,6 +56,10 @@ class Themes {
       textTheme: TextThemeStyle.textTheme,
       elevatedButtonTheme: ButtonThemeStyle.elevatedButtonTheme,
       outlinedButtonTheme: ButtonThemeStyle.outlinedButtonDarkTheme,
+      cardTheme: CardTheme(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppBorder.cardBorderRadius)),
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+      ),
       appBarTheme: const AppBarTheme(
         color: Colors.transparent,
         elevation: 0,

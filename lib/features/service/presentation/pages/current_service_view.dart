@@ -6,6 +6,7 @@ import '../../../../core/extension/date_time_extension.dart';
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../offer/presentation/widgets/offers_list.dart';
 import '../provider/cancel_service_provider.dart';
 import '../provider/get_current_service_provider.dart';
 import '../widgets/pickup_and_destination_button.dart';
@@ -81,6 +82,7 @@ class CurrentServiceView extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(AppStrings.fareSelected,style: TextStyle(color: Colors.white70),),
                             Text('${service.fare.title} Bs.${service.fare.price.toStringAsFixed(2)}',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
@@ -110,7 +112,8 @@ class CurrentServiceView extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.serviceFormPadding),
             child: Text(AppStrings.driversOffers,style: Theme.of(context).textTheme.titleMedium,),
           ),
-        )
+        ),
+        const OffersList()
       ],
     );
   }

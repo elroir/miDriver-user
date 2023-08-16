@@ -10,4 +10,6 @@ abstract interface class ServiceRepository{
   Future<Either<Failure,Service>> getCurrentService();
   Future<Either<Failure,HttpSuccess>> cancelService();
 
+  int get currentServiceId;
+
 }

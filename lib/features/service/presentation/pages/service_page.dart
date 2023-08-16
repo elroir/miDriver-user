@@ -17,6 +17,7 @@ class ServicePage extends ConsumerWidget {
 
     return Scaffold(
       body: currentService.when(
+        skipLoadingOnRefresh: false,
           data: (currentService) => const CurrentServiceView(),
           error: (error,_) {
             if(error is NoServiceFailure){

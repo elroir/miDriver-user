@@ -39,6 +39,19 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, User>> getUser() async {
+    // final wsUrl = Uri.parse(HttpOptions.socketUrl);
+    // var channel = WebSocketChannel.connect(wsUrl);
+    // channel.sink.add(json.encode({
+    //   'type': 'auth',
+    //   'access_token': 'ZqO5ANCprCQ9T5vR30rnfhhFrVAO9oF1'
+    // }));
+    // channel.stream.listen((message) {
+    //
+    //
+    //
+    //   print(message);
+    // });
+
 
     if(await _networkInfo.isConnected){
       try{
