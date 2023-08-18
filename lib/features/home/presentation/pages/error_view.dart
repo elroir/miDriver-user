@@ -9,17 +9,19 @@ class ErrorView extends StatelessWidget {
   final void Function() onTap;
   final String errorText;
   final String buttonText;
+  final double? height;
 
   const ErrorView({Key? key,
     required this.onTap,
     this.errorText = 'Ha ocurrido un error',
-    this.buttonText = AppStrings.reloadButton
+    this.buttonText = AppStrings.reloadButton,
+    this.height
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*0.85,
+      height: height ?? MediaQuery.of(context).size.height*0.85,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

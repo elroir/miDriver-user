@@ -5,6 +5,7 @@ import 'package:fpdart/fpdart.dart';
 import '../../../../core/error/error_messages.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/http/entities/http_response.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/offer.dart';
 import '../../domain/repositories/offer_repository.dart';
@@ -25,6 +26,24 @@ class OfferRepositoryImpl implements OfferRepository{
       }
 
       final response = await _remoteDataSource.getOffers(serviceId);
+      return Right(response);
+    }on AuthenticationException{
+      return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
+    }on ServerException{
+      return Left(ServerFailure());
+    }on SocketException{
+      return Left(SocketFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, HttpSuccess>> acceptOffer(int offerId) async {
+    try{
+      if(!await _networkInfo.isConnected){
+        return Left(SocketFailure());
+      }
+
+      final response = await _remoteDataSource.acceptOffer(offerId);
       return Right(response);
     }on AuthenticationException{
       return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));

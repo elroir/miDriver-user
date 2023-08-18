@@ -3,6 +3,16 @@ import 'package:latlong2/latlong.dart';
 import '../../../fare/domain/entities/fare.dart';
 import '../../../vehicle/domain/entities/user_vehicle.dart';
 
+
+enum ServiceStatus{
+  published,
+  accepted,
+  inProgress,
+  finished,
+  paid,
+  cancelled
+}
+
 class Service{
   final int id;
   final double distanceInKm;
@@ -12,6 +22,7 @@ class Service{
   final UserVehicle? car;
   final Fare fare;
   final DateTime serviceDateTime;
+  final ServiceStatus status;
 
   Service({
     this.id = 0,
@@ -21,7 +32,8 @@ class Service{
     required this.destination,
     this.car,
     required this.fare,
-    required this.serviceDateTime
+    required this.serviceDateTime,
+    this.status = ServiceStatus.published
   });
 
 

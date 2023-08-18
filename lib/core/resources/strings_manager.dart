@@ -25,6 +25,8 @@ class AppStrings{
   static const String myPrice               = 'Mi precio';
   static const String driversOffers         = 'Ofertas de los conductores';
   static const String offeredPrice          = 'Precio ofertado';
+  static const String driverInCharge        = 'Conductor encargado';
+  static const String serviceCancelled      = 'Servicio cancelado';
 
 
   static const String continueRegister      = 'CONTINUAR REGISTRO';

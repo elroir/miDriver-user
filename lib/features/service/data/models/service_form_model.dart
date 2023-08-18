@@ -14,7 +14,8 @@ class ServiceModel extends Service{
     required super.car,
     required super.origin,
     required super.destination,
-    required super.serviceDateTime
+    required super.serviceDateTime,
+    super.status
   });
 
 
@@ -27,7 +28,8 @@ class ServiceModel extends Service{
       car: UserVehicleModel.fromJson(json['vehicle']),
       origin: LatLng(json['from']['coordinates'][1],json['from']['coordinates'][0]),
       destination: LatLng(json['to']['coordinates'][1],json['to']['coordinates'][0]),
-      serviceDateTime: DateTime.parse(json['date'])
+      serviceDateTime: DateTime.parse(json['date']),
+      status: stringToServiceStatus[json['status']] ?? ServiceStatus.published
     );
   }
 
@@ -54,4 +56,14 @@ class ServiceModel extends Service{
                               },
   };
 
+
 }
+
+Map<String,ServiceStatus> stringToServiceStatus = {
+  'published' : ServiceStatus.published,
+  'accepted' : ServiceStatus.accepted,
+  'in_progress' : ServiceStatus.inProgress,
+  'finished' : ServiceStatus.finished,
+  'paid' : ServiceStatus.paid,
+  'cancelled' : ServiceStatus.cancelled,
+};

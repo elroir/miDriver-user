@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/http/http_options.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../domain/entities/offer.dart';
+import '../provider/accept_offer_provider.dart';
 
 class OfferListTile extends StatelessWidget {
   final Offer offer;
@@ -21,14 +23,17 @@ class OfferListTile extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.horizontalPadding,vertical: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(AppBorder.cardMaxBorderRadius),
-                  child: CachedNetworkImage(
-                    imageUrl: offer.user.imageUrl,
-                    httpHeaders: const {'Authorization' : HttpOptions.apiToken},
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
+                child: Hero(
+                  tag: offer.user.id,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppBorder.cardMaxBorderRadius),
+                    child: CachedNetworkImage(
+                      imageUrl: offer.user.imageUrl,
+                      httpHeaders: const {'Authorization' : HttpOptions.apiToken},
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -43,12 +48,14 @@ class OfferListTile extends StatelessWidget {
                       Text('${offer.user.name} ${offer.user.lastName}',style: Theme.of(context).textTheme.titleSmall,),
                       Text('${AppStrings.offeredPrice} Bs. ${offer.price}',style: Theme.of(context).textTheme.bodyMedium,),
                       const Spacer(),
-                      FractionallySizedBox(
-                        widthFactor: 1  ,
-                        child: ElevatedButton(
-                            onPressed: (){},
-                            child: const Text(AppStrings.accept)
-                        ),
+                      Consumer(
+                        builder: (context,ref,child) => FractionallySizedBox(
+                          widthFactor: 1,
+                          child: ElevatedButton(
+                              onPressed: () => ref.read(acceptOfferProvider.notifier).acceptOffer(offer.id),
+                              child: const Text(AppStrings.accept)
+                          ),
+                        )
                       )
                     ],
                   ),

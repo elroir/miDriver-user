@@ -40,6 +40,7 @@ import 'features/map/domain/use_cases/request_location_permission_use_case.dart'
 import 'features/offer/data/data_sources/offer_remote_datasource.dart';
 import 'features/offer/data/repositories/offer_repository_impl.dart';
 import 'features/offer/domain/repositories/offer_repository.dart';
+import 'features/offer/domain/use_cases/accept_offer_use_case.dart';
 import 'features/offer/domain/use_cases/get_offers_use_case.dart';
 import 'features/service/data/data_sources/service_remote_data_source.dart';
 import 'features/service/data/repositories/service_repository_impl.dart';
@@ -135,6 +136,7 @@ class Repositories{
   static final cancelCurrentServiceUseCase    = Provider<CancelService>((ref) => CancelService(ref.read(_serviceRepository)));
 
   static final getOffersUseCase               = Provider<GetOffers>((ref) => GetOffers(ref.read(_offerRepository),ref.read(_serviceRepository)));
+  static final acceptOfferUseCase             = Provider<AcceptOffer>((ref) => AcceptOffer(ref.read(_offerRepository)));
 
 
 }

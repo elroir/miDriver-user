@@ -75,7 +75,7 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
     final url = Uri.https(baseUrl,'/items/service',{
       'fields' : 'id,date_created,status,vehicle.*,vehicle.make.*,total_distance,total_price,from,to,fare.*,date',
       'filter' : '{ "client": { "_eq": "$userId" },'
-          '"status": { "_in": ["published","approved","in_progress"] }}'
+          '"status": { "_in": ["published","accepted","in_progress"] }}'
     });
 
     final response = await _client.get(url,
@@ -131,8 +131,6 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
     if(response.statusCode!=200){
       throw ServerException();
     }
-
-
 
     return HttpSuccess();
   }

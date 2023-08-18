@@ -25,6 +25,4 @@ class CancelServiceProvider extends StateNotifier<HttpPostStatus>{
     );
   }
 
-
-
 }
