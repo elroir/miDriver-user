@@ -14,6 +14,10 @@ import 'core/storage/flutter_secure_storage_impl.dart';
 import 'core/storage/local_storage_repository.dart';
 import 'core/storage/object_box_impl.dart';
 import 'core/storage/secure_storage_repository.dart';
+import 'core/url_launcher/url_launcher.dart';
+import 'core/url_launcher/url_repository.dart';
+import 'core/url_launcher/use_cases/check_url_use_case.dart';
+import 'core/url_launcher/use_cases/open_url_use_case.dart';
 import 'features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
@@ -79,6 +83,7 @@ class Repositories{
   static final _networkInfoRepository = Provider<NetworkInfoRepository>((ref) => NetworkInfoImpl(InternetConnection()));
   static final _pushNotificationRepository = Provider<PushNotificationRepository>((ref) => PushNotificationImpl());
   static final _locationRepository = Provider<LocationRepository>((ref) => GeolocatorRepository());
+  static final _urlLauncherRepository = Provider<UrlRepository>((ref) => UrlLauncherImpl());
 
 
   //Data sources
@@ -106,6 +111,8 @@ class Repositories{
 
   static final getNotificationDataUseCase     = Provider<GetNotificationDataStream>((ref) => GetNotificationDataStream(ref.read(_pushNotificationRepository)));
 
+  static final checkUrlUseCase                = Provider<CheckUrl>((ref) => CheckUrl(ref.read(_urlLauncherRepository)));
+  static final openUrlUseCase                 = Provider<OpenUrl>((ref) => OpenUrl(ref.read(_urlLauncherRepository)));
 
   static final saveAuthUserUseCase            = Provider<SaveAuthUser>((ref) => SaveAuthUser(ref.read(_authRepository)));
   static final savePersonalDataUseCase        = Provider<SavePersonalData>((ref) => SavePersonalData(ref.read(_authRepository)));

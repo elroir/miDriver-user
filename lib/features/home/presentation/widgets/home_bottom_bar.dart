@@ -24,13 +24,11 @@ class HomeBottomBar extends ConsumerWidget {
 
     ref.listen(notificationDataProvider, (previous, next) {
       if(next!=null){
-        print(next);
         if(next['action']=='refresh_offer'){
           ref.invalidate(getOffersProvider);
         }
 
         if(next['action']=='refresh_service'){
-          print(next['status']);
 
           ref.invalidate(getCurrentServiceProvider);
           if(next['status']=='finished'){

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/http/http_options.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
 import '../../../../core/widgets/error_text_widget.dart';
 import '../../../../core/widgets/loading_button.dart';
+import '../../../home/presentation/provider/launch_url_provider.dart';
 import '../provider/login_provider.dart';
 import '../widgets/background_logo_widget.dart';
 import '../widgets/password_field.dart';
@@ -59,6 +61,10 @@ class LoginPage extends ConsumerWidget {
                             TextButton(
                                 onPressed: () => context.go(Routes.register),
                                 child: const Text(AppStrings.noAccount)
+                            ),
+                            TextButton(
+                                onPressed: () => ref.read(openUrlProvider.notifier).openUrl(HttpOptions.privacyPolicyUrl),
+                                child: const Text(AppStrings.privacyPolicy)
                             )
                           ],
                         ),

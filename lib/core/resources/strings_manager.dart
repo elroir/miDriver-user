@@ -80,6 +80,7 @@ class AppStrings{
   static const String gallery               = 'Galería';
   static const String dateAndTime           = 'Fecha y hora';
 
+  static const String privacyPolicy         ='Pólitica de privacidad';
   static const String mapAttribution        ='OpenStreetMap contributors';
 
 }

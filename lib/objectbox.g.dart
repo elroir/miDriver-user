@@ -140,23 +140,31 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final uidParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
+          final lastNameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
+          final emailParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 10, '');
+          final addressParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 12, '');
+          final imageUrlParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 18, '');
+          final phoneNumberParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           final object = User(
-              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
-              uid: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 6, ''),
-              name: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 8, ''),
-              lastName: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 16, ''),
-              email: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 10, ''),
-              address: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 12, ''),
-              imageUrl: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 18, ''),
-              phoneNumber:
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
+              id: idParam,
+              uid: uidParam,
+              name: nameParam,
+              lastName: lastNameParam,
+              email: emailParam,
+              address: addressParam,
+              imageUrl: imageUrlParam,
+              phoneNumber: phoneNumberParam);
 
           return object;
         })
