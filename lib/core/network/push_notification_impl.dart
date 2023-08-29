@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'push_notification_repository.dart';
 
 
 class PushNotificationImpl implements PushNotificationRepository{
+  final StreamController<Map<String, dynamic>?> _notificationData = StreamController.broadcast();
 
   @override
   Future<String?> getDeviceToken() async {
@@ -28,9 +31,16 @@ class PushNotificationImpl implements PushNotificationRepository{
     OneSignal.shared.setNotificationWillShowInForegroundHandler((OSNotificationReceivedEvent event) {
       // Will be called whenever a notification is received in foreground
       // Display Notification, pass null param for not displaying the notification
+      _notificationData.sink.add(event.notification.additionalData);
       event.complete(event.notification);
     });
   }
+  @override
+  Stream<Map<String, dynamic>?> get onNotificationReceived => _notificationData.stream;
 
+  @override
+  void dispose(){
+    _notificationData.close();
+  }
 
 }

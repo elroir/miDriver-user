@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
 
 class MainPicker<T> extends StatelessWidget {
 

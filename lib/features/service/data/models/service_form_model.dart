@@ -40,6 +40,7 @@ class ServiceModel extends Service{
     'fare'                : fare.id,
     'total_price'         : price,
     'total_distance'      : distanceInKm,
+    'date'                : serviceDateTime.toIso8601String(),
     'from'                : {
                               'type': 'Point',
                               'coordinates': [

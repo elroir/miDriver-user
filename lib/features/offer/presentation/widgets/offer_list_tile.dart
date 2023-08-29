@@ -46,7 +46,6 @@ class OfferListTile extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text('${offer.user.name} ${offer.user.lastName}',style: Theme.of(context).textTheme.titleSmall,),
-                      Text('${AppStrings.offeredPrice} Bs. ${offer.price}',style: Theme.of(context).textTheme.bodyMedium,),
                       const Spacer(),
                       Consumer(
                         builder: (context,ref,child) => FractionallySizedBox(

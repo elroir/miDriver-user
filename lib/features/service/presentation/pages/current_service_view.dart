@@ -12,13 +12,38 @@ import '../provider/cancel_service_provider.dart';
 import '../provider/get_current_service_provider.dart';
 import '../widgets/driver_data_widget.dart';
 import '../widgets/my_service_widget.dart';
-
-class CurrentServiceView extends ConsumerWidget {
+class CurrentServiceView extends ConsumerStatefulWidget {
   const CurrentServiceView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CurrentViewState();
+}
+
+class _CurrentViewState  extends ConsumerState<CurrentServiceView> with WidgetsBindingObserver{
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if(state==AppLifecycleState.resumed){
+      ref.invalidate(getCurrentServiceProvider);
+    }
+
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
     final service = ref.read(getCurrentServiceProvider).value!;
+
     ref.listen(cancelServiceProvider, (previous, next) {
       if(next is HttpPostStatusSuccess){
         ref.invalidate(getCurrentServiceProvider);
@@ -52,7 +77,7 @@ class CurrentServiceView extends ConsumerWidget {
         ),
         if(service.status==ServiceStatus.published)
           const OffersList(),
-        if(service.status==ServiceStatus.accepted)
+        if(service.status==ServiceStatus.accepted||service.status==ServiceStatus.inProgress)
           const DriverDataWidget()
 
       ],

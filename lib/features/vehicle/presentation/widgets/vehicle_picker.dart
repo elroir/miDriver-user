@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../core/widgets/main_picker.dart';
+import '../../../../core/widgets/pickers/main_picker.dart';
 import '../../domain/entities/user_vehicle.dart';
 import '../provider/get_vehicles_provider.dart';
 

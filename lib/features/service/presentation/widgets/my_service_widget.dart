@@ -40,12 +40,12 @@ class MyServiceWidget extends ConsumerWidget {
                   ],
                 ),
                 const Spacer(),
-                Center(
+                FittedBox(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(AppStrings.myPrice,style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white70)),
-                      Text('Bs. ${service.price.toStringAsFixed(2)}',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white,fontSize: 28))
+                      Text('Bs. ${service.price.toStringAsFixed(2)} + 20 Taxi',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white,fontSize: 28))
                     ],
                   ),
                 ),

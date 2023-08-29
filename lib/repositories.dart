@@ -9,6 +9,7 @@ import 'core/location/location_repository.dart';
 import 'core/network/network_info.dart';
 import 'core/network/push_notification_impl.dart';
 import 'core/network/push_notification_repository.dart';
+import 'core/network/use_cases/get_notification_data_use_case.dart';
 import 'core/storage/flutter_secure_storage_impl.dart';
 import 'core/storage/local_storage_repository.dart';
 import 'core/storage/object_box_impl.dart';
@@ -102,6 +103,10 @@ class Repositories{
 
 
   //Use cases
+
+  static final getNotificationDataUseCase     = Provider<GetNotificationDataStream>((ref) => GetNotificationDataStream(ref.read(_pushNotificationRepository)));
+
+
   static final saveAuthUserUseCase            = Provider<SaveAuthUser>((ref) => SaveAuthUser(ref.read(_authRepository)));
   static final savePersonalDataUseCase        = Provider<SavePersonalData>((ref) => SavePersonalData(ref.read(_authRepository)));
   static final registerUseCase                = Provider<SignUp>((ref) => SignUp(ref.read(_authRepository)));

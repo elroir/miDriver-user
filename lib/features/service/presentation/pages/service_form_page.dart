@@ -38,7 +38,7 @@ class ServiceFormPage extends ConsumerWidget {
 
 
     if(serviceForm is HttpPostStatusLoading){
-      return const Center(child: CircularProgressIndicator.adaptive());
+      return const Scaffold(body: Center(child: CircularProgressIndicator.adaptive()));
     }
 
 

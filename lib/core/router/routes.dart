@@ -20,6 +20,7 @@ class Routes {
   static const String fare = 'fare';
   static const String location = 'location';
 
+  static const String finishedService = 'finished';
 
 
 }

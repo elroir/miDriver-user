@@ -23,6 +23,17 @@ class ServiceRouter {
           },
         ),
         GoRoute(
+          path: Routes.finishedService,
+          name: Routes.finishedService,
+          parentNavigatorKey: key,
+          pageBuilder: (context,state) {
+            return MaterialPage(
+                key: state.pageKey,
+                child: const ServiceFinishedPage()
+            );
+          },
+        ),
+        GoRoute(
           path: Routes.location,
           parentNavigatorKey: key,
           pageBuilder: (context,state) {

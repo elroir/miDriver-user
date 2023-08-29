@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/widgets/pickers/date_picker_widget.dart';
+import '../../../../core/widgets/pickers/time_picker.dart';
 import '../../../map/presentation/provider/pick_location_provider.dart';
 import '../../../vehicle/presentation/widgets/vehicle_picker.dart';
 import '../provider/service_form_provider.dart';
@@ -15,7 +18,7 @@ class TopInformationWidget extends ConsumerWidget {
     final locationSelection = ref.watch(pickLocationProvider);
     return AnimatedContainer(
       duration: const Duration(milliseconds: 800),
-      height: (locationSelection is LocationSelectionComplete) ? 200 : 80,
+      height: (locationSelection is LocationSelectionComplete) ? 240 : 80,
       color: Colors.black,
       child: Form(
         key: ref.read(serviceFormProvider.notifier).key,
@@ -48,6 +51,32 @@ class TopInformationWidget extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: DatePickerWidget(
+                              decoration: const InputDecoration(
+                                  fillColor: Colors.white,
+                                  prefixIcon: Icon(Iconsax.calendar_1,color: Colors.black)
+                              ),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime.now().add(const Duration(days: 30)),
+                              controller: ref.read(serviceFormProvider.notifier).dateController,
+                            ),
+                          ),
+                          Flexible(
+                            child: TimePicker(
+                              widthFactor: 0.9,
+                              decoration: const InputDecoration(
+                                  fillColor: Colors.white,
+                                  prefixIcon: Icon(Iconsax.clock,color: Colors.black)
+                              ),
+                              controller: ref.read(serviceFormProvider.notifier).timeController,
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
                         children: [
                           Column(
                             children: [
@@ -74,18 +103,6 @@ class TopInformationWidget extends ConsumerWidget {
                   ),
                 ),
               )
-            // Row(
-            //   children: [
-            //     Card(
-            //       child: Column(
-            //         children: [
-            //           Icon(Icons.add),
-            //           Text('Origen')
-            //         ],
-            //       ),
-            //     )
-            //   ],
-            // )
 
           ],
         ),

@@ -8,6 +8,7 @@ import '../../../../core/resources/strings_manager.dart';
 
 import '../provider/pick_location_provider.dart';
 import '../provider/polyline_provider.dart';
+import 'flag_marker.dart';
 
 class MapWidget extends ConsumerWidget {
 
@@ -40,21 +41,22 @@ class MapWidget extends ConsumerWidget {
             MarkerLayer(
                 markers: [
                   if(locationSelection.origin!=null)
-                  Marker(
-                      point: locationSelection.origin!,
-                      height: 120,
-                      width: 120,
-                      builder: (context) =>
-                          Icon(Icons.location_on, color: Theme
-                              .of(context)
-                              .primaryColor, size: 40)
-                  ),
+                    Marker(
+                        point: locationSelection.origin!,
+                        height: 140,
+                        width: 120,
+                        builder: (context) => FlagMarker(
+                          text: AppStrings.pickupPlace,
+                          color: Colors.white.withOpacity(0.9),
+                          textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12)
+                        )
+                    ),
                   if(locationSelection.destination!=null)
                     Marker(
                         point: locationSelection.destination!,
-                        height: 120,
+                        height: 140,
                         width: 120,
-                        builder: (context) => const Icon(Icons.location_on, color: Colors.black, size: 40)
+                        builder: (context) => FlagMarker(text: AppStrings.destinationPlace,textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12,color: Colors.white),)
                     ),
                 ]
             ),

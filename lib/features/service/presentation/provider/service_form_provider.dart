@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../../../core/extension/date_time_extension.dart';
 import '../../../../core/form/form_provider.dart';
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/router/router.dart';
@@ -41,6 +42,9 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
   UserVehicle? _vehicle;
   LatLng? _destination;
   final TextEditingController vehicleController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
+
   double distanceInKm = 0;
   double price = 50;
 
@@ -70,6 +74,8 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
       return;
     }
 
+    final date = DateTime.now().toDateTimeFromDateAndTimeString(dateController.text, timeController.text);
+
     final serviceForm = ServiceModel(
         distanceInKm: distanceInKm,
         price: price,
@@ -77,7 +83,7 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
         fare: _fare()!,
         origin: _origin()!,
         destination: _destination!,
-      serviceDateTime: DateTime.now()
+      serviceDateTime: date
     );
     state = HttpPostStatusLoading();
     final response = await _storeService(serviceForm);

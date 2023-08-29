@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
+import '../provider/get_current_service_provider.dart';
+import '../provider/service_form_provider.dart';
 
-class NoServiceView extends StatelessWidget {
+class NoServiceView extends ConsumerWidget {
   const NoServiceView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
+
+    ref.listen(serviceFormProvider, (previous, next) {
+      if(next is HttpPostStatusSuccess){
+        ref.invalidate(getCurrentServiceProvider);
+      }
+    });
+
+
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

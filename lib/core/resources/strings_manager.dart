@@ -34,6 +34,7 @@ class AppStrings{
 
   static const String thanksForRegisteringTitle       = '¡Gracias por registrarse a miDriver!';
   static const String thanksForRegisteringDescription = 'Ya puede publicar sus requerimientos para cuando necesite conductor designado';
+  static const String thanksForUsingOurServices       = 'Gracias por usar nuestros servicios, no olvide cancelar el monto acordado en la aplicación';
 
   static const String onReviewTitle       = '¡Gracias por llegar hasta aquí!';
   static const String onReviewDescription = 'Ahora sus documentos están siendo revisados, presione el botón para verificar su estado';
