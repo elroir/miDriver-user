@@ -16,10 +16,10 @@ import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/service/presentation/pages/service_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/splash/presentation/provider/splash_provider.dart';
+import '../../features/terms/presentation/pages/terms_and_conditions_page.dart';
 import '../../features/user/presentation/pages/profile_page.dart';
 import '../../features/vehicle/presentation/pages/car_make_page.dart';
 import '../../features/vehicle/presentation/pages/vehicle_form_page.dart';
-
 
 export 'package:go_router/go_router.dart';
 
@@ -29,6 +29,7 @@ part 'splash_router.dart';
 part 'service_router.dart';
 part 'vehicle_router.dart';
 part 'user_router.dart';
+part 'terms_router.dart';
 
 final router = Provider(
         (ref) {
@@ -48,10 +49,12 @@ final router = Provider(
                  ]
             ),
             SplashRouter.splashRoutes(ref),
+            TermsRouter.termsRoutes,
             AuthenticationRouter.registerRoutes,
             AuthenticationRouter.loginRoutes,
             AuthenticationRouter.accountSuccessRoutes,
-            VehicleRouter.vehicleRoutes(rootNavigatorKey)
+            VehicleRouter.vehicleRoutes(rootNavigatorKey),
+
           ],
           errorPageBuilder: (context,state) => MaterialPage(
               key: state.pageKey,

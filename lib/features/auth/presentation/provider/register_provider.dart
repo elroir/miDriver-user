@@ -72,7 +72,7 @@ class RegisterNotifier extends ChangeNotifier{
               emailExists = false;
               notifyListeners();
               _saveAuthUser(trimmedEmail,_password);
-              router.pushNamed(Routes.personalData);
+              router.push(Routes.terms);
             }
     );
 

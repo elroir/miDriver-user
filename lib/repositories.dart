@@ -54,6 +54,10 @@ import 'features/service/domain/use_cases/cancel_service_use_case.dart';
 import 'features/service/domain/use_cases/get_current_service_use_case.dart';
 import 'features/service/domain/use_cases/store_service_use_case.dart';
 import 'features/splash/domain/use_cases/initial_screen_use_case.dart';
+import 'features/terms/data/data_sources/terms_remote_datasource.dart';
+import 'features/terms/data/repositories/terms_repository_impl.dart';
+import 'features/terms/domain/repositories/terms_repository.dart';
+import 'features/terms/domain/use_cases/get_terms_and_conditions_use_case.dart';
 import 'features/user/data/data_sources/user_local_data_source.dart';
 import 'features/user/data/data_sources/user_remote_data_source.dart';
 import 'features/user/data/repositories/user_repository_impl.dart';
@@ -95,6 +99,7 @@ class Repositories{
   static final _mapRemoteDataSource       = Provider<MapRemoteDataSource>((ref) => MapRemoteDataSourceImpl(ref.read(_httpRepository)));
   static final _serviceRemoteDataSource   = Provider<ServiceRemoteDataSource>((ref) => ServiceRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _offerRemoteDataSource     = Provider<OfferRemoteDataSource>((ref) => OfferRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
+  static final _termsRemoteDataSource     = Provider<TermsRemoteDataSource>((ref) => TermsRemoteDataSourceImpl(ref.read(_httpRepository)));
 
 
   //Repositories
@@ -105,6 +110,7 @@ class Repositories{
   static final _mapRepository       = Provider<MapRepository>((ref) => MapRepositoryImpl(ref.read(_mapRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _serviceRepository   = Provider<ServiceRepository>((ref) => ServiceRepositoryImpl(ref.read(_serviceRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _offerRepository     = Provider<OfferRepository>((ref) => OfferRepositoryImpl(ref.read(_offerRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _termsRepository     = Provider<TermsRepository>((ref) => TermsRepositoryImpl(ref.read(_termsRemoteDataSource),ref.read(_networkInfoRepository)));
 
 
   //Use cases
@@ -149,6 +155,8 @@ class Repositories{
 
   static final getOffersUseCase               = Provider<GetOffers>((ref) => GetOffers(ref.read(_offerRepository),ref.read(_serviceRepository)));
   static final acceptOfferUseCase             = Provider<AcceptOffer>((ref) => AcceptOffer(ref.read(_offerRepository)));
+
+  static final getTermsAndConditionsUseCase   = Provider<GetTermsAndConditions>((ref) => GetTermsAndConditions(ref.read(_termsRepository)));
 
 
 }

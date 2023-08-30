@@ -13,6 +13,8 @@ class Routes {
   static const String onReview = '/onReview';
   static const String vehicle = '/vehicle';
   static const String make = 'make';
+  static const String terms = '/terms';
+
 
   static const String profile = '/profile';
   static const String services = '/services';
