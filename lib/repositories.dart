@@ -62,6 +62,7 @@ import 'features/user/data/data_sources/user_local_data_source.dart';
 import 'features/user/data/data_sources/user_remote_data_source.dart';
 import 'features/user/data/repositories/user_repository_impl.dart';
 import 'features/user/domain/repositories/user_repository.dart';
+import 'features/user/domain/use_cases/delete_user_use_case.dart';
 import 'features/user/domain/use_cases/get_user_data_use_case.dart';
 import 'features/user/domain/use_cases/update_user_push_token_use_case.dart';
 import 'features/vehicle/data/data_sources/vehicle_remote_datasource.dart';
@@ -132,6 +133,7 @@ class Repositories{
 
   static final updateUserTokenUseCase         = Provider<UpdateUserToken>((ref) => UpdateUserToken(ref.read(_pushNotificationRepository),ref.read(_userRepository)));
   static final getUserDataUseCase             = Provider<GetUserData>((ref) => GetUserData(ref.read(_userRepository)));
+  static final deleteUserUseCase              = Provider<DeleteUser>((ref) => DeleteUser(ref.read(_userRepository)));
 
   static final getCarMakesUseCase             = Provider<GetCarMakes>((ref) => GetCarMakes(ref.read(_vehicleRepository)));
   static final storeVehicleUseCase            = Provider<StoreVehicle>((ref) => StoreVehicle(ref.read(_vehicleRepository),ref.read(_secureStorageRepository)));

@@ -11,6 +11,7 @@ import '../../../auth/presentation/widgets/logout_button.dart';
 import '../../../home/presentation/pages/error_view.dart';
 import '../../../vehicle/presentation/widgets/vehicle_section.dart';
 import '../provider/user_data_provider.dart';
+import '../widgets/delete_user_button.dart';
 import '../widgets/profile_field.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -61,7 +62,29 @@ class ProfilePage extends ConsumerWidget {
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
           const SliverToBoxAdapter(
             child: Center(child: LogoutButton()),
-          )
+          ),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30,bottom: 10),
+              child: Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Iconsax.warning_2,color: Colors.red,),
+                    const SizedBox(width: 10,),
+                    Text(AppStrings.dangerZone,style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red),),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: DeleteUserButton(),
+              )
+          ),
         ]
       ) : ErrorView(
         errorText: userStatus.message,

@@ -24,6 +24,11 @@ abstract interface class UserRemoteDataSource{
   /// Throws a [SocketException] if no response is sent
   Future<HttpSuccess<UserModel>> getUser();
 
+  ///Calls [HttpOptions.apiUrl]/users/[User.id] to delete current user
+  ///
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<HttpSuccess> deleteUser();
 
 }
 
@@ -106,6 +111,34 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     }
 
     return HttpSuccess(data: user);
+  }
+
+  @override
+  Future<HttpSuccess> deleteUser() async {
+
+    final userId = await _secureStorage.getUserId();
+
+    final url = Uri.https(HttpOptions.apiUrl,'/users/$userId',);
+
+    final token = await _secureStorage.getToken();
+
+    if(token == null){
+      throw AuthenticationException();
+    }
+
+    final response = await _client.delete(url,headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type' : 'application/json'
+    }
+    );
+
+
+    if(response.statusCode!=204){
+      throw ServerException();
+    }
+    await _secureStorage.deleteAll();
+
+    return HttpSuccess();
   }
 
 }

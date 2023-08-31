@@ -8,4 +8,6 @@ abstract interface class UserRepository {
 
   Future<Either<Failure,HttpSuccess>> updatePushToken();
   Future<Either<Failure,User>> getUser();
+  Future<Either<Failure,HttpSuccess>> deleteUser();
+
 }

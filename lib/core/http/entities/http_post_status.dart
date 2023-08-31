@@ -11,6 +11,9 @@ abstract class HttpPostStatus<T> {
 
 class HttpPostStatusNone<T> extends HttpPostStatus<T>{}
 
+class HttpPostStatusInProgress<T> extends HttpPostStatus<T>{}
+
+
 class HttpPostStatusLoading<T> extends HttpPostStatus<T>{
   HttpPostStatusLoading({super.message});
 }

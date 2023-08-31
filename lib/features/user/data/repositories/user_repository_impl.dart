@@ -84,4 +84,21 @@ class UserRepositoryImpl implements UserRepository {
   }
 
 
+  @override
+  Future<Either<Failure, HttpSuccess>> deleteUser() async {
+    try{
+      final response = await _remoteDataSource.deleteUser();
+      return Right(response);
+    }on AuthenticationException{
+      return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
+    }on PushNotificationException{
+      return Left(PushNotificationFailure());
+    }on ServerException{
+      return Left(ServerFailure());
+    }on SocketException{
+      return Left(SocketFailure());
+    }
+  }
+
+
 }

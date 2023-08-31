@@ -7,7 +7,9 @@ import '../../domain/entities/user.dart';
 import '../../domain/use_cases/get_user_data_use_case.dart';
 
 final userDataProvider = StateNotifierProvider<UserDataNotifier,HttpPostStatus<User>>(
-        (ref) => UserDataNotifier(ref.read(Repositories.getUserDataUseCase))..init()
+        (ref) {
+          return UserDataNotifier(ref.read(Repositories.getUserDataUseCase))..init();
+        }
 );
 
 

@@ -16,95 +16,100 @@ class TopInformationWidget extends ConsumerWidget {
   Widget build(BuildContext context,ref) {
 
     final locationSelection = ref.watch(pickLocationProvider);
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 800),
-      height: (locationSelection is LocationSelectionComplete) ? 240 : 80,
+    return Container(
       color: Colors.black,
-      child: Form(
-        key: ref.read(serviceFormProvider.notifier).key,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SafeArea(
-                child: Row(
-                  children: [
-                    const BackButton(
-                        color: Colors.white
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: AppPadding.serviceFormPadding),
-                        child: VehiclePicker(
-                            textController: ref.read(serviceFormProvider.notifier).vehicleController,
-                            onChanged: (value,vehicle) => ref.read(serviceFormProvider.notifier).pickVehicle(vehicle!)
+      child: SafeArea(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 800),
+          height: (locationSelection is LocationSelectionComplete) ? 240 : 60,
+          color: Colors.black,
+          child: Form(
+            key: ref.read(serviceFormProvider.notifier).key,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SafeArea(
+                    child: Row(
+                      children: [
+                        const BackButton(
+                            color: Colors.white
                         ),
-                      ),
-                    )
-                  ],
-                )
-            ),
-            if (locationSelection is LocationSelectionComplete)
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.serviceFormPadding,vertical: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: DatePickerWidget(
-                              decoration: const InputDecoration(
-                                  fillColor: Colors.white,
-                                  prefixIcon: Icon(Iconsax.calendar_1,color: Colors.black)
-                              ),
-                              firstDate: DateTime.now(),
-                              lastDate: DateTime.now().add(const Duration(days: 30)),
-                              controller: ref.read(serviceFormProvider.notifier).dateController,
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: AppPadding.serviceFormPadding),
+                            child: VehiclePicker(
+                                textController: ref.read(serviceFormProvider.notifier).vehicleController,
+                                onChanged: (value,vehicle) => ref.read(serviceFormProvider.notifier).pickVehicle(vehicle!)
                             ),
                           ),
-                          Flexible(
-                            child: TimePicker(
-                              widthFactor: 0.9,
-                              decoration: const InputDecoration(
-                                  fillColor: Colors.white,
-                                  prefixIcon: Icon(Iconsax.clock,color: Colors.black)
+                        )
+                      ],
+                    )
+                ),
+                if (locationSelection is LocationSelectionComplete)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: AppPadding.serviceFormPadding,vertical: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: DatePickerWidget(
+                                  decoration: const InputDecoration(
+                                      fillColor: Colors.white,
+                                      prefixIcon: Icon(Iconsax.calendar_1,color: Colors.black)
+                                  ),
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime.now().add(const Duration(days: 30)),
+                                  controller: ref.read(serviceFormProvider.notifier).dateController,
+                                ),
                               ),
-                              controller: ref.read(serviceFormProvider.notifier).timeController,
+                              Flexible(
+                                child: TimePicker(
+                                  widthFactor: 0.9,
+                                  decoration: const InputDecoration(
+                                      fillColor: Colors.white,
+                                      prefixIcon: Icon(Iconsax.clock,color: Colors.black)
+                                  ),
+                                  controller: ref.read(serviceFormProvider.notifier).timeController,
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text('Bs. ${ref.read(serviceFormProvider.notifier).price.toStringAsFixed(2)}',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white),),
+                                      const SizedBox(width: 5),
+                                      Text('(${ref.read(serviceFormProvider.notifier).distanceInKm.toStringAsFixed(2)} Km)',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white70),),
+
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          FractionallySizedBox(
+                            widthFactor: 1,
+                            child: OutlinedButton(
+                              onPressed: () => ref.read(pickLocationProvider.notifier).restart(),
+                              child: const Text('Elegir nuevamente',style: TextStyle(color: Colors.white),)
                             ),
                           )
                         ],
                       ),
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text('Bs. ${ref.read(serviceFormProvider.notifier).price.toStringAsFixed(2)}',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white),),
-                                  const SizedBox(width: 5),
-                                  Text('(${ref.read(serviceFormProvider.notifier).distanceInKm.toStringAsFixed(2)} Km)',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white70),),
+                    ),
+                  )
 
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 1,
-                        child: OutlinedButton(
-                          onPressed: () => ref.read(pickLocationProvider.notifier).restart(),
-                          child: const Text('Elegir nuevamente',style: TextStyle(color: Colors.white),)
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              )
-
-          ],
+              ],
+            ),
+          ),
         ),
       ),
     );
