@@ -10,42 +10,52 @@ class PushNotificationImpl implements PushNotificationRepository{
 
   @override
   Future<String?> getDeviceToken() async {
-    return OneSignal.User.pushSubscription.id;
+    final state = await OneSignal.shared.getDeviceState();
+    if(state!=null){
+      return state.userId;
+    }
+    return null;
   }
 
   @override
-  Future<void> init() async {
-    //Remove this method to stop OneSignal Debugging
-    OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  Future<void> init() async { //Remove this method to stop OneSignal Debugging
+    // OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
 
-
-    OneSignal.initialize('d10eb845-9354-421c-b259-176080047de1');
+    OneSignal.shared.setAppId('d10eb845-9354-421c-b259-176080047de1');
 
     // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
-    OneSignal.Notifications.requestPermission(true);
+    OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+    });
 
-
-    OneSignal.Notifications
-        .addClickListener((event) {
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult event) {
 
       _notificationData.sink.add(event.notification.additionalData);
 
     });
 
 
-    OneSignal.Notifications.addForegroundWillDisplayListener((event) {
-      event.preventDefault();
-
+    OneSignal.shared.setNotificationWillShowInForegroundHandler((OSNotificationReceivedEvent event) {
+      // Will be called whenever a notification is received in foreground
+      // Display Notification, pass null param for not displaying the notification
       _notificationData.sink.add(event.notification.additionalData);
-      event.notification.display();
+      event.complete(event.notification);
     });
+
   }
+
   @override
   Stream<Map<String, dynamic>?> get onNotificationReceived => _notificationData.stream;
 
   @override
   void dispose(){
     _notificationData.close();
+  }
+
+  @override
+  Future<void> requestNotificationPermission() async {
+    OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+    });
   }
 
 }
