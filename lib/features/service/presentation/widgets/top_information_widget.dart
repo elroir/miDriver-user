@@ -79,21 +79,22 @@ class TopInformationWidget extends ConsumerWidget {
                               )
                             ],
                           ),
-                          Row(
-                            children: [
-                              Column(
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: FittedBox(
+                              child: Column(
                                 children: [
                                   Row(
                                     children: [
-                                      Text('Bs. ${ref.read(serviceFormProvider.notifier).price.toStringAsFixed(2)}',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white),),
+                                      Text('Bs. ${ref.read(serviceFormProvider.notifier).price.toStringAsFixed(2)} + Bs. 20 Taxi' ,style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white),),
                                       const SizedBox(width: 5),
                                       Text('(${ref.read(serviceFormProvider.notifier).distanceInKm.toStringAsFixed(2)} Km)',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white70),),
 
                                     ],
                                   ),
                                 ],
-                              )
-                            ],
+                              ),
+                            ),
                           ),
                           FractionallySizedBox(
                             widthFactor: 1,
