@@ -28,6 +28,8 @@
 	<string>LaunchScreen</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>miDriver needs to access your location for posting services</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Required by a dependency</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>

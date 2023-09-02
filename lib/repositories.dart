@@ -39,6 +39,7 @@ import 'features/map/data/data_sources/map_remote_datasource.dart';
 import 'features/map/data/repositories/flutter_map_repository.dart';
 import 'features/map/domain/repositories/map_repository.dart';
 import 'features/map/domain/use_cases/get_directions_use_case.dart';
+import 'features/map/domain/use_cases/get_location_stream.dart';
 import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
 import 'features/map/domain/use_cases/pick_origin_use_case.dart';
 import 'features/map/domain/use_cases/request_location_permission_use_case.dart';
@@ -150,6 +151,7 @@ class Repositories{
   static final getOriginUseCase               = Provider<GetPickedOrigin>((ref) => GetPickedOrigin(ref.read(_mapRepository)));
   static final getDirectionsUseCase           = Provider<GetDirections>((ref) => GetDirections(ref.read(_mapRepository)));
   static final locationPermissionUseCase      = Provider<RequestLocationPermission>((ref) => RequestLocationPermission(ref.read(_locationRepository)));
+  static final getLocationStreamUseCase       = Provider<GetLocationStream>((ref) => GetLocationStream(ref.read(_locationRepository)));
 
   static final storeServiceUseCase            = Provider<StoreService>((ref) => StoreService(ref.read(_serviceRepository)));
   static final getCurrentServiceUseCase       = Provider<GetCurrentService>((ref) => GetCurrentService(ref.read(_serviceRepository)));

@@ -6,6 +6,8 @@ import 'package:latlong2/latlong.dart';
 
 import '../../../../core/resources/strings_manager.dart';
 
+import '../provider/current_location_provider.dart';
+import '../provider/map_controller_provider.dart';
 import '../provider/pick_location_provider.dart';
 import '../provider/polyline_provider.dart';
 import 'flag_marker.dart';
@@ -18,11 +20,16 @@ class MapWidget extends ConsumerWidget {
   Widget build(BuildContext context,ref) {
     final locationSelection = ref.watch(pickLocationProvider);
     final polyline = ref.watch(polylineProvider);
+    final location = ref.watch(locationProvider);
+    final mapController = ref.watch(mapControllerProvider);
+
+    ref.read(locationStateProvider);
 
 
     return Stack(
       children: [
         FlutterMap(
+          mapController: mapController,
           options: MapOptions(
               center: const LatLng(-17.7853232, -63.1884931),
               zoom: 12.0,
@@ -77,7 +84,7 @@ class MapWidget extends ConsumerWidget {
             child: CircleAvatar(
               backgroundColor: Colors.white,
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () => mapController.move(location, 15),
                   icon: const Icon(Icons.my_location)
               ),
             ),

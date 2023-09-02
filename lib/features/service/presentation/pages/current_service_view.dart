@@ -31,6 +31,7 @@ class _CurrentViewState  extends ConsumerState<CurrentServiceView> with WidgetsB
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if(state==AppLifecycleState.resumed){
       ref.invalidate(getCurrentServiceProvider);
+      ref.invalidate(getOffersProvider);
     }
 
   }
