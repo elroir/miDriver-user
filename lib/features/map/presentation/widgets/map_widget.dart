@@ -77,15 +77,18 @@ class MapWidget extends ConsumerWidget {
 
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 80,right: 15),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: IconButton(
-                  onPressed: () => mapController.move(location, 15),
-                  icon: const Icon(Icons.my_location)
+        SafeArea(
+          bottom: true,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 80,right: 15),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                    onPressed: () => mapController.move(location, 15),
+                    icon: const Icon(Icons.my_location,color: Colors.black,)
+                ),
               ),
             ),
           ),
