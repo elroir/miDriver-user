@@ -49,7 +49,7 @@ workflows:
       app_store_connect: miDriver-user
     environment:
       ios_signing:
-        distribution_type: development
+        distribution_type: app_store
         bundle_identifier: com.elroir.miDriverUser
       vars:
         APP_ID: 6464003419
