@@ -73,7 +73,7 @@ workflows:
 #        script: |
 #          flutter test
 #        ignore_failure: true
-      - name: Flutter build ipa and automatic versioning
+      - name: Flutter build ipa
         script: |
           flutter build ipa --release \
             --build-name=1.0.1 \
