@@ -34,7 +34,7 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource{
   @override
   Future<List<OfferModel>> getOffers(int serviceId) async {
     final url = Uri.https(HttpOptions.apiUrl,'/items/offer',{
-      'fields' : 'id,price,status,driver.id,driver.avatar,driver.first_name,driver.last_name,driver.location,driver.phone_number,driver.email',
+      'fields' : 'id,price,status,distance,driver.id,driver.avatar,driver.first_name,driver.last_name,driver.location,driver.phone_number,driver.email',
       'filter' : '{ "service": { "_eq": "$serviceId" },'
           '"status": { "_nin": ["cancelled"] }}'
     });

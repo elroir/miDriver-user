@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
+import '../../../home/presentation/widgets/custom_chip.dart';
 import '../../domain/entities/user_vehicle.dart';
 
 class VehicleCard extends StatelessWidget {
@@ -31,23 +32,14 @@ class VehicleCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis
                     )
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 2),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(150),
-                    color: Theme.of(context).colorScheme.background
+                CustomChip(
+                  icon: SvgPicture.asset( vehicle.transmissionType==AppStrings.manual
+                      ? AssetsManager.mt
+                      : AssetsManager.at,
+                      colorFilter: ColorFilter.mode(Theme.of(context).textTheme.bodyLarge!.color!, BlendMode.srcIn),
+                      height: 25
                   ),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset( vehicle.transmissionType==AppStrings.manual
-                          ? AssetsManager.mt
-                          : AssetsManager.at,
-                          colorFilter: ColorFilter.mode(Theme.of(context).textTheme.bodyLarge!.color!, BlendMode.srcIn),
-                          height: 25
-                      ),
-                      Text(vehicle.transmissionType),
-                    ],
-                  ),
+                   text: vehicle.transmissionType
                 )
               ],
             ),
