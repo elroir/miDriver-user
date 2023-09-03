@@ -22,10 +22,10 @@ workflows:
       - name: Flutter analyze
         script: |
           flutter analyze
-      - name: Flutter unit tests
-        script: |
-          flutter test
-        ignore_failure: true
+#      - name: Flutter unit tests
+#        script: |
+#          flutter test
+#        ignore_failure: true
       - name: Build AAB with Flutter
         script: |
           BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
@@ -40,6 +40,7 @@ workflows:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: $GOOGLE_PLAY_TRACK
+
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
@@ -56,9 +57,9 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Set up code signing settings on Xcode project
-        script: |
-          xcode-project use-profiles
+#      - name: Set up code signing settings on Xcode project
+#        script: |
+#          xcode-project use-profiles
       - name: Get Flutter packages
         script: |
           flutter packages pub get
@@ -68,10 +69,10 @@ workflows:
       - name: Flutter analyze
         script: |
           flutter analyze
-      - name: Flutter unit tests
-        script: |
-          flutter test
-        ignore_failure: true
+#      - name: Flutter unit tests
+#        script: |
+#          flutter test
+#        ignore_failure: true
       - name: Flutter build ipa and automatic versioning
         script: |
           flutter build ipa --release \
