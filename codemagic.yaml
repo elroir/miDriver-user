@@ -49,7 +49,7 @@ workflows:
       app_store_connect: miDriver-user
     environment:
       ios_signing:
-        distribution_type: app_store
+        distribution_type: development
         bundle_identifier: com.elroir.miDriverUser
       vars:
         APP_ID: 6464003419
@@ -76,7 +76,7 @@ workflows:
       - name: Flutter build ipa and automatic versioning
         script: |
           flutter build ipa --release \
-            --build-name=1.0.0 \
+            --build-name=1.0.1 \
             --build-number=$(($(app-store-connect get-latest-app-store-build-number "$APP_ID") + 1)) \
             --export-options-plist=/Users/builder/export_options.plist
     artifacts:
