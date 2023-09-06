@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
+import '../provider/delete_vehicle_provider.dart';
 import '../provider/get_vehicles_provider.dart';
 import '../provider/vehicle_provider.dart';
 import 'add_vehicle.dart';
+import 'delete_vehicle_dialog.dart';
 import 'vehicle_card.dart';
 
 class VehicleSection extends ConsumerWidget {
@@ -17,6 +19,24 @@ class VehicleSection extends ConsumerWidget {
     final vehicles = ref.watch(getVehiclesProvider);
 
     ref.listen(vehicleProvider, (previous, next) {
+      if(next is HttpPostStatusSuccess){
+        ref.invalidate(getVehiclesProvider);
+      }
+    });
+
+    ref.listen(deleteVehicleProvider, (previous, next) {
+
+      if(next is HttpPostStatusInProgress){
+        showDialog(
+            context: context,
+            builder: (_) => const DeleteVehicleDialog()
+        );
+      }
+
+      if(next is HttpPostStatusLoading){
+        context.pop();
+      }
+
       if(next is HttpPostStatusSuccess){
         ref.invalidate(getVehiclesProvider);
       }

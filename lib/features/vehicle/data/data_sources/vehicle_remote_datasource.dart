@@ -27,6 +27,11 @@ abstract interface class VehicleRemoteDataSource{
   /// Throws a [ServerException] for all error codes
   /// Throws a [SocketException] if no response is sent
   Future<HttpSuccess<List<UserVehicleModel>>> getUserVehicles();
+  ///Calls [HttpOptions.apiUrl]/items/vehicle/[vehicleId]
+  ///
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<HttpSuccess> deleteVehicle(int vehicleId);
 }
 
 class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
@@ -120,12 +125,35 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
       final data = json.decode(response.body)['data'];
 
 
-
       final vehicles = List<UserVehicleModel>.from(data.map((e)=>UserVehicleModel.fromJson(e)));
 
 
       return HttpSuccess(data: vehicles);
 
+  }
+
+  @override
+  Future<HttpSuccess> deleteVehicle(int vehicleId) async {
+    final url = Uri.https(HttpOptions.apiUrl,'/items/vehicle/$vehicleId');
+
+    final token = await _secureStorage.getToken();
+
+    final response = await _client.delete(url,headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type' : 'application/json'
+    }
+    );
+
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=204){
+      throw ServerException();
+    }
+
+
+    return HttpSuccess();
   }
 
 }

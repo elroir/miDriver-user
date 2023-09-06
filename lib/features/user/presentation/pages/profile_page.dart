@@ -51,7 +51,7 @@ class ProfilePage extends ConsumerWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Text('Vehículos',style: Theme.of(context).textTheme.titleMedium),
+                    child: Text(AppStrings.vehicles,style: Theme.of(context).textTheme.titleMedium),
                   ),
                   const SizedBox(height: 10)
                 ]

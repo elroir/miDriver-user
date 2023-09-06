@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -6,6 +7,7 @@ import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../home/presentation/widgets/custom_chip.dart';
 import '../../domain/entities/user_vehicle.dart';
+import '../provider/delete_vehicle_provider.dart';
 
 class VehicleCard extends StatelessWidget {
 
@@ -47,9 +49,11 @@ class VehicleCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Chip(label: Text(vehicle.plate)),
-                IconButton(
-                    onPressed: (){},
-                    icon: const Icon(Iconsax.trash,color: Colors.red,size: 28)
+                Consumer(
+                    builder: (context,ref,child) => IconButton(
+                        onPressed: () => ref.read(deleteVehicleProvider.notifier).openDialog(vehicle.id),
+                        icon: const Icon(Iconsax.trash,color: Colors.red,size: 28)
+                    )
                 )
               ],
             )

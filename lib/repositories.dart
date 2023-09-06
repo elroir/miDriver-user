@@ -69,6 +69,7 @@ import 'features/user/domain/use_cases/update_user_push_token_use_case.dart';
 import 'features/vehicle/data/data_sources/vehicle_remote_datasource.dart';
 import 'features/vehicle/data/repositories/vehicle_repository_impl.dart';
 import 'features/vehicle/domain/repositories/vehicle_repository.dart';
+import 'features/vehicle/domain/use_cases/delete_vehicle_use_case.dart';
 import 'features/vehicle/domain/use_cases/get_car_makes_use_case.dart';
 import 'features/vehicle/domain/use_cases/get_user_vehicles.dart';
 import 'features/vehicle/domain/use_cases/save_make_use_case.dart';
@@ -141,6 +142,7 @@ class Repositories{
   static final saveTransmissionTypeUseCase    = Provider<SaveTransmissionType>((ref) => SaveTransmissionType(ref.read(_vehicleRepository)));
   static final saveMakeIdUseCase              = Provider<SaveMakeId>((ref) => SaveMakeId(ref.read(_vehicleRepository)));
   static final getUserVehiclesUseCase         = Provider<GetUserVehicles>((ref) => GetUserVehicles(ref.read(_vehicleRepository)));
+  static final deleteVehicleUseCase           = Provider<DeleteVehicle>((ref) => DeleteVehicle(ref.read(_vehicleRepository)));
 
   static final getFaresUseCase                = Provider<GetFares>((ref) => GetFares(ref.read(_fareRepository)));
   static final getCachedFaresUseCase          = Provider<GetCachedFares>((ref) => GetCachedFares(ref.read(_fareRepository)));

@@ -44,6 +44,9 @@ class AppStrings{
   static const String onReviewTitle       = '¡Gracias por llegar hasta aquí!';
   static const String onReviewDescription = 'Ahora sus documentos están siendo revisados, presione el botón para verificar su estado';
   static const String verifyStatus        = 'Verificar estado';
+  static const String deleteVehicle  = 'Eliminar vehículo';
+  static const String deleteVehicleContent  = '¿Está seguro de que desea eliminar este vehículo?';
+
 
   static const String noServiceTitle       = 'No cuenta con un servicio activo';
   static const String noServiceDescription = 'Puede registrar un servicio presionando el botón de abajo';
@@ -57,7 +60,7 @@ class AppStrings{
   static const String finish                  = 'Finalizar';
   static const String cancel                  = 'Cancelar';
   static const String accept                  = 'Aceptar';
-
+  static const String vehicles                = 'Vehículos';
   static const String fareSelected            = 'Tarifa seleccionada';
 
 
