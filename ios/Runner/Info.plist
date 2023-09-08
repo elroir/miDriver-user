@@ -26,10 +26,6 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>miDriver needs to access your location for posting services</string>
-	<key>OneSignal_app_groups_key</key>
-	<string>group.com.elroir.miDriverUser.onesignal</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
@@ -39,9 +35,9 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>miDriver needs to access your location for posting services</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Required by a dependency</string>
+	<string>miDriver needs to access your location for posting services</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Required by a dependency</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
