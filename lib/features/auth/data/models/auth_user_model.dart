@@ -6,7 +6,6 @@ class AuthUserModel extends AuthUser{
 
   final String name;
   final String lastName;
-  final String address;
   final int phoneNumber;
 
   AuthUserModel({
@@ -14,7 +13,6 @@ class AuthUserModel extends AuthUser{
     required super.password,
     required this.name,
     required this.lastName,
-    required this.address,
     required this.phoneNumber
   });
 
@@ -38,7 +36,6 @@ class AuthUserModel extends AuthUser{
     'first_name'          : name,
     'last_name'           : lastName,
     'phone_number'        : phoneNumber,
-    'location'            : address,
     'email'               : email,
     'password'            : password,
     'role'                : HttpOptions.userRoleId,

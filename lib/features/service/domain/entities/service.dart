@@ -1,7 +1,7 @@
 import 'package:latlong2/latlong.dart';
 
 import '../../../fare/domain/entities/fare.dart';
-import '../../../vehicle/domain/entities/user_vehicle.dart';
+import '../../../vehicle/domain/entities/transport_type.dart';
 
 
 enum ServiceStatus{
@@ -19,7 +19,7 @@ class Service{
   final double price;
   final LatLng origin;
   final LatLng destination;
-  final UserVehicle? car;
+  final TransportType transportType;
   final Fare fare;
   final DateTime serviceDateTime;
   final ServiceStatus status;
@@ -30,7 +30,7 @@ class Service{
     required this.price,
     required this.origin,
     required this.destination,
-    this.car,
+    this.transportType = const TransportType.car(),
     required this.fare,
     required this.serviceDateTime,
     this.status = ServiceStatus.published

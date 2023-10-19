@@ -6,7 +6,7 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/pickers/date_picker_widget.dart';
 import '../../../../core/widgets/pickers/time_picker.dart';
 import '../../../map/presentation/provider/pick_location_provider.dart';
-import '../../../vehicle/presentation/widgets/vehicle_picker.dart';
+import '../../../vehicle/presentation/widgets/transport_type_picker.dart';
 import '../provider/service_form_provider.dart';
 
 class TopInformationWidget extends ConsumerWidget {
@@ -37,9 +37,9 @@ class TopInformationWidget extends ConsumerWidget {
                         Flexible(
                           child: Padding(
                             padding: const EdgeInsets.only(right: AppPadding.serviceFormPadding),
-                            child: VehiclePicker(
+                            child: TransportTypePicker(
                                 textController: ref.read(serviceFormProvider.notifier).vehicleController,
-                                onChanged: (value,vehicle) => ref.read(serviceFormProvider.notifier).pickVehicle(vehicle!)
+                                onChanged: (value,transportType) => ref.read(serviceFormProvider.notifier).pickTransportType(transportType!)
                             ),
                           ),
                         )

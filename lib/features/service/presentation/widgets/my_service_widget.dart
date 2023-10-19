@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/extension/date_time_extension.dart';
+import '../../../../core/http/http_options.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../provider/cancel_service_provider.dart';
@@ -34,9 +35,9 @@ class MyServiceWidget extends ConsumerWidget {
                 Text(service.serviceDateTime.toLiteralDateAndTime(context),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
                 Row(
                   children: [
-                    const Icon(Iconsax.car,color: Colors.white70,),
+                    SvgPicture.network(service.transportType.imageUrl,height: 26,width: 26,headers: HttpOptions.imageHeaders,colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
                     const SizedBox(width: 10),
-                    Text('${service.car!.make.makeName} ${service.car!.model} ${service.car!.year} ${service.car!.plate}',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
+                    Text(service.transportType.name,style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
                   ],
                 ),
                 const Spacer(),

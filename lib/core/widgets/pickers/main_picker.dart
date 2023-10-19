@@ -13,6 +13,7 @@ class MainPicker<T> extends StatelessWidget {
   final bool required;
   final Widget? icon;
   final Color? backgroundColor;
+  final String? labelText;
 
   MainPicker({
     super.key,
@@ -23,7 +24,8 @@ class MainPicker<T> extends StatelessWidget {
     required this.onChanged,
     this.required = true,
     this.icon,
-    this.backgroundColor
+    this.backgroundColor,
+    this.labelText
   })  : assert(itemTexts.length == items!.length,
       'itemTexts list and items list should have same number of elements');
 
@@ -40,6 +42,7 @@ class MainPicker<T> extends StatelessWidget {
           decoration: InputDecoration(
             fillColor: backgroundColor,
             suffixIcon: const Icon(Icons.arrow_drop_down,color: Colors.black87,size: 32),
+            labelText: labelText,
             prefixIcon: icon
           ),
             validator: (val) {

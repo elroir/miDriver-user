@@ -16,6 +16,9 @@ class HttpOptions{
 
   static const privacyPolicyUrl  =  'https://legal.midriverdesignado.com/privacy-policy';
 
+  static const imageHeaders  =  {'Authorization' : apiToken};
+
+
   static const apiUrl = _devUrl;
 
   static Client get client => Client();

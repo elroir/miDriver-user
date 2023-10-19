@@ -9,7 +9,6 @@ import '../../../auth/presentation/widgets/background_logo_widget.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../auth/presentation/widgets/logout_button.dart';
 import '../../../home/presentation/pages/error_view.dart';
-import '../../../vehicle/presentation/widgets/vehicle_section.dart';
 import '../provider/user_data_provider.dart';
 import '../widgets/delete_user_button.dart';
 import '../widgets/profile_field.dart';
@@ -35,6 +34,11 @@ class ProfilePage extends ConsumerWidget {
               delegate: SliverChildListDelegate(
                 [
                   ProfileField(
+                    icon: const Icon(Iconsax.user),
+                    title: AppStrings.nameField,
+                    content: '${userStatus.data!.name} ${userStatus.data!.lastName}',
+                  ),
+                  ProfileField(
                     icon: const Icon(CupertinoIcons.mail),
                     title: AppStrings.emailField,
                     content: userStatus.data!.email,
@@ -44,21 +48,21 @@ class ProfilePage extends ConsumerWidget {
                     title: AppStrings.phoneField,
                     content: userStatus.data!.phoneNumber.toString(),
                   ),
-                  ProfileField(
-                    icon: const Icon(Iconsax.location),
-                    title: AppStrings.addressField,
-                    content: userStatus.data!.address,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(AppStrings.vehicles,style: Theme.of(context).textTheme.titleMedium),
-                  ),
-                  const SizedBox(height: 10)
+                  // ProfileField(
+                  //   icon: const Icon(Iconsax.location),
+                  //   title: AppStrings.addressField,
+                  //   content: userStatus.data!.address,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 5),
+                  //   child: Text(AppStrings.vehicles,style: Theme.of(context).textTheme.titleMedium),
+                  // ),
+                  // const SizedBox(height: 10)
                 ]
               ),
             ),
           ),
-          const VehicleSection(),
+          // const VehicleSection(),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
           const SliverToBoxAdapter(
             child: Center(child: LogoutButton()),

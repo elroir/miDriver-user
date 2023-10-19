@@ -9,7 +9,7 @@ import '../../../../core/router/router.dart';
 import '../../../../repositories.dart';
 import '../../../fare/domain/use_cases/get_picked_fare_use_case.dart';
 import '../../../map/domain/use_cases/get_picked_origin_use_case.dart';
-import '../../../vehicle/domain/entities/user_vehicle.dart';
+import '../../../vehicle/domain/entities/transport_type.dart';
 import '../../data/models/service_form_model.dart';
 import '../../domain/use_cases/store_service_use_case.dart';
 
@@ -39,7 +39,7 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
 
   ServiceProvider(this.key,this._fare,this._origin,this._storeService ,this._router) : super(HttpPostStatusNone());
 
-  UserVehicle? _vehicle;
+  TransportType? _transportType;
   LatLng? _destination;
   final TextEditingController vehicleController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
@@ -48,8 +48,8 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
   double distanceInKm = 0;
   double price = 50;
 
-  void pickVehicle(UserVehicle? vehicle){
-    _vehicle = vehicle;
+  void pickTransportType(TransportType? transportType){
+    _transportType = transportType;
   }
 
 
@@ -79,7 +79,7 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
     final serviceForm = ServiceModel(
         distanceInKm: distanceInKm,
         price: price,
-        car: _vehicle,
+        transportType: _transportType!,
         fare: _fare()!,
         origin: _origin()!,
         destination: _destination!,

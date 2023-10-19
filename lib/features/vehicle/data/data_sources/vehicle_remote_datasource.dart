@@ -7,6 +7,7 @@ import '../../../../core/error/exceptions.dart';
 import '../../../../core/http/entities/http_response.dart';
 import '../../../../core/http/http_options.dart';
 import '../../../../core/storage/secure_storage_repository.dart';
+import '../models/transport_type_model.dart';
 import '../models/user_vehicle_model.dart';
 
 abstract interface class VehicleRemoteDataSource{
@@ -15,6 +16,12 @@ abstract interface class VehicleRemoteDataSource{
   /// Throws a [ServerException] for all error codes
   /// Throws a [SocketException] if no response is sent
   Future<HttpSuccess<List<CarMakeModel>>> getCarMakes();
+
+  ///Calls [HttpOptions.apiUrl]/items/vehicle_type to get a list of available [TransportTypeModel]
+  ///
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<HttpSuccess<List<TransportTypeModel>>> getTransportTypes();
 
   ///Calls [HttpOptions.apiUrl]/items/vehicle to store a vehicle
   ///
@@ -67,6 +74,34 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
     final carMakes =  List<CarMakeModel>.from(data['data'].map((e) => CarMakeModel.fromJson(e)));
 
     return HttpSuccess(data: carMakes);
+  }
+
+  @override
+  Future<HttpSuccess<List<TransportTypeModel>>> getTransportTypes() async {
+    final url = Uri.https(HttpOptions.apiUrl,'/items/vehicle_type',{
+      'fields' : 'id,name,icon'
+    });
+
+    final token = await _secureStorage.getToken();
+
+    final response = await _client.get(url,headers: {
+      'Authorization': 'Bearer $token'
+    }
+    );
+
+    final data = json.decode(response.body);
+
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=200){
+      throw ServerException();
+    }
+
+    final transports =  List<TransportTypeModel>.from(data['data'].map((e) => TransportTypeModel.fromJson(e)));
+
+    return HttpSuccess(data: transports);
   }
 
   @override
@@ -155,5 +190,6 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
 
     return HttpSuccess();
   }
+
 
 }

@@ -9,7 +9,7 @@ class UserModel extends User{
     required super.name,
     required super.lastName,
     required super.email,
-    required super.address,
+    super.address = '',
     required super.imageUrl,
     required super.phoneNumber
   });
@@ -20,7 +20,7 @@ class UserModel extends User{
     name: json['first_name'],
     lastName: json['last_name'],
     email: json['email'],
-    address: json['location'],
+    address: json['location'] ?? '',
     imageUrl: 'https://${HttpOptions.apiUrl}/assets/${json['avatar']}',
     phoneNumber: json['phone_number']
   );

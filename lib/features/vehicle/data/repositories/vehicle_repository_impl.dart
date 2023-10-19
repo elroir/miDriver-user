@@ -11,6 +11,7 @@ import '../../../../core/http/entities/http_response.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../domain/entities/car_make.dart';
+import '../../domain/entities/transport_type.dart';
 import '../../domain/entities/user_vehicle.dart';
 import '../../domain/repositories/vehicle_repository.dart';
 import '../data_sources/vehicle_remote_datasource.dart';
@@ -32,6 +33,24 @@ class VehicleRepositoryImpl implements VehicleRepository{
     if(await _networkInfo.isConnected){
       try{
         final response = await _remoteDataSource.getCarMakes();
+        return Right(response.data!);
+      }on AuthenticationException{
+        return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
+      }on ServerException{
+        return Left(ServerFailure());
+      }on SocketException{
+        return Left(SocketFailure());
+      }
+    }
+    return Left(SocketFailure());
+
+  }
+
+  @override
+  Future<Either<Failure, List<TransportType>>> getTransportTypes() async {
+    if(await _networkInfo.isConnected){
+      try{
+        final response = await _remoteDataSource.getTransportTypes();
         return Right(response.data!);
       }on AuthenticationException{
         return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));

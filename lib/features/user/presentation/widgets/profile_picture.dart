@@ -38,7 +38,7 @@ class ProfilePicture extends StatelessWidget {
             CircleAvatar(
               radius: MediaQuery.of(context).size.height*0.12,
               foregroundImage: CachedNetworkImageProvider(user.imageUrl,
-                  headers: {'Authorization' : HttpOptions.apiToken}
+                  headers: const {'Authorization' : HttpOptions.apiToken}
               ),
             ),
             Text('${user.name} ${user.lastName}',style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white))

@@ -47,7 +47,6 @@ class AuthRepositoryImpl implements AuthRepository{
           password: _authUser!.password,
           name: _personalData!.name,
           lastName: _personalData!.lastName,
-          address: _personalData!.address,
           phoneNumber: _personalData!.phone
       );
       final resp = await _authRemoteDataSource.signUp(authUserModel);

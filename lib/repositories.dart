@@ -71,6 +71,7 @@ import 'features/vehicle/data/repositories/vehicle_repository_impl.dart';
 import 'features/vehicle/domain/repositories/vehicle_repository.dart';
 import 'features/vehicle/domain/use_cases/delete_vehicle_use_case.dart';
 import 'features/vehicle/domain/use_cases/get_car_makes_use_case.dart';
+import 'features/vehicle/domain/use_cases/get_transport_types_use_case.dart';
 import 'features/vehicle/domain/use_cases/get_user_vehicles.dart';
 import 'features/vehicle/domain/use_cases/save_make_use_case.dart';
 import 'features/vehicle/domain/use_cases/save_transmission_type_use_case.dart';
@@ -138,6 +139,8 @@ class Repositories{
   static final deleteUserUseCase              = Provider<DeleteUser>((ref) => DeleteUser(ref.read(_userRepository)));
 
   static final getCarMakesUseCase             = Provider<GetCarMakes>((ref) => GetCarMakes(ref.read(_vehicleRepository)));
+  static final getTransportTypesUseCase       = Provider<GetTransportTypes>((ref) => GetTransportTypes(ref.read(_vehicleRepository)));
+
   static final storeVehicleUseCase            = Provider<StoreVehicle>((ref) => StoreVehicle(ref.read(_vehicleRepository),ref.read(_secureStorageRepository)));
   static final saveTransmissionTypeUseCase    = Provider<SaveTransmissionType>((ref) => SaveTransmissionType(ref.read(_vehicleRepository)));
   static final saveMakeIdUseCase              = Provider<SaveMakeId>((ref) => SaveMakeId(ref.read(_vehicleRepository)));

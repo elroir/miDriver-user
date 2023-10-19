@@ -31,7 +31,6 @@ class PersonalDataNotifier extends ChangeNotifier{
   String _name = '';
   String _lastName = '';
   int _phoneNumber = 0;
-  String _address = '';
 
   PersonalDataNotifier(this._savePersonalData,this._signUp, this.key, this._router);
 
@@ -48,9 +47,6 @@ class PersonalDataNotifier extends ChangeNotifier{
     _phoneNumber = int.parse(value ?? '0');
   }
 
-  void saveAddressField(String? value){
-    _address = value ?? '';
-  }
 
   String? validateNotEmpty(String? value){
     return FormValidators.validateNotShorter(value);
@@ -67,7 +63,7 @@ class PersonalDataNotifier extends ChangeNotifier{
 
     loading = true;
     notifyListeners();
-    final personalData = PersonalData(name: _name, lastName: _lastName, address: _address, phone: _phoneNumber);
+    final personalData = PersonalData(name: _name, lastName: _lastName,phone: _phoneNumber);
     _savePersonalData(personalData);
 
     final response = await _signUp();

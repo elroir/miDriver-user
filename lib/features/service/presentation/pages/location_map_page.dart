@@ -20,18 +20,15 @@ class LocationMapPage extends StatelessWidget {
         children: [
           FlutterMap(
             options: MapOptions(
-                center: location,
-                zoom: 15.0,
+                initialCenter: location,
+                initialZoom: 15.0,
                 maxZoom: 18,
                 minZoom: 6,
             ),
-            nonRotatedChildren: [
-              SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2),)
-            ],
+
             children: [
               TileLayer(
-                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                subdomains: const ['a', 'b', 'c'],
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
               ),
               MarkerLayer(
                   markers: [
@@ -39,12 +36,12 @@ class LocationMapPage extends StatelessWidget {
                         point: location,
                         height: 120,
                         width: 120,
-                        builder: (context) =>
-                            const Icon(Icons.location_on, color: Colors.black, size: 40)
+                        child: const Icon(Icons.location_on, color: Colors.black, size: 40)
                     ),
                   ]
               ),
               CurrentLocationLayer(),
+              SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2),)
 
             ],
           ),

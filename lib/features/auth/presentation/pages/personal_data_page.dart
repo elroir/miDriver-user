@@ -39,6 +39,7 @@ class PersonalDataPage extends ConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        const SizedBox(height: 15),
                         TextFormField(
                             onSaved: personalData.saveNameField,
                             validator: personalData.validateNotEmpty,
@@ -61,14 +62,6 @@ class PersonalDataPage extends ConsumerWidget {
                           keyboardType: const TextInputType.numberWithOptions(signed: false,decimal: false),
                           decoration: const InputDecoration(
                               labelText: AppStrings.phoneField
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        TextFormField(
-                          onSaved: personalData.saveAddressField,
-                          validator: personalData.validateNotEmpty,
-                          decoration: const InputDecoration(
-                              labelText: AppStrings.addressField
                           ),
                         ),
                         if(personalData.hasErrors)

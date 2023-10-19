@@ -1,7 +1,8 @@
 import 'package:latlong2/latlong.dart';
 
 import '../../../fare/data/models/fare_model.dart';
-import '../../../vehicle/data/models/user_vehicle_model.dart';
+import '../../../vehicle/data/models/transport_type_model.dart';
+import '../../../vehicle/domain/entities/transport_type.dart';
 import '../../domain/entities/service.dart';
 
 class ServiceModel extends Service{
@@ -11,7 +12,7 @@ class ServiceModel extends Service{
     required super.distanceInKm,
     required super.price,
     required super.fare,
-    required super.car,
+    super.transportType = const TransportType.car(),
     required super.origin,
     required super.destination,
     required super.serviceDateTime,
@@ -25,7 +26,8 @@ class ServiceModel extends Service{
       distanceInKm: json['total_distance'],
       price: json['total_price']/1,
       fare: FareModel.fromJson(json['fare']),
-      car: UserVehicleModel.fromJson(json['vehicle']),
+      // car: json['vehicle'] !=null ? UserVehicleModel.fromJson(json['vehicle']) : null,
+      transportType: TransportTypeModel.fromJson(json['vehicle_type']),
       origin: LatLng(json['from']['coordinates'][1],json['from']['coordinates'][0]),
       destination: LatLng(json['to']['coordinates'][1],json['to']['coordinates'][0]),
       serviceDateTime: DateTime.parse(json['date']),
@@ -36,7 +38,7 @@ class ServiceModel extends Service{
 
   Map<String, dynamic> toJson(String userId) => {
     'client'              : userId,
-    'vehicle'             : car!.id,
+    'vehicle_type'        : transportType.id,
     'fare'                : fare.id,
     'total_price'         : price,
     'total_distance'      : distanceInKm,

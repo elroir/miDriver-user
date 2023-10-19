@@ -31,19 +31,15 @@ class MapWidget extends ConsumerWidget {
         FlutterMap(
           mapController: mapController,
           options: MapOptions(
-              center: const LatLng(-17.7853232, -63.1884931),
-              zoom: 12.0,
+              initialCenter: const LatLng(-17.7853232, -63.1884931),
+              initialZoom: 12.0,
               maxZoom: 18,
               minZoom: 6,
               onTap: (_, location) => ref.read(pickLocationProvider.notifier).pickLocation(location)
           ),
-          nonRotatedChildren: [
-            SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2),)
-          ],
           children: [
             TileLayer(
-              urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-              subdomains: const ['a', 'b', 'c'],
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
             ),
             MarkerLayer(
                 markers: [
@@ -52,7 +48,7 @@ class MapWidget extends ConsumerWidget {
                         point: locationSelection.origin!,
                         height: 140,
                         width: 120,
-                        builder: (context) => FlagMarker(
+                        child: FlagMarker(
                           text: AppStrings.pickupPlace,
                           color: Colors.white.withOpacity(0.9),
                           textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12)
@@ -63,7 +59,7 @@ class MapWidget extends ConsumerWidget {
                         point: locationSelection.destination!,
                         height: 140,
                         width: 120,
-                        builder: (context) => FlagMarker(text: AppStrings.destinationPlace,textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12,color: Colors.white),)
+                        child: FlagMarker(text: AppStrings.destinationPlace,textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12,color: Colors.white),)
                     ),
                 ]
             ),
@@ -74,7 +70,7 @@ class MapWidget extends ConsumerWidget {
                 ],
               ),
             CurrentLocationLayer(),
-
+            SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2))
           ],
         ),
         SafeArea(

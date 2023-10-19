@@ -72,7 +72,7 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
     final userId = await _secureStorage.getUserId();
 
     final url = Uri.https(baseUrl,'/items/service',{
-      'fields' : 'id,status,vehicle.*,vehicle.make.*,total_distance,total_price,from,to,fare.*,date',
+      'fields' : 'id,status,total_distance,total_price,from,to,fare.*,date,vehicle_type.*',
       'filter' : '{ "client": { "_eq": "$userId" },'
           '"status": { "_in": ["published","accepted","in_progress","finished"] }}'
     });
@@ -83,7 +83,6 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource{
           'Content-Type' : 'application/json'
         }
     );
-
 
     if(response.statusCode==401){
       throw AuthenticationException();

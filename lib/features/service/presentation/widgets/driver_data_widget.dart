@@ -28,7 +28,7 @@ class DriverDataWidget extends ConsumerWidget {
                   tag: offers[0].user.id,
                   child: CachedNetworkImage(
                       imageUrl: offers[0].user.imageUrl,
-                      httpHeaders: const {'Authorization' : HttpOptions.apiToken},
+                      httpHeaders: HttpOptions.imageHeaders,
                       height: 250,
                       width: 250,
                       fit: BoxFit.cover
