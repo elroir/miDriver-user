@@ -15,6 +15,7 @@ class AppStrings{
   static const String logout          = 'Cerrar sesión';
   static const String forgotPassword  = 'Olvidé mi contraseña';
   static const String reloadButton    = 'Volver a cargar';
+  static const String transportType   = 'Tipo de transporte';
 
   static const String delete              = 'Eliminar';
   static const String deleteUser          = 'Eliminar mi usuario';
@@ -32,7 +33,8 @@ class AppStrings{
   static const String offeredPrice          = 'Precio ofertado';
   static const String driverInCharge        = 'Conductor encargado';
   static const String serviceCancelled      = 'Servicio cancelado';
-
+  static const String serviceAccepted       = 'Servicio aceptado';
+  static const String driverOnTheWay        = 'El conductor ya se encuentra en camino';
 
   static const String continueRegister      = 'CONTINUAR REGISTRO';
   static const String finishRegister        = 'Registrarme';

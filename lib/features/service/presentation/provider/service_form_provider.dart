@@ -76,6 +76,8 @@ class ServiceProvider extends StateNotifier<HttpPostStatus>{
 
     final date = DateTime.now().toDateTimeFromDateAndTimeString(dateController.text, timeController.text);
 
+
+
     final serviceForm = ServiceModel(
         distanceInKm: distanceInKm,
         price: price,

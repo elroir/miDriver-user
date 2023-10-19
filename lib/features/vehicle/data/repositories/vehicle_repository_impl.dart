@@ -57,10 +57,10 @@ class VehicleRepositoryImpl implements VehicleRepository{
       }on ServerException{
         return Left(ServerFailure());
       }on SocketException{
-        return Left(SocketFailure());
+        return const Right([TransportType.car(),TransportType.motorcycle()]);
       }
     }
-    return Left(SocketFailure());
+    return const Right([TransportType.car(),TransportType.motorcycle()]);
 
   }
 

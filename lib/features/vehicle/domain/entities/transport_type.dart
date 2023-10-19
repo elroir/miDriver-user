@@ -8,4 +8,6 @@ class TransportType{
 
   const TransportType.car() : id = 1, name = 'Auto', imageUrl = '';
 
+  const TransportType.motorcycle() : id = 2, name = 'Moto', imageUrl = '';
+
 }

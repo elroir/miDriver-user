@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/http/http_options.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../home/presentation/pages/error_view.dart';
 import '../../../offer/presentation/provider/get_offers_provider.dart';
@@ -37,7 +38,7 @@ class DriverDataWidget extends ConsumerWidget {
               ),
               Text('${offers[0].user.name} ${offers[0].user.lastName}',style: Theme.of(context).textTheme.titleMedium),
               if(service.status == ServiceStatus.inProgress)
-                Text('El conductor ya se encuentra en camino',style: Theme.of(context).textTheme.bodyLarge)
+                Text(AppStrings.driverOnTheWay,style: Theme.of(context).textTheme.bodyLarge)
 
             ],
           ),

@@ -62,7 +62,7 @@ class _CurrentViewState  extends ConsumerState<CurrentServiceView> with WidgetsB
 
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Servicio aceptado'),
+              content: Text(AppStrings.serviceAccepted),
             )
         );
       }
