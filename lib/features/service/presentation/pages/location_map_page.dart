@@ -40,9 +40,8 @@ class LocationMapPage extends StatelessWidget {
                     ),
                   ]
               ),
+              SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2),),
               CurrentLocationLayer(),
-              SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2),)
-
             ],
           ),
           SafeArea(
