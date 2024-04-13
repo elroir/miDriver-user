@@ -51,7 +51,7 @@ class AddressPage extends ConsumerWidget {
                               point: locationSelection.origin!,
                               height: 140,
                               width: 120,
-                              child: Icon(Icons.location_on,color: Colors.red,size: 40)
+                              child: const Icon(Icons.location_on,color: Colors.red,size: 40)
                           ),
                       ]
                   ),

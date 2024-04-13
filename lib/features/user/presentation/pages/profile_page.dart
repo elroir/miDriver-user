@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/router/router.dart';
+import '../../../address/presentation/widgets/address_list.dart';
 import '../../../auth/presentation/widgets/background_logo_widget.dart';
 
 import '../../../../core/resources/strings_manager.dart';
@@ -67,6 +68,7 @@ class ProfilePage extends ConsumerWidget {
               ),
             ),
           ),
+           const AddressList(),
           // const VehicleSection(),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
           const SliverToBoxAdapter(

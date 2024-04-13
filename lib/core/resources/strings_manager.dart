@@ -7,6 +7,7 @@ class AppStrings{
   static const String addressField        = 'Domicilio';
   static const String phoneField          = 'Teléfono';
   static const String confirmPasswordField= 'Confirmar contraseña';
+  static const String addAddress         = 'Agregar dirección';
 
 
   static const String loginButton     = 'Iniciar sesión';
