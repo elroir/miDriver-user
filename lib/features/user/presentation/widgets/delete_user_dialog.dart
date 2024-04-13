@@ -6,7 +6,7 @@ import '../../../home/presentation/widgets/delete_dialog.dart';
 import '../provider/delete_user_provider.dart';
 
 class DeleteUserDialog extends ConsumerWidget {
-  const DeleteUserDialog({Key? key}) : super(key: key);
+  const DeleteUserDialog({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

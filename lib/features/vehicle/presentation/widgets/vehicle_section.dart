@@ -12,7 +12,7 @@ import 'delete_vehicle_dialog.dart';
 import 'vehicle_card.dart';
 
 class VehicleSection extends ConsumerWidget {
-  const VehicleSection({Key? key}) : super(key: key);
+  const VehicleSection({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

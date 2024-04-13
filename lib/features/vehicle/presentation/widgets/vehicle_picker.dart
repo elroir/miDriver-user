@@ -10,7 +10,7 @@ class VehiclePicker extends ConsumerWidget {
   final TextEditingController textController;
   final void Function(String,UserVehicle?) onChanged;
 
-  const VehiclePicker({Key? key,required this.textController,required this.onChanged}) : super(key: key);
+  const VehiclePicker({super.key,required this.textController,required this.onChanged});
 
   @override
   Widget build(BuildContext context,ref) {

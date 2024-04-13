@@ -10,7 +10,7 @@ import '../../../vehicle/presentation/widgets/transport_type_picker.dart';
 import '../provider/service_form_provider.dart';
 
 class TopInformationWidget extends ConsumerWidget {
-  const TopInformationWidget({Key? key}) : super(key: key);
+  const TopInformationWidget({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

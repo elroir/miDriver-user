@@ -5,7 +5,7 @@ import '../../../../core/resources/strings_manager.dart';
 import '../provider/transmission_type_provider.dart';
 
 class TransmissionTypePicker extends ConsumerWidget {
-  const TransmissionTypePicker({Key? key}) : super(key: key);
+  const TransmissionTypePicker({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

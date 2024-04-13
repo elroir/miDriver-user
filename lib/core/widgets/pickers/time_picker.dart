@@ -10,7 +10,7 @@ class TimePicker extends StatefulWidget {
   final void Function()? onPressed;
   final FormFieldValidator<String>? validator;
 
-  const TimePicker({Key? key, this.controller, this.decoration,this.initialTime,this.widthFactor = 1,this.onPressed, this.validator}) : super(key: key);
+  const TimePicker({super.key, this.controller, this.decoration,this.initialTime,this.widthFactor = 1,this.onPressed, this.validator});
 
   @override
   TimePickerState createState() => TimePickerState();

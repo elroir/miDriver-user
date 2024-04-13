@@ -12,7 +12,7 @@ class PasswordField extends StatefulWidget {
   final void Function(String)? onFieldSubmitted;
   final TextInputAction? textInputAction;
 
-  const PasswordField({Key? key,this.labelText = AppStrings.passwordField, this.validator, this.onSaved, this.onChanged, this.onFieldSubmitted, this.textInputAction}) : super(key: key);
+  const PasswordField({super.key,this.labelText = AppStrings.passwordField, this.validator, this.onSaved, this.onChanged, this.onFieldSubmitted, this.textInputAction});
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();

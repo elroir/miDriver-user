@@ -9,7 +9,7 @@ import 'delete_user_dialog.dart';
 
 class DeleteUserButton extends ConsumerWidget {
   final String text;
-  const DeleteUserButton({Key? key,this.text = AppStrings.deleteUser}) : super(key: key);
+  const DeleteUserButton({super.key,this.text = AppStrings.deleteUser});
 
   @override
   Widget build(BuildContext context,ref) {

@@ -16,7 +16,7 @@ import '../widgets/top_information_widget.dart';
 
 class ServiceFormPage extends ConsumerWidget {
   final int fareId;
-  const ServiceFormPage({Key? key,required this.fareId}) : super(key: key);
+  const ServiceFormPage({super.key,required this.fareId});
 
   @override
   Widget build(BuildContext context,ref) {

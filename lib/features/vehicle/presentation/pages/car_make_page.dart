@@ -5,7 +5,7 @@ import '../provider/get_car_makes_provider.dart';
 import '../provider/make_provider.dart';
 
 class CarMakePage extends ConsumerWidget {
-  const CarMakePage({Key? key}) : super(key: key);
+  const CarMakePage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

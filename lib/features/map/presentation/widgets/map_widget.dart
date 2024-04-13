@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 
+import '../../../../core/resources/values_manager.dart';
 import '../provider/current_location_provider.dart';
 import '../provider/map_controller_provider.dart';
 import '../provider/pick_location_provider.dart';
@@ -14,7 +16,7 @@ import 'flag_marker.dart';
 
 class MapWidget extends ConsumerWidget {
 
-  const MapWidget({Key? key}) : super(key: key);
+  const MapWidget({super.key});
 
   @override
   Widget build(BuildContext context,ref) {
@@ -31,15 +33,15 @@ class MapWidget extends ConsumerWidget {
         FlutterMap(
           mapController: mapController,
           options: MapOptions(
-              initialCenter: const LatLng(-17.7853232, -63.1884931),
+              initialCenter: location,
               initialZoom: 12.0,
-              maxZoom: 18,
+              maxZoom: 22,
               minZoom: 6,
               onTap: (_, location) => ref.read(pickLocationProvider.notifier).pickLocation(location)
           ),
           children: [
             TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              urlTemplate: MapStrings.tileUrl,
             ),
             MarkerLayer(
                 markers: [
@@ -51,7 +53,7 @@ class MapWidget extends ConsumerWidget {
                         child: FlagMarker(
                           text: AppStrings.pickupPlace,
                           color: Colors.white.withOpacity(0.9),
-                          textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12)
+                          textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12,color: Colors.black)
                         )
                     ),
                   if(locationSelection.destination!=null)
@@ -70,7 +72,16 @@ class MapWidget extends ConsumerWidget {
                 ],
               ),
             CurrentLocationLayer(),
-            SimpleAttributionWidget(source: const Text(AppStrings.mapAttribution),backgroundColor: Colors.white.withOpacity(0.2))
+            RichAttributionWidget(
+              alignment: AttributionAlignment.bottomLeft,
+                showFlutterMapAttribution: false,
+                attributions: [
+                  LogoSourceAttribution(
+                      SvgPicture.asset(AssetsManager.mapboxIconBlack,alignment: Alignment.centerLeft,),
+                    height: 50,
+                  ),
+                ]
+            )
           ],
         ),
         SafeArea(

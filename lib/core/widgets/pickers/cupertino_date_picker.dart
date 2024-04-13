@@ -17,7 +17,7 @@ class CupertinoDatePickerWidget extends StatefulWidget {
   final InputDecoration? decoration;
 
 
-  const CupertinoDatePickerWidget({Key? key,
+  const CupertinoDatePickerWidget({super.key,
     this.controller,
     this.initialValue,
     required this.initialDate,
@@ -27,7 +27,7 @@ class CupertinoDatePickerWidget extends StatefulWidget {
     this.validator,
     this.onAcceptPressed,
     this.decoration
-  }) : super(key: key);
+  });
 
   @override
   State<CupertinoDatePickerWidget> createState() => _CupertinoDatePickerWidgetState();

@@ -6,7 +6,7 @@ class ProfileField extends StatelessWidget {
   final String content;
   final Widget icon;
   
-  const ProfileField({Key? key, required this.title, required this.content, required this.icon}) : super(key: key);
+  const ProfileField({super.key, required this.title, required this.content, required this.icon});
 
   @override
   Widget build(BuildContext context) {

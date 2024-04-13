@@ -18,6 +18,10 @@ import 'core/url_launcher/url_launcher.dart';
 import 'core/url_launcher/url_repository.dart';
 import 'core/url_launcher/use_cases/check_url_use_case.dart';
 import 'core/url_launcher/use_cases/open_url_use_case.dart';
+import 'features/address/data/data_sources/address_remote_datasource.dart';
+import 'features/address/data/repositories/address_repository_impl.dart';
+import 'features/address/domain/repositories/address_repository.dart';
+import 'features/address/domain/use_cases/get_addresses_use_case.dart';
 import 'features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
@@ -104,6 +108,7 @@ class Repositories{
   static final _serviceRemoteDataSource   = Provider<ServiceRemoteDataSource>((ref) => ServiceRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _offerRemoteDataSource     = Provider<OfferRemoteDataSource>((ref) => OfferRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
   static final _termsRemoteDataSource     = Provider<TermsRemoteDataSource>((ref) => TermsRemoteDataSourceImpl(ref.read(_httpRepository)));
+  static final _addressRemoteDataSource   = Provider<AddressRemoteDataSource>((ref) => AddressRemoteDataSourceImpl(ref.read(_httpRepository),ref.read(_secureStorageRepository)));
 
 
   //Repositories
@@ -115,6 +120,7 @@ class Repositories{
   static final _serviceRepository   = Provider<ServiceRepository>((ref) => ServiceRepositoryImpl(ref.read(_serviceRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _offerRepository     = Provider<OfferRepository>((ref) => OfferRepositoryImpl(ref.read(_offerRemoteDataSource),ref.read(_networkInfoRepository)));
   static final _termsRepository     = Provider<TermsRepository>((ref) => TermsRepositoryImpl(ref.read(_termsRemoteDataSource),ref.read(_networkInfoRepository)));
+  static final _addressRepository   = Provider<AddressRepository>((ref) => AddressRepositoryImpl(ref.read(_addressRemoteDataSource),ref.read(_networkInfoRepository)));
 
 
   //Use cases
@@ -167,6 +173,7 @@ class Repositories{
 
   static final getTermsAndConditionsUseCase   = Provider<GetTermsAndConditions>((ref) => GetTermsAndConditions(ref.read(_termsRepository)));
 
+  static final getAddressesUseCase            = Provider<GetAddresses>((ref) => GetAddresses(ref.read(_addressRepository)));
 
 }
 

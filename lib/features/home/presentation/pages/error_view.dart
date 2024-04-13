@@ -11,12 +11,12 @@ class ErrorView extends StatelessWidget {
   final String buttonText;
   final double? height;
 
-  const ErrorView({Key? key,
+  const ErrorView({super.key,
     required this.onTap,
     this.errorText = 'Ha ocurrido un error',
     this.buttonText = AppStrings.reloadButton,
     this.height
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

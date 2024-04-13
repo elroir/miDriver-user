@@ -21,6 +21,7 @@ class AppStrings{
   static const String deleteUser          = 'Eliminar mi usuario';
   static const String dangerZone          = 'Zona de peligro';
   static const String deleteUserContent   = 'Una vez eliminada la cuenta, no podrá recuperarla, y debera registrarse de nuevo ¿Está seguro de que desea continuar?';
+  static const String addresses           = 'Direcciones';
 
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
@@ -62,6 +63,7 @@ class AppStrings{
   static const String finish                  = 'Finalizar';
   static const String cancel                  = 'Cancelar';
   static const String accept                  = 'Aceptar';
+  static const String save                    = 'Guardar';
   static const String vehicles                = 'Vehículos';
   static const String fareSelected            = 'Tarifa seleccionada';
 

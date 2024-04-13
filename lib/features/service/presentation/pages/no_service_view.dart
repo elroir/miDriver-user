@@ -10,7 +10,7 @@ import '../provider/get_current_service_provider.dart';
 import '../provider/service_form_provider.dart';
 
 class NoServiceView extends ConsumerWidget {
-  const NoServiceView({Key? key}) : super(key: key);
+  const NoServiceView({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

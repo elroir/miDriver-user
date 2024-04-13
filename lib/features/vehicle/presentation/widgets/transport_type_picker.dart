@@ -11,7 +11,7 @@ class TransportTypePicker extends ConsumerWidget {
   final TextEditingController textController;
   final void Function(String,TransportType?) onChanged;
 
-  const TransportTypePicker({Key? key,required this.textController,required this.onChanged}) : super(key: key);
+  const TransportTypePicker({super.key,required this.textController,required this.onChanged});
 
   @override
   Widget build(BuildContext context,ref) {

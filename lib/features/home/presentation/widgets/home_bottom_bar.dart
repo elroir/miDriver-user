@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
+import '../../../address/presentation/provider/get_addresses_provider.dart';
 import '../../../map/presentation/provider/location_permission_provider.dart';
 import '../../../offer/presentation/provider/get_offers_provider.dart';
 import '../../../service/presentation/provider/get_current_service_provider.dart';
@@ -12,7 +13,7 @@ import '../provider/navigation_bar_provider.dart';
 import '../provider/notification_data_provider.dart';
 
 class HomeBottomBar extends ConsumerWidget {
-  const HomeBottomBar({Key? key}) : super(key: key);
+  const HomeBottomBar({super.key});
 
   @override
   Widget build(BuildContext context,ref) {
@@ -21,6 +22,13 @@ class HomeBottomBar extends ConsumerWidget {
     ref.read(pushTokenProvider);
 
     ref.read(locationPermissionProvider);
+
+    ref.listen(getAddressesProvider, (previous, next) {
+      if(next.isEmpty){
+        context.push(Routes.address);
+      }
+
+    });
 
     ref.listen(notificationDataProvider, (previous, next) {
       if(next!=null){
@@ -38,10 +46,8 @@ class HomeBottomBar extends ConsumerWidget {
 
       }
     });
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
+    return PopScope(
+      canPop: false,
       child: NavigationBar(
         selectedIndex: state,
         height: 60,

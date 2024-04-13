@@ -12,7 +12,7 @@ import '../provider/accept_offer_provider.dart';
 
 class OfferListTile extends StatelessWidget {
   final Offer offer;
-  const OfferListTile({Key? key,required this.offer}) : super(key: key);
+  const OfferListTile({super.key,required this.offer});
 
   @override
   Widget build(BuildContext context) {

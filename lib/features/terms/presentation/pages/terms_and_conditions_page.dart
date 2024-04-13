@@ -10,7 +10,7 @@ import '../../../home/presentation/pages/error_view.dart';
 import '../provider/get_terms_and_conditions_provider.dart';
 
 class TermsAndConditionsPage extends ConsumerWidget{
-  const TermsAndConditionsPage({Key? key}) : super(key: key);
+  const TermsAndConditionsPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

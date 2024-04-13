@@ -14,7 +14,7 @@ class PicturePicker extends StatelessWidget {
   final void Function() cameraOnPressed;
   final void Function() galleryOnPressed;
 
-  const PicturePicker({Key? key, required this.title,  this.image, this.hasBorders=false,required this.cameraOnPressed, required this.galleryOnPressed}) : super(key: key);
+  const PicturePicker({super.key, required this.title,  this.image, this.hasBorders=false,required this.cameraOnPressed, required this.galleryOnPressed});
 
   @override
   Widget build(BuildContext context) {

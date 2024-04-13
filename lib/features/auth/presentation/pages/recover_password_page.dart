@@ -10,7 +10,7 @@ import '../provider/password_recovery_provider.dart';
 import '../widgets/background_logo_widget.dart';
 
 class RecoverPasswordPage extends ConsumerWidget {
-  const RecoverPasswordPage({Key? key}) : super(key: key);
+  const RecoverPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

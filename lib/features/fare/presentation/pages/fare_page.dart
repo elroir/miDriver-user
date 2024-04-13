@@ -7,7 +7,7 @@ import '../provider/get_fares_provider.dart';
 import '../widgets/fare_list_tile.dart';
 
 class FarePage extends ConsumerWidget {
-  const FarePage({Key? key}) : super(key: key);
+  const FarePage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

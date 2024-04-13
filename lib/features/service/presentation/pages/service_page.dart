@@ -10,7 +10,7 @@ import 'current_service_view.dart';
 import 'no_service_view.dart';
 
 class ServicePage extends ConsumerWidget {
-  const ServicePage({Key? key}) : super(key: key);
+  const ServicePage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

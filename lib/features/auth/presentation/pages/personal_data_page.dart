@@ -8,7 +8,7 @@ import '../widgets/background_logo_widget.dart';
 
 class PersonalDataPage extends ConsumerWidget {
 
-  const PersonalDataPage({Key? key}) : super(key: key);
+  const PersonalDataPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

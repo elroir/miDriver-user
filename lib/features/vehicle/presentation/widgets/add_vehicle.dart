@@ -4,7 +4,7 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
 
 class AddVehicleWidget extends StatelessWidget {
-  const AddVehicleWidget({Key? key}) : super(key: key);
+  const AddVehicleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

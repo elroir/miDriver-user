@@ -4,7 +4,7 @@ import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 
 class BackGroundLogoWidget extends StatelessWidget {
-  const BackGroundLogoWidget({Key? key}) : super(key: key);
+  const BackGroundLogoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

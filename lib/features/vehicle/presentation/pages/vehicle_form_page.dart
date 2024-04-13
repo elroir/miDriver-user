@@ -12,7 +12,7 @@ import '../widgets/car_make_picker.dart';
 import '../widgets/transmission_type_picker.dart';
 
 class VehicleFormPage extends ConsumerWidget {
-  const VehicleFormPage({Key? key}) : super(key: key);
+  const VehicleFormPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

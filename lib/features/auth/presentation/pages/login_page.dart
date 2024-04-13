@@ -12,7 +12,7 @@ import '../widgets/background_logo_widget.dart';
 import '../widgets/password_field.dart';
 
 class LoginPage extends ConsumerWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

@@ -6,7 +6,7 @@ import '../../../home/presentation/widgets/delete_dialog.dart';
 import '../provider/delete_vehicle_provider.dart';
 
 class DeleteVehicleDialog extends ConsumerWidget {
-  const DeleteVehicleDialog({Key? key}) : super(key: key);
+  const DeleteVehicleDialog({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

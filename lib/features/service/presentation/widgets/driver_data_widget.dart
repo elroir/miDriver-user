@@ -11,7 +11,7 @@ import '../../domain/entities/service.dart';
 import '../provider/get_current_service_provider.dart';
 
 class DriverDataWidget extends ConsumerWidget {
-  const DriverDataWidget({Key? key}) : super(key: key);
+  const DriverDataWidget({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

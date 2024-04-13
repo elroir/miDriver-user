@@ -6,7 +6,7 @@ import '../provider/get_offers_provider.dart';
 import 'offer_list_tile.dart';
 
 class OffersList extends ConsumerWidget {
-  const OffersList({Key? key}) : super(key: key);
+  const OffersList({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

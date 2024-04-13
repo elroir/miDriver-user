@@ -8,7 +8,7 @@ import '../../../../core/router/router.dart';
 import '../provider/get_current_service_provider.dart';
 
 class ServiceFinishedPage extends ConsumerWidget {
-  const ServiceFinishedPage({Key? key}) : super(key: key);
+  const ServiceFinishedPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

@@ -5,7 +5,7 @@ class ErrorTextWidget extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final String errorText;
 
-  const ErrorTextWidget({Key? key, this.padding = const EdgeInsets.symmetric(vertical: 15), required this.errorText}) : super(key: key);
+  const ErrorTextWidget({super.key, this.padding = const EdgeInsets.symmetric(vertical: 15), required this.errorText});
 
   @override
   Widget build(BuildContext context) {

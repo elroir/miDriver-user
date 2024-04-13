@@ -8,7 +8,7 @@ import '../widgets/logout_button.dart';
 
 
 class RegisterSuccessPage extends StatelessWidget {
-  const RegisterSuccessPage({Key? key}) : super(key: key);
+  const RegisterSuccessPage({super.key});
 
   @override
   Widget build(BuildContext context) {

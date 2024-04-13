@@ -6,7 +6,7 @@ import '../../../../core/router/router.dart';
 import '../provider/make_provider.dart';
 
 class CarMakePicker extends ConsumerWidget {
-  const CarMakePicker({Key? key}) : super(key: key);
+  const CarMakePicker({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

@@ -9,7 +9,7 @@ class FareListTile extends StatelessWidget {
 
   final Fare fare;
 
-  const FareListTile({Key? key, required this.fare}) : super(key: key);
+  const FareListTile({super.key, required this.fare});
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class VehicleCard extends StatelessWidget {
 
   final UserVehicle vehicle;
 
-  const VehicleCard({Key? key, required this.vehicle}) : super(key: key);
+  const VehicleCard({super.key, required this.vehicle});
 
   @override
   Widget build(BuildContext context) {

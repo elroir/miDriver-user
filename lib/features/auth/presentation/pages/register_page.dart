@@ -10,7 +10,7 @@ import '../widgets/background_logo_widget.dart';
 import '../widgets/password_field.dart';
 
 class RegisterPage extends ConsumerWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

@@ -22,7 +22,7 @@ class DatePickerWidget extends StatelessWidget{
   final InputDecoration? decoration;
 
   DatePickerWidget({
-    Key? key,
+    super.key,
     this.controller,
     this.initialValue,
     initialDate,
@@ -36,7 +36,7 @@ class DatePickerWidget extends StatelessWidget{
 
   }) :  initialDate = initialDate ?? DateTime.now(),
         firstDate = firstDate ?? DateTime(1940),
-        lastDate  = lastDate  ?? DateTime.now(), super(key: key);
+        lastDate  = lastDate  ?? DateTime.now();
 
 
 

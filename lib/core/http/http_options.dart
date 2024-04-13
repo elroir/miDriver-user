@@ -16,6 +16,9 @@ class HttpOptions{
 
   static const privacyPolicyUrl  =  'https://legal.midriverdesignado.com/privacy-policy';
 
+  static const mapBoxToken  =  'pk.eyJ1IjoiZWxyb2lyIiwiYSI6ImNsdXd6dnloeDBqMTEya21reDFhMDFjc2EifQ.FgK_drfNT6HcMn6kU2Gjdw';
+
+
   static const imageHeaders  =  {'Authorization' : apiToken};
 
 

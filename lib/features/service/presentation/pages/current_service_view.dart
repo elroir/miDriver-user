@@ -13,7 +13,7 @@ import '../provider/get_current_service_provider.dart';
 import '../widgets/driver_data_widget.dart';
 import '../widgets/my_service_widget.dart';
 class CurrentServiceView extends ConsumerStatefulWidget {
-  const CurrentServiceView({Key? key}) : super(key: key);
+  const CurrentServiceView({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CurrentViewState();

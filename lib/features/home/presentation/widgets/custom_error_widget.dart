@@ -9,7 +9,7 @@ class CustomErrorWidget extends StatelessWidget {
   final String text;
   final double size;
 
-  const CustomErrorWidget({Key? key,this.text = 'Error',this.size = 128}) : super(key: key);
+  const CustomErrorWidget({super.key,this.text = 'Error',this.size = 128});
 
   @override
   Widget build(BuildContext context) {

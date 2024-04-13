@@ -4,7 +4,7 @@ class ButtonLoadingAnimation extends StatelessWidget {
 
   final Color color;
 
-  const ButtonLoadingAnimation({Key? key, this.color = Colors.black}) : super(key: key);
+  const ButtonLoadingAnimation({super.key, this.color = Colors.black});
 
   @override
   Widget build(BuildContext context) {

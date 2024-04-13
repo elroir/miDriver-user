@@ -11,7 +11,7 @@ import '../provider/get_current_service_provider.dart';
 import 'pickup_and_destination_button.dart';
 
 class MyServiceWidget extends ConsumerWidget {
-  const MyServiceWidget({Key? key}) : super(key: key);
+  const MyServiceWidget({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

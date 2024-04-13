@@ -8,7 +8,7 @@ class PickUpAndDestinationButton extends StatelessWidget {
   final double lat;
   final double lon;
   final bool isPickUp;
-  const PickUpAndDestinationButton({Key? key, required this.lat, required this.lon,this.isPickUp = true}) : super(key: key);
+  const PickUpAndDestinationButton({super.key, required this.lat, required this.lon,this.isPickUp = true});
 
   @override
   Widget build(BuildContext context) {

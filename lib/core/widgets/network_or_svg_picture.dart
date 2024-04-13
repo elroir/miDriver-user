@@ -9,7 +9,7 @@ class NetworkOrSvgPicture extends StatelessWidget {
   final Color? svgColor;
   final double? height;
   final double? width;
-  const NetworkOrSvgPicture({Key? key, required this.imageUrl,this.svgColor,this.height,this.width}) : super(key: key);
+  const NetworkOrSvgPicture({super.key, required this.imageUrl,this.svgColor,this.height,this.width});
 
   @override
   Widget build(BuildContext context) {

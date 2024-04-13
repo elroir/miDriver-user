@@ -13,7 +13,7 @@ class MaterialDatePickerWidget extends StatefulWidget {
   final void Function(DateTime date)? onAcceptPressed;
   final InputDecoration? decoration;
 
-  const MaterialDatePickerWidget({Key? key,
+  const MaterialDatePickerWidget({super.key,
     this.controller,
     this.initialValue,
     required this.initialDate,
@@ -23,7 +23,7 @@ class MaterialDatePickerWidget extends StatefulWidget {
     this.validator,
     this.onAcceptPressed,
     this.decoration
-  }) : super(key: key);
+  });
 
   @override
   State<MaterialDatePickerWidget> createState() => _MaterialDatePickerWidgetState();

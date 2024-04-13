@@ -14,7 +14,7 @@ import '../widgets/delete_user_button.dart';
 import '../widgets/profile_field.dart';
 
 class ProfilePage extends ConsumerWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context,ref) {
@@ -48,6 +48,11 @@ class ProfilePage extends ConsumerWidget {
                     title: AppStrings.phoneField,
                     content: userStatus.data!.phoneNumber.toString(),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(AppStrings.addresses,style: Theme.of(context).textTheme.titleMedium),
+                  ),
+
                   // ProfileField(
                   //   icon: const Icon(Iconsax.location),
                   //   title: AppStrings.addressField,

@@ -9,7 +9,7 @@ import '../provider/direction_provider.dart';
 import '../provider/pick_location_provider.dart';
 
 class LocationSelectionButton extends ConsumerWidget {
-  const LocationSelectionButton({Key? key}) : super(key: key);
+  const LocationSelectionButton({super.key});
 
   @override
   Widget build(BuildContext context,ref) {

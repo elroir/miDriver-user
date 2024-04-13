@@ -34,6 +34,11 @@ class PickLocationNotifier extends StateNotifier<LocationSelectionState>{
     state = LocationSelectionDestination(origin: origin,destination: location);
   }
 
+  Future<void> pickOrigin(LatLng location) async {
+    state = LocationSelectionOrigin(origin: location);
+    _pickOrigin(location);
+  }
+
   void init() {
     _checkInitialOrigin();
   }

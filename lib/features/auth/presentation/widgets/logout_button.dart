@@ -7,7 +7,7 @@ import '../provider/logout_provider.dart';
 
 class LogoutButton extends ConsumerWidget {
   final String text;
-  const LogoutButton({Key? key,this.text = AppStrings.logout}) : super(key: key);
+  const LogoutButton({super.key,this.text = AppStrings.logout});
 
   @override
   Widget build(BuildContext context,ref) {

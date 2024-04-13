@@ -11,7 +11,7 @@ class DeleteDialog extends StatelessWidget {
   final String content;
   final void Function()? onSubmit;
 
-  const DeleteDialog({Key? key, required this.title, required this.content, this.onSubmit}) : super(key: key);
+  const DeleteDialog({super.key, required this.title, required this.content, this.onSubmit});
 
   @override
   Widget build(BuildContext context) {
