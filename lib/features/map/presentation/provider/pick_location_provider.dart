@@ -43,6 +43,11 @@ class PickLocationNotifier extends StateNotifier<LocationSelectionState>{
     _checkInitialOrigin();
   }
 
+  void clearOrigin() {
+    state = const LocationSelectionNone();
+    _pickOrigin(null);
+  }
+
   void restart() {
     final hasOrigin = _checkInitialOrigin();
     if(!hasOrigin){

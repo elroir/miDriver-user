@@ -6,6 +6,6 @@ import '../entities/direction.dart';
 
 abstract interface class MapRepository{
   LatLng? get origin;
-  void pickLocation(LatLng position);
+  void pickLocation(LatLng? position);
   Future<Either<Failure,Direction>> getDirections(LatLng destination);
 }

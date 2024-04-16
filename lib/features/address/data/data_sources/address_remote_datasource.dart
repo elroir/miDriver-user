@@ -9,13 +9,26 @@ import '../../../../core/storage/secure_storage_repository.dart';
 import '../models/address_model.dart';
 
 abstract interface class AddressRemoteDataSource{
-  ///Calls [HttpOptions.apiUrl]/items/address to get a list of available [FareModel]
+  ///Calls [HttpOptions.apiUrl]/items/address to get a list of available [AddressModel]
   ///
   /// Throws an [AuthenticationException] if token is not found
   /// Throws a [ServerException] for all error codes
   /// Throws a [SocketException] if no response is sent
   Future<List<AddressModel>> getAddresses();
 
+  ///Calls [HttpOptions.apiUrl]/items/address to store an address
+  ///
+  /// Throws an [AuthenticationException] if token is not found
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<void> storeAddress(AddressModel address);
+
+  ///Calls [HttpOptions.apiUrl]/items/address/[addressId] to delete an address
+  ///
+  /// Throws an [AuthenticationException] if token is not found
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<void> deleteAddress(int addressId);
 }
 
 class AddressRemoteDataSourceImpl implements AddressRemoteDataSource{
@@ -57,5 +70,37 @@ class AddressRemoteDataSourceImpl implements AddressRemoteDataSource{
 
     return addresses;
   }
+
+  @override
+  Future<void> storeAddress(AddressModel address) async {
+    final url = Uri.https(HttpOptions.apiUrl,'/items/address');
+
+    final token = await _secureStorage.getToken();
+
+    final response = await _client.post(url,headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type' : 'application/json'
+    },
+        body: json.encode(address.toJson())
+    );
+
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=200){
+      throw ServerException();
+    }
+
+
+  }
+
+  @override
+  Future<void> deleteAddress(int addressId) {
+    // TODO: implement deleteAddress
+    throw UnimplementedError();
+  }
+
+
 
 }

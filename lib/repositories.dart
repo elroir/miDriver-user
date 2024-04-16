@@ -22,6 +22,7 @@ import 'features/address/data/data_sources/address_remote_datasource.dart';
 import 'features/address/data/repositories/address_repository_impl.dart';
 import 'features/address/domain/repositories/address_repository.dart';
 import 'features/address/domain/use_cases/get_addresses_use_case.dart';
+import 'features/address/domain/use_cases/store_address_use_case.dart';
 import 'features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
@@ -69,6 +70,7 @@ import 'features/user/data/repositories/user_repository_impl.dart';
 import 'features/user/domain/repositories/user_repository.dart';
 import 'features/user/domain/use_cases/delete_user_use_case.dart';
 import 'features/user/domain/use_cases/get_user_data_use_case.dart';
+import 'features/user/domain/use_cases/get_user_id_use_case.dart';
 import 'features/user/domain/use_cases/update_user_push_token_use_case.dart';
 import 'features/vehicle/data/data_sources/vehicle_remote_datasource.dart';
 import 'features/vehicle/data/repositories/vehicle_repository_impl.dart';
@@ -137,6 +139,7 @@ class Repositories{
   static final logoutUseCase                  = Provider<SignOut>((ref) => SignOut(ref.read(_authRepository)));
   static final verifyEmailUseCase             = Provider<VerifyEmail>((ref) => VerifyEmail(ref.read(_authRepository)));
   static final requestPasswordRecoveryUseCase = Provider<RequestPasswordRecovery>((ref) => RequestPasswordRecovery(ref.read(_authRepository)));
+  static final getUserIdUseCase               = Provider<GetUserId>((ref) => GetUserId(ref.read(_secureStorageRepository)));
 
   static final splashUseCase                  = Provider<GetInitialPage>((ref) => GetInitialPage(ref.read(_secureStorageRepository)));
 
@@ -174,6 +177,7 @@ class Repositories{
   static final getTermsAndConditionsUseCase   = Provider<GetTermsAndConditions>((ref) => GetTermsAndConditions(ref.read(_termsRepository)));
 
   static final getAddressesUseCase            = Provider<GetAddresses>((ref) => GetAddresses(ref.read(_addressRepository)));
+  static final storeAddressUseCase            = Provider<StoreAddress>((ref) => StoreAddress(ref.read(_addressRepository),ref.read(_secureStorageRepository)));
 
 }
 

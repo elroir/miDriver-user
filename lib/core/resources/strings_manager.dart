@@ -18,12 +18,14 @@ class AppStrings{
   static const String reloadButton    = 'Volver a cargar';
   static const String transportType   = 'Tipo de transporte';
 
-  static const String delete              = 'Eliminar';
-  static const String deleteUser          = 'Eliminar mi usuario';
-  static const String dangerZone          = 'Zona de peligro';
-  static const String deleteUserContent   = 'Una vez eliminada la cuenta, no podrá recuperarla, y debera registrarse de nuevo ¿Está seguro de que desea continuar?';
-  static const String addresses           = 'Direcciones';
-
+  static const String delete                    = 'Eliminar';
+  static const String deleteUser                = 'Eliminar mi usuario';
+  static const String dangerZone                = 'Zona de peligro';
+  static const String deleteUserContent         = 'Una vez eliminada la cuenta, no podrá recuperarla, y debera registrarse de nuevo ¿Está seguro de que desea continuar?';
+  static const String addresses                 = 'Direcciones';
+  static const String defaultAddress            = 'Dirección por defecto';
+  static const String noAvailableAddresses      = 'Aún no hay direcciones registradas';
+  static const String defaultAddressDescription = 'Dirección por defecto';
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';

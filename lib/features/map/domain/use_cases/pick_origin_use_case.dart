@@ -7,5 +7,5 @@ class PickOrigin{
 
   PickOrigin(this._mapRepository);
 
-  void call(LatLng location) => _mapRepository.pickLocation(location);
+  void call(LatLng? location) => _mapRepository.pickLocation(location);
 }

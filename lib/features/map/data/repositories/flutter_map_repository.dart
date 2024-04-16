@@ -19,7 +19,7 @@ class MapRepositoryImpl implements MapRepository{
 
 
   @override
-  void pickLocation(LatLng position) {
+  void pickLocation(LatLng? position) {
     _pickedOrigin = position;
   }
 

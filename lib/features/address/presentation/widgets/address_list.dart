@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
-import '../../../vehicle/presentation/widgets/add_vehicle.dart';
 import '../provider/get_addresses_provider.dart';
+import 'add_address_widget.dart';
 import 'address_card.dart';
 
 class AddressList extends ConsumerWidget {
@@ -14,7 +14,7 @@ class AddressList extends ConsumerWidget {
   Widget build(BuildContext context,ref) {
     final addresses = ref.watch(getAddressesProvider);
     if(addresses.isEmpty){
-      return const SliverToBoxAdapter(child: AddVehicleWidget());
+      return const SliverToBoxAdapter(child: AddAddressWidget());
     }
 
     return SliverList(
