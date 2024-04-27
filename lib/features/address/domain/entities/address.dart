@@ -7,7 +7,7 @@ class Address{
   final bool defaultAddress;
   final LatLng location;
 
-  Address({required this.id, required this.userId, required this.textual, required this.defaultAddress, required this.location});
+  Address({this.id = 0, required this.userId, required this.textual, required this.defaultAddress, required this.location});
 
 
 }

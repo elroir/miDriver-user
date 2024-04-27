@@ -57,7 +57,7 @@ class PickLocationNotifier extends StateNotifier<LocationSelectionState>{
 
   bool _checkInitialOrigin() {
     final fare = _fare();
-    final location = fare?.location;
+    final location = fare?.location ?? _getOrigin();
     if(location != null){
       state = LocationSelectionOrigin(origin: location,canPickOrigin: false);
       _pickOrigin(location);

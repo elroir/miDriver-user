@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/router/router.dart';
 import '../../domain/entities/address.dart';
 
 class AddressCard extends StatelessWidget {
@@ -25,10 +25,7 @@ class AddressCard extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           title: Text(address.textual),
           subtitle: address.defaultAddress ? const Text(AppStrings.defaultAddress) : const SizedBox(),
-          trailing: GestureDetector(
-            child: const Icon(Iconsax.trash,color: Colors.redAccent,size: 24),
-            onTap: (){},
-          )
+          onTap: () => context.push('${Routes.address}/${address.id}'),
         ),
       ),
     );

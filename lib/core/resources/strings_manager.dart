@@ -7,7 +7,7 @@ class AppStrings{
   static const String addressField        = 'Domicilio';
   static const String phoneField          = 'Teléfono';
   static const String confirmPasswordField= 'Confirmar contraseña';
-  static const String addAddress         = 'Agregar dirección';
+
 
 
   static const String loginButton     = 'Iniciar sesión';
@@ -26,6 +26,9 @@ class AppStrings{
   static const String defaultAddress            = 'Dirección por defecto';
   static const String noAvailableAddresses      = 'Aún no hay direcciones registradas';
   static const String defaultAddressDescription = 'Dirección por defecto';
+  static const String addAddress                = 'Agregar dirección';
+  static const String deleteAddress             = 'Eliminar dirección';
+  static const String deleteAddressDescription  = '¿Está seguro de que desea eliminar esta dirección?';
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';

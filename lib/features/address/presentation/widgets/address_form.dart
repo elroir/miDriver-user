@@ -8,6 +8,7 @@ import '../../../../core/widgets/loading_button.dart';
 import '../../../map/presentation/provider/pick_location_provider.dart';
 import '../provider/get_addresses_provider.dart';
 import '../provider/store_address_provider.dart';
+import 'delete_address_button.dart';
 
 class AddressForm extends ConsumerWidget {
   const AddressForm({super.key});
@@ -26,9 +27,10 @@ class AddressForm extends ConsumerWidget {
       child: Container(
           margin: const EdgeInsets.symmetric(vertical: 20),
           child: Column(
+
             mainAxisSize: MainAxisSize.max,
             children: [
-              (ref.read(getAddressesProvider).isEmpty)
+              (ref.read(getAddressesProvider).isEmpty || !ref.read(storeAddressProvider.notifier).canChangeDefaultAddress)
                 ? const FractionallySizedBox(
                     widthFactor: 0.9,
                     child: Text(AppStrings.defaultAddressDescription)
@@ -51,6 +53,7 @@ class AddressForm extends ConsumerWidget {
               FractionallySizedBox(
                 widthFactor: 0.9,
                 child: TextFormField(
+                  initialValue: ref.read(storeAddressProvider.notifier).address,
                   onSaved: ref.read(storeAddressProvider.notifier).saveAddressField,
                     validator: ref.read(storeAddressProvider.notifier).validateAddress,
                     decoration: const InputDecoration(
@@ -64,10 +67,14 @@ class AddressForm extends ConsumerWidget {
                   errorText: addressStatus.message
               ),
               LoadingButton(
-                  onPressed: () => ref.read(storeAddressProvider.notifier).storeAddress(),
+                  onPressed: () => ref.read(storeAddressProvider.notifier).storeOrEditAddress(),
                   buttonText: AppStrings.save,
                   isLoading: addressStatus is HttpPostStatusLoading
               ),
+              const SizedBox(height: 20),
+              if(ref.read(storeAddressProvider.notifier).isEditing)
+                const DeleteAddressButton()
+
             ],
           )
       ),

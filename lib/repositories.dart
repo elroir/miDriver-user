@@ -21,6 +21,8 @@ import 'core/url_launcher/use_cases/open_url_use_case.dart';
 import 'features/address/data/data_sources/address_remote_datasource.dart';
 import 'features/address/data/repositories/address_repository_impl.dart';
 import 'features/address/domain/repositories/address_repository.dart';
+import 'features/address/domain/use_cases/delete_address_use_case.dart';
+import 'features/address/domain/use_cases/get_address_use_case.dart';
 import 'features/address/domain/use_cases/get_addresses_use_case.dart';
 import 'features/address/domain/use_cases/store_address_use_case.dart';
 import 'features/auth/data/data_sources/auth_remote_datasource.dart';
@@ -177,7 +179,9 @@ class Repositories{
   static final getTermsAndConditionsUseCase   = Provider<GetTermsAndConditions>((ref) => GetTermsAndConditions(ref.read(_termsRepository)));
 
   static final getAddressesUseCase            = Provider<GetAddresses>((ref) => GetAddresses(ref.read(_addressRepository)));
-  static final storeAddressUseCase            = Provider<StoreAddress>((ref) => StoreAddress(ref.read(_addressRepository),ref.read(_secureStorageRepository)));
+  static final storeOrEditAddressUseCase      = Provider<StoreOrEditAddress>((ref) => StoreOrEditAddress(ref.read(_addressRepository),ref.read(_secureStorageRepository)));
+  static final getAddressUseCase              = Provider<GetAddress>((ref) => GetAddress(ref.read(_addressRepository)));
+  static final deleteAddressUseCase           = Provider<DeleteAddress>((ref) => DeleteAddress(ref.read(_addressRepository)));
 
 }
 

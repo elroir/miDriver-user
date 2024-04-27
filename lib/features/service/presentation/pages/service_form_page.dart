@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 import '../../../../core/http/entities/http_post_status.dart';
+import '../../../../core/router/router.dart';
 import '../../../home/presentation/pages/error_view.dart';
 import '../../../map/domain/entities/direction.dart';
 import '../../../map/presentation/provider/direction_provider.dart';
@@ -42,36 +43,43 @@ class ServiceFormPage extends ConsumerWidget {
     }
 
 
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (canPop) {
+        ref.read(pickLocationProvider.notifier).clearOrigin();
+        context.pop();
+      },
+      child: Scaffold(
 
-        body: serviceFare.when(
-            data: (fare) {
-              return const Stack(
-                fit: StackFit.expand,
-                children: [
-                  MapWidget(),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: TopInformationWidget(),
-                  ),
-                  SafeArea(
-                    bottom: true,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                          padding: EdgeInsets.only(bottom:20),
-                          child: LocationSelectionButton()
-                      ),
+          body: serviceFare.when(
+              data: (fare) {
+                return const Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    MapWidget(),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: TopInformationWidget(),
                     ),
-                  )
+                    SafeArea(
+                      bottom: true,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                            padding: EdgeInsets.only(bottom:20),
+                            child: LocationSelectionButton()
+                        ),
+                      ),
+                    )
 
 
-                ],
-              );
-            } ,
-            error: (error,_) => ErrorView(onTap: () => ref.invalidate(serviceFareProvider(fareId))),
-            loading: () => const Center(child: CircularProgressIndicator.adaptive())
-        )
+                  ],
+                );
+              } ,
+              error: (error,_) => ErrorView(onTap: () => ref.invalidate(serviceFareProvider(fareId))),
+              loading: () => const Center(child: CircularProgressIndicator.adaptive())
+          )
+      ),
     );
   }
 }

@@ -29,6 +29,13 @@ abstract interface class AddressRemoteDataSource{
   /// Throws a [ServerException] for all error codes
   /// Throws a [SocketException] if no response is sent
   Future<void> deleteAddress(int addressId);
+
+  ///Calls [HttpOptions.apiUrl]/items/address/[address.id] to edit an address
+  ///
+  /// Throws an [AuthenticationException] if token is not found
+  /// Throws a [ServerException] for all error codes
+  /// Throws a [SocketException] if no response is sent
+  Future<void> editAddress(AddressModel address);
 }
 
 class AddressRemoteDataSourceImpl implements AddressRemoteDataSource{
@@ -96,9 +103,46 @@ class AddressRemoteDataSourceImpl implements AddressRemoteDataSource{
   }
 
   @override
-  Future<void> deleteAddress(int addressId) {
-    // TODO: implement deleteAddress
-    throw UnimplementedError();
+  Future<void> deleteAddress(int addressId) async {
+    final url = Uri.https(HttpOptions.apiUrl,'/items/address/$addressId');
+
+    final token = await _secureStorage.getToken();
+
+    final response = await _client.delete(url,headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type' : 'application/json'
+    }
+    );
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=204){
+      throw ServerException();
+    }
+
+  }
+
+  @override
+  Future<void> editAddress(AddressModel address) async {
+    final url = Uri.https(HttpOptions.apiUrl,'/items/address/${address.id}');
+
+    final token = await _secureStorage.getToken();
+
+    final response = await _client.patch(url,headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type' : 'application/json'
+    },
+        body: json.encode(address.toJson())
+    );
+
+    if(response.statusCode==401){
+      throw AuthenticationException();
+    }
+
+    if(response.statusCode!=200){
+      throw ServerException();
+    }
   }
 
 

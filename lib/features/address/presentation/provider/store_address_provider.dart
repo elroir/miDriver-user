@@ -7,14 +7,16 @@ import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/router/router.dart';
 import '../../../../repositories.dart';
 import '../../../map/domain/use_cases/get_picked_origin_use_case.dart';
+import '../../../map/domain/use_cases/pick_origin_use_case.dart';
+import '../../domain/use_cases/get_address_use_case.dart';
 import '../../domain/use_cases/store_address_use_case.dart';
 
 final storeAddressProvider = StateNotifierProvider.autoDispose<StoreAddressProvider,HttpPostStatus>(
-        (ref) => StoreAddressProvider(ref.read(formProvider),ref.read(router),ref.read(Repositories.storeAddressUseCase),ref.read(Repositories.getOriginUseCase))
-);
+        (ref) => StoreAddressProvider(ref.read(formProvider),ref.read(router),ref.read(Repositories.storeOrEditAddressUseCase),ref.read(Repositories.getAddressUseCase),ref.read(Repositories.getOriginUseCase),ref.read(Repositories.pickOriginUseCase)
+));
 
 final storeAddressSwitchProvider = StateProvider.autoDispose<bool>((ref) {
- final state = ref.watch(storeAddressProvider.notifier).defaultAddress;
+ final state = ref.read(storeAddressProvider.notifier).defaultAddress;
   return state;
 }
 );
@@ -23,16 +25,38 @@ class StoreAddressProvider extends StateNotifier<HttpPostStatus>{
 
   final GlobalKey<FormState> key;
   final GoRouter _router;
-  final StoreAddress _storeAddress;
+  final StoreOrEditAddress _storeOrEditAddress;
+  final GetAddress _getAddress;
   final GetPickedOrigin _getOrigin;
+  final PickOrigin _pickOrigin;
 
-  StoreAddressProvider(this.key, this._router,this._storeAddress,this._getOrigin) : super(HttpPostStatusNone());
+  StoreAddressProvider(this.key, this._router,this._storeOrEditAddress,this._getAddress,this._getOrigin,this._pickOrigin) : super(HttpPostStatusNone());
 
-  String _address = '';
+  String address = '';
   bool defaultAddress = true;
+  bool isEditing = false;
+  bool canChangeDefaultAddress = true;
+  int addressId = 0;
+
+  void getInitialAddress(int id){
+    final addressOrFail = _getAddress(id);
+    addressOrFail.fold(
+            (error) {
+          state = HttpPostStatusError(message: error.errorMessage);
+        },
+            (address) {
+              _pickOrigin(address.location);
+              isEditing = true;
+              addressId = address.id;
+              this.address = address.textual;
+              canChangeDefaultAddress = !address.defaultAddress;
+          defaultAddress = address.defaultAddress;
+        }
+    );
+  }
 
   void saveAddressField(String? value){
-    _address = value ?? '';
+    address = value ?? '';
   }
 
   String? validateAddress(String? value){
@@ -43,7 +67,7 @@ class StoreAddressProvider extends StateNotifier<HttpPostStatus>{
     defaultAddress = value;
   }
 
-  Future<void> storeAddress() async {
+  Future<void> storeOrEditAddress() async {
     final FormState form = key.currentState!;
     if(!form.validate()) return;
     form.save();
@@ -55,8 +79,9 @@ class StoreAddressProvider extends StateNotifier<HttpPostStatus>{
 
     state = HttpPostStatusLoading();
 
-    final response = await _storeAddress(
-      address: _address,
+    final response = await _storeOrEditAddress(
+      id: addressId,
+      address: address,
       location: location,
       defaultAddress: defaultAddress
     );

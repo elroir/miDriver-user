@@ -19,6 +19,8 @@ class AddressRepositoryImpl implements AddressRepository{
 
   AddressRepositoryImpl(this._remoteDataSource, this._networkInfoRepository);
 
+  List<Address> _addresses = [];
+
   @override
   Future<Either<Failure, List<Address>>> getAddresses() async {
     try{
@@ -27,6 +29,7 @@ class AddressRepositoryImpl implements AddressRepository{
       }
 
       final response = await _remoteDataSource.getAddresses();
+      _addresses = response;
       return Right(response);
     }on AuthenticationException{
       return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
@@ -38,15 +41,31 @@ class AddressRepositoryImpl implements AddressRepository{
   }
 
   @override
-  Future<Either<Failure, HttpSuccess>> deleteAddress(int addressId) {
-    // TODO: implement deleteAddress
-    throw UnimplementedError();
+  Future<Either<Failure, HttpSuccess>> deleteAddress(int addressId) async {
+    if(await _networkInfoRepository.isConnected){
+      try{
+
+        await _remoteDataSource.deleteAddress(addressId);
+        return Right(HttpSuccess());
+      }on AuthenticationException{
+        return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
+      }on ServerException{
+        return Left(ServerFailure());
+      }on SocketException{
+        return Left(SocketFailure());
+      }
+    }
+    return Left(SocketFailure());
   }
 
   @override
-  Future<Either<Failure, HttpSuccess>> storeAddress(Address address) async {
+  Future<Either<Failure, HttpSuccess>> storeOrEditAddress(Address address) async {
     if(await _networkInfoRepository.isConnected){
       try{
+        if(address.id!=0){
+          await _remoteDataSource.editAddress(AddressModel.fromEntity(address));
+          return Right(HttpSuccess());
+        }
 
         await _remoteDataSource.storeAddress(AddressModel.fromEntity(address));
         return Right(HttpSuccess());
@@ -59,6 +78,15 @@ class AddressRepositoryImpl implements AddressRepository{
       }
     }
     return Left(SocketFailure());
+  }
+
+  @override
+  Either<Failure,Address> getAddressById(int addressId) {
+    if(_addresses.any((e) => e.id==addressId)){
+      return Right(_addresses.firstWhere((e) => e.id==addressId));
+    }
+    return Left(CacheFailure());
+
   }
 
 }

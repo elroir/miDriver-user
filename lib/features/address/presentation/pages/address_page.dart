@@ -41,7 +41,7 @@ class AddressPage extends ConsumerWidget {
               Expanded(
                 child: FlutterMap(
                   options: MapOptions(
-                    initialCenter: location,
+                    initialCenter: locationSelection.origin ?? location,
                     initialZoom: 12.0,
                     maxZoom: 22,
                     onTap: (_, location) => ref.read(pickLocationProvider.notifier).pickOrigin(location)

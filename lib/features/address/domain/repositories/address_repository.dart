@@ -7,6 +7,7 @@ import '../entities/address.dart';
 abstract interface class AddressRepository{
 
   Future<Either<Failure,List<Address>>> getAddresses();
-  Future<Either<Failure,HttpSuccess>> storeAddress(Address address);
+  Future<Either<Failure,HttpSuccess>> storeOrEditAddress(Address address);
   Future<Either<Failure,HttpSuccess>> deleteAddress(int addressId);
+  Either<Failure,Address> getAddressById(int addressId);
 }

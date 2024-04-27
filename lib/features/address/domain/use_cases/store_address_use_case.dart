@@ -7,17 +7,17 @@ import '../../../../core/storage/secure_storage_repository.dart';
 import '../entities/address.dart';
 import '../repositories/address_repository.dart';
 
-class StoreAddress{
+class StoreOrEditAddress{
   final AddressRepository _addressRepository;
   final SecureStorageRepository _storageRepository;
 
-  StoreAddress(this._addressRepository,this._storageRepository);
+  StoreOrEditAddress(this._addressRepository,this._storageRepository);
 
-  Future<Either<Failure,HttpSuccess>> call({required String address,required LatLng location,bool defaultAddress = true}) async {
+  Future<Either<Failure,HttpSuccess>> call({required String address,required LatLng location,bool defaultAddress = true,int id = 0}) async {
     final userId = await _storageRepository.getUserId();
     if(userId == null) return Left(CacheFailure());
-    return await _addressRepository.storeAddress(Address(
-      id: 0,
+    return await _addressRepository.storeOrEditAddress(Address(
+      id: id,
       textual: address,
       location: location,
       userId: userId,

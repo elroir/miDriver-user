@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import '../../features/address/presentation/pages/address_page.dart';
+import '../../features/address/presentation/provider/store_address_provider.dart';
 import '../../features/fare/presentation/pages/fare_page.dart';
 import '../../features/service/presentation/pages/location_map_page.dart';
 import '../../features/service/presentation/pages/service_finished_view.dart';
@@ -56,7 +57,7 @@ final router = Provider(
             AuthenticationRouter.loginRoutes,
             AuthenticationRouter.accountSuccessRoutes,
             VehicleRouter.vehicleRoutes(rootNavigatorKey),
-            AddressRouter.addressRoutes(rootNavigatorKey),
+            AddressRouter.addressRoutes(rootNavigatorKey,ref),
 
           ],
           errorPageBuilder: (context,state) => MaterialPage(

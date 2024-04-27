@@ -11,13 +11,13 @@ class AddressModel extends Address{
       userId: json['user'],
       textual: json['address'],
       defaultAddress: json['default'] ?? false,
-      location: LatLng(json['location']['coordinates'][0],json['location']['coordinates'][1])
+      location: LatLng(json['location']['coordinates'][1],json['location']['coordinates'][0])
     );
   }
 
   factory AddressModel.fromEntity(Address address) =>
       AddressModel(
-          id: 0,
+          id: address.id,
           userId: address.userId,
           textual: address.textual,
           defaultAddress: address.defaultAddress,
