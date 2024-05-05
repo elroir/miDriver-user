@@ -7,6 +7,7 @@ import '../../domain/use_cases/sign_out_use_case.dart';
 enum LogoutStatus{
   initial,
   loading,
+  success,
   failure
 }
 
@@ -28,7 +29,7 @@ class LogoutNotifier extends StateNotifier<LogoutStatus>{
     signOutOrFailure.fold(
             (error) => state = LogoutStatus.failure,
             (success) {
-              state = LogoutStatus.initial;
+              state = LogoutStatus.success;
               _router.go(Routes.login);
             }
     );

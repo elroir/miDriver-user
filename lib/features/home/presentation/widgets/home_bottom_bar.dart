@@ -4,7 +4,6 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
-import '../../../address/presentation/provider/get_addresses_provider.dart';
 import '../../../map/presentation/provider/location_permission_provider.dart';
 import '../../../offer/presentation/provider/get_offers_provider.dart';
 import '../../../service/presentation/provider/get_current_service_provider.dart';
@@ -22,13 +21,6 @@ class HomeBottomBar extends ConsumerWidget {
     ref.read(pushTokenProvider);
 
     ref.read(locationPermissionProvider);
-
-    ref.listen(getAddressesProvider, (previous, next) {
-      if(next.isEmpty){
-        context.push(Routes.address);
-      }
-
-    });
 
     ref.listen(notificationDataProvider, (previous, next) {
       if(next!=null){

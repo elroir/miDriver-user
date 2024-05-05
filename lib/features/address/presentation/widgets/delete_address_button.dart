@@ -5,6 +5,7 @@ import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/router/router.dart';
 import '../../../home/presentation/widgets/delete_dialog.dart';
+import '../../../map/presentation/provider/pick_location_provider.dart';
 import '../provider/delete_address_provider.dart';
 import '../provider/get_addresses_provider.dart';
 
@@ -22,6 +23,7 @@ class DeleteAddressButton extends ConsumerWidget {
 
       if(next is HttpPostStatusSuccess){
         context.pop();
+        ref.read(pickLocationProvider.notifier).clearOrigin();
         ref.read(getAddressesProvider.notifier).getAddresses();
       }
 
