@@ -1,6 +1,7 @@
 
 import 'package:fpdart/fpdart.dart';
 
+import '../../../../core/error/error_messages.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
@@ -23,7 +24,7 @@ class FareRepositoryImpl implements FareRepository{
   @override
   Future<Either<Failure, List<Fare>>> getFares() async {
     if(!await _networkInfo.isConnected){
-      return Left(ServerFailure());
+      return Left(ServerFailure(errorMessage: ErrorMessages.noInternetMessageError));
     }
 
     try{

@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context,ref) {
     return MaterialApp.router(
-      title: 'Mi Driver',
+      title: 'miDriver',
       debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,

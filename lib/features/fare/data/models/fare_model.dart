@@ -11,6 +11,7 @@ class FareModel extends Fare {
     required super.title,
     required super.description,
     required super.imageUrl,
+    required super.defaultFare,
     super.location
   });
 
@@ -20,7 +21,8 @@ class FareModel extends Fare {
       title: json['name'],
       description: json['description'],
     imageUrl: json['icon'] != null ? 'https://${HttpOptions.apiUrl}/assets/${json['icon']}' : 'https://admin.midriverdesignado.com/assets/54552e90-b59f-46b0-8c7d-073b1b17e898',
-    location: json['location']!= null ? LatLng(json['location']['coordinates'][1],json['location']['coordinates'][0]) : null
+    defaultFare: json['default'],
+      location: json['location']!= null ? LatLng(json['location']['coordinates'][1],json['location']['coordinates'][0]) : null
   );
 
 }

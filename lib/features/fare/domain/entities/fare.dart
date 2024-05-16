@@ -6,6 +6,7 @@ class Fare {
   final String title;
   final String description;
   final String imageUrl;
+  final bool defaultFare;
   final LatLng? location;
 
 
@@ -15,6 +16,7 @@ class Fare {
     required this.title,
     required this.description,
     required this.imageUrl,
+    required this.defaultFare,
     this.location
   });
 }

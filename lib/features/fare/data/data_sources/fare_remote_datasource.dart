@@ -28,7 +28,8 @@ class FareRemoteDataSourceImpl implements FareRemoteDataSource{
   @override
   Future<List<FareModel>> getFares() async {
     final url = Uri.https(HttpOptions.apiUrl,'/items/fare',{
-      'fields' : 'id,name,description,icon,price,location'
+      'fields' : 'id,name,description,icon,price,location,default',
+      'filter[status][_eq]' : 'active'
     });
 
     final token = await _secureStorage.getToken();

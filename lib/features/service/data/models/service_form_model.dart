@@ -23,7 +23,7 @@ class ServiceModel extends Service{
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
     return ServiceModel(
       id: json['id'],
-      distanceInKm: json['total_distance'],
+      distanceInKm: json['total_distance']/1,
       price: json['total_price']/1,
       fare: FareModel.fromJson(json['fare']),
       // car: json['vehicle'] !=null ? UserVehicleModel.fromJson(json['vehicle']) : null,

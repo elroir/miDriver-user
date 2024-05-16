@@ -4,7 +4,7 @@ class HttpOptions{
 
   HttpOptions._();
 
-  static const _devUrl = 'midriver.elroir.cloud';
+  static const _devUrl = 'admin.midriverdesignado.com';
 
   static const apiToken = 'Bearer ZqO5ANCprCQ9T5vR30rnfhhFrVAO9oF1';
 

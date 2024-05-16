@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../address/presentation/widgets/default_address_service_dialog.dart';
 import '../widgets/home_bottom_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,9 +14,10 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: const HomeBottomBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
+        onPressed: () => showDialog(
+            context: context,
+            builder: (_) => const DefaultAddressServiceDialog()
+        ),
         backgroundColor: Colors.green,
         child: const Icon(Icons.home_filled),
       )
