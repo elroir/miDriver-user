@@ -29,9 +29,12 @@ class ProfilePage extends ConsumerWidget {
     if(userStatus is HttpPostStatusSuccess){
 
       ref.listen(getAddressesProvider, (previous, next) {
-        if(next.isEmpty && previous!.isEmpty){
-          context.push(Routes.address);
+        if(next is HttpPostStatusSuccess && previous is HttpPostStatusSuccess){
+          if(next.data!.isEmpty && previous!.data!.isEmpty){
+            context.push(Routes.address);
+          }
         }
+
       });
 
       return CustomScrollView(

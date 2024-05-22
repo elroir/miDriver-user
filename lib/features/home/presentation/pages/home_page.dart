@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../address/presentation/widgets/default_address_service_dialog.dart';
+import '../../../service/presentation/widgets/default_address_service_dialog.dart';
 import '../widgets/home_bottom_bar.dart';
 
 class HomePage extends StatelessWidget {

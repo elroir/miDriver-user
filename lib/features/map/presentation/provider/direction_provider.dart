@@ -19,9 +19,9 @@ class DirectionNotifier extends StateNotifier<HttpPostStatus<Direction>>{
 
   DirectionNotifier(this._getDirections) : super(HttpPostStatusNone());
 
-  Future<void> getDirections(LatLng location) async {
+  Future<void> getDirections(LatLng destination) async {
     state = HttpPostStatusLoading();
-    final response = await _getDirections(location);
+    final response = await _getDirections(destination);
     state = response.fold(
             (error) => HttpPostStatusError(message: error.errorMessage),
             (directions) => HttpPostStatusSuccess(data: directions)

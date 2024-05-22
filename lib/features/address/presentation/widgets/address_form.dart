@@ -30,7 +30,7 @@ class AddressForm extends ConsumerWidget {
 
             mainAxisSize: MainAxisSize.max,
             children: [
-              (ref.read(getAddressesProvider).isEmpty || !ref.read(storeAddressProvider.notifier).canChangeDefaultAddress)
+              (ref.read(getAddressesProvider).data!.isEmpty || !ref.read(storeAddressProvider.notifier).canChangeDefaultAddress)
                 ? const FractionallySizedBox(
                     widthFactor: 0.9,
                     child: Text(AppStrings.defaultAddressDescription)

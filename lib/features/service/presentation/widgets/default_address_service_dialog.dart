@@ -10,6 +10,7 @@ import '../../../fare/presentation/provider/get_fares_provider.dart';
 
 import '../../../home/presentation/pages/error_view.dart';
 import '../../../vehicle/presentation/widgets/transport_type_row.dart';
+import 'address_service_data.dart';
 
 class DefaultAddressServiceDialog extends ConsumerWidget {
 
@@ -42,7 +43,8 @@ class DefaultAddressServiceDialog extends ConsumerWidget {
                 child: Text('Estas a punto de solicitar un conductor desde tu ubicación actual hasta tu dirección por defecto',style: Theme.of(context).textTheme.bodyLarge),
               ),
               const SizedBox(height: 10),
-
+              const AddressServiceData(),
+              const SizedBox(height: 10),
               FractionallySizedBox(
                 widthFactor: 0.9,
                 child: OutlinedButton(

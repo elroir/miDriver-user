@@ -79,7 +79,7 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
   @override
   Future<HttpSuccess<List<TransportTypeModel>>> getTransportTypes() async {
     final url = Uri.https(HttpOptions.apiUrl,'/items/vehicle_type',{
-      'fields' : 'id,name,icon'
+      'fields' : 'id,name,icon,default'
     });
 
     final token = await _secureStorage.getToken();

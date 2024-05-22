@@ -10,7 +10,6 @@ part 'location_selection_state.dart';
 
 final pickLocationProvider = StateNotifierProvider.autoDispose<PickLocationNotifier,LocationSelectionState>(
         (ref) {
-      // ref.onDispose(() => print('eeeey disposed'));
       return PickLocationNotifier(ref.read(Repositories.pickOriginUseCase),ref.read(Repositories.getOriginUseCase),ref.read(Repositories.getPickedFareUseCase))..init();
     }
 );

@@ -89,4 +89,13 @@ class AddressRepositoryImpl implements AddressRepository{
 
   }
 
+  @override
+  Either<Failure, Address> getDefaultAddress() {
+    if(_addresses.isNotEmpty){
+
+      return Right(_addresses.firstWhere((e) => e.defaultAddress));
+    }
+    return Left(CacheFailure());
+  }
+
 }

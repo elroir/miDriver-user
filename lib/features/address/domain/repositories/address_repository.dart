@@ -10,4 +10,6 @@ abstract interface class AddressRepository{
   Future<Either<Failure,HttpSuccess>> storeOrEditAddress(Address address);
   Future<Either<Failure,HttpSuccess>> deleteAddress(int addressId);
   Either<Failure,Address> getAddressById(int addressId);
+  Either<Failure,Address> getDefaultAddress();
+
 }

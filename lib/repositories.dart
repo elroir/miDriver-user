@@ -22,8 +22,10 @@ import 'features/address/data/data_sources/address_remote_datasource.dart';
 import 'features/address/data/repositories/address_repository_impl.dart';
 import 'features/address/domain/repositories/address_repository.dart';
 import 'features/address/domain/use_cases/delete_address_use_case.dart';
+import 'features/address/domain/use_cases/get_address_direction_use_case.dart';
 import 'features/address/domain/use_cases/get_address_use_case.dart';
 import 'features/address/domain/use_cases/get_addresses_use_case.dart';
+import 'features/address/domain/use_cases/get_default_address_use_case.dart';
 import 'features/address/domain/use_cases/store_address_use_case.dart';
 import 'features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
@@ -47,6 +49,7 @@ import 'features/map/data/repositories/flutter_map_repository.dart';
 import 'features/map/domain/repositories/map_repository.dart';
 import 'features/map/domain/use_cases/get_directions_use_case.dart';
 import 'features/map/domain/use_cases/get_location_stream.dart';
+import 'features/map/domain/use_cases/get_location_use_case.dart';
 import 'features/map/domain/use_cases/get_picked_origin_use_case.dart';
 import 'features/map/domain/use_cases/pick_origin_use_case.dart';
 import 'features/map/domain/use_cases/request_location_permission_use_case.dart';
@@ -168,6 +171,7 @@ class Repositories{
   static final getDirectionsUseCase           = Provider<GetDirections>((ref) => GetDirections(ref.read(_mapRepository)));
   static final locationPermissionUseCase      = Provider<RequestLocationPermission>((ref) => RequestLocationPermission(ref.read(_locationRepository)));
   static final getLocationStreamUseCase       = Provider<GetLocationStream>((ref) => GetLocationStream(ref.read(_locationRepository)));
+  static final getLocationUseCase             = Provider<GetLocation>((ref) => GetLocation(ref.read(_locationRepository)));
 
   static final storeServiceUseCase            = Provider<StoreService>((ref) => StoreService(ref.read(_serviceRepository)));
   static final getCurrentServiceUseCase       = Provider<GetCurrentService>((ref) => GetCurrentService(ref.read(_serviceRepository)));
@@ -181,7 +185,10 @@ class Repositories{
   static final getAddressesUseCase            = Provider<GetAddresses>((ref) => GetAddresses(ref.read(_addressRepository)));
   static final storeOrEditAddressUseCase      = Provider<StoreOrEditAddress>((ref) => StoreOrEditAddress(ref.read(_addressRepository),ref.read(_secureStorageRepository)));
   static final getAddressUseCase              = Provider<GetAddress>((ref) => GetAddress(ref.read(_addressRepository)));
+  static final getDefaultAddressUseCase       = Provider<GetDefaultAddress>((ref) => GetDefaultAddress(ref.read(_addressRepository)));
+
   static final deleteAddressUseCase           = Provider<DeleteAddress>((ref) => DeleteAddress(ref.read(_addressRepository)));
+  static final getAddressDirectionUseCase     = Provider<GetAddressDirection>((ref) => GetAddressDirection(ref.read(_locationRepository),ref.read(_addressRepository),ref.read(_mapRepository)));
 
 }
 

@@ -2,11 +2,12 @@ import '../../../../core/http/http_options.dart';
 import '../../domain/entities/transport_type.dart';
 
 class TransportTypeModel extends TransportType{
-  TransportTypeModel({required super.id, required super.name, required super.imageUrl});
+  TransportTypeModel({required super.id, required super.name, required super.imageUrl,required super.defaultTransportType});
 
   factory TransportTypeModel.fromJson(Map<String,dynamic> json) => TransportTypeModel(
     id: json['id'],
     name: json['name'],
-    imageUrl: 'https://${HttpOptions.apiUrl}/assets/${json['icon']}'
+    imageUrl: 'https://${HttpOptions.apiUrl}/assets/${json['icon']}',
+    defaultTransportType: json['default']
   );
 }
