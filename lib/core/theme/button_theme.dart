@@ -4,7 +4,7 @@ class ButtonThemeStyle{
 
   static ElevatedButtonThemeData elevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.primaryColor,
       foregroundColor: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 15),
       textStyle: const TextStyle(fontWeight: FontWeight.w500),

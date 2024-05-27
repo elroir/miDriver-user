@@ -26,6 +26,7 @@ class VehicleRepositoryImpl implements VehicleRepository{
 
   String _transmissionType = AppStrings.automatic;
   int? _makeId;
+  TransportType? _defaultTransportType;
 
 
   @override
@@ -51,6 +52,11 @@ class VehicleRepositoryImpl implements VehicleRepository{
     if(await _networkInfo.isConnected){
       try{
         final response = await _remoteDataSource.getTransportTypes();
+        _defaultTransportType = response.data!.first;
+        if(response.data!.any((e) => e.defaultTransportType)){
+          _defaultTransportType = response.data!.firstWhere((e) => e.defaultTransportType);
+        }
+
         return Right(response.data!);
       }on AuthenticationException{
         return Left(AuthFailure(errorMessage: ErrorMessages.sessionExpiredMessageError));
@@ -136,6 +142,9 @@ class VehicleRepositoryImpl implements VehicleRepository{
     }
     return Left(SocketFailure());
   }
+
+  @override
+  TransportType? getDefaultTransportType() => _defaultTransportType;
 
 
 

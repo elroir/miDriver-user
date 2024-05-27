@@ -33,7 +33,7 @@ class AddressServiceData extends ConsumerWidget {
     if(price is HttpPostStatusSuccess){
       return Column(
         children: [
-          Text(price.data!.$1.toStringAsFixed(2)),
+          Text('Bs. ${price.data!.$1.toStringAsFixed(2)} + 20 Taxi',style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 24)),
           const SizedBox(height: 10),
           LoadingButton(
             onPressed: () => ref.read(defaultServiceProvider.notifier).storeService(),

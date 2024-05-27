@@ -7,6 +7,7 @@ import '../../../address/domain/use_cases/get_default_address_use_case.dart';
 import '../../../fare/domain/use_cases/get_picked_fare_use_case.dart';
 import '../../../map/domain/use_cases/get_picked_origin_use_case.dart';
 import '../../../vehicle/domain/entities/transport_type.dart';
+import '../../../vehicle/domain/use_cases/get_default_transport_type_use_case.dart';
 import '../../data/models/service_form_model.dart';
 import '../../domain/use_cases/store_service_use_case.dart';
 
@@ -19,9 +20,9 @@ final defaultServiceProvider = StateNotifierProvider.autoDispose<DefaultServiceP
             ref.read(Repositories.getOriginUseCase),
             ref.read(Repositories.storeServiceUseCase),
             ref.read(Repositories.getDefaultAddressUseCase),
+            ref.read(Repositories.getDefaultTransportTypeUseCase),
             ref.read(router)
-
-          );
+          )..setInitialTransportType();
     }
 );
 
@@ -31,16 +32,24 @@ class DefaultServiceProvider extends StateNotifier<HttpPostStatus>{
   final GetPickedOrigin _origin;
   final StoreService _storeService;
   final GetDefaultAddress _getDefaultAddress;
+  final GetDefaultTransportType _defaultTransportType;
   final GoRouter _router;
 
-  DefaultServiceProvider(this._getPickedFare,this._origin,this._storeService,this._getDefaultAddress,this._router) : super(HttpPostStatusNone());
+  DefaultServiceProvider(this._getPickedFare,this._origin,this._storeService,this._getDefaultAddress,this._defaultTransportType,this._router) : super(HttpPostStatusNone());
 
-  TransportType? _transportType;
+  late TransportType _transportType;
   late double _price;
   late double _distanceInKm;
   
-  void setTransportType(List<TransportType> transportTypes){
-    _transportType = transportTypes.firstWhere((e) => e.defaultTransportType);
+  void setInitialTransportType(){
+    if(_defaultTransportType() == null) return ;
+    _transportType = _defaultTransportType()!;
+  }
+
+  void changeTransportType(TransportType transportType){
+    _transportType = transportType;
+    state = HttpPostStatusInProgress();
+
   }
 
   void setPriceAndDistance(double price,double distanceInMeters){
@@ -48,8 +57,9 @@ class DefaultServiceProvider extends StateNotifier<HttpPostStatus>{
     _distanceInKm = distanceInMeters / 1000;
   }
 
-  Future<void> storeService() async {
+  TransportType get transportType => _transportType;
 
+  Future<void> storeService() async {
 
     final date = DateTime.now();
     final fare = _getPickedFare();
@@ -61,7 +71,7 @@ class DefaultServiceProvider extends StateNotifier<HttpPostStatus>{
                   final serviceForm = ServiceModel(
                   distanceInKm: _distanceInKm,
                   price: _price,
-                  transportType: _transportType!,
+                  transportType: _transportType,
                   fare: fare!,
                   origin: _origin()!,
                   destination: address.location,
@@ -78,11 +88,6 @@ class DefaultServiceProvider extends StateNotifier<HttpPostStatus>{
                   );
             }
     );
-
-
-
-
-
 
   }
 

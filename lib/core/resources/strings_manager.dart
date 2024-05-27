@@ -101,8 +101,12 @@ class AppStrings{
   static const String acceptTermsAndConditions    = '¿Acepta nuestros terminos y condiciones?';
   static const String acceptI                     = 'Acepto';
 
+  static const String goHome                      = 'Ir a casa';
+  static const String goHomeDialogTitle           = 'Ir a mi dirección';
+  static const String goHomeDialogDescription     = 'Estas a punto de solicitar un conductor desde tu ubicación actual hasta tu dirección por defecto';
 
-  static const String privacyPolicy         ='Pólitica de privacidad';
+
+  static const String privacyPolicy         ='Política de privacidad';
   static const String mapAttribution        ='OpenStreetMap contributors';
 
 }

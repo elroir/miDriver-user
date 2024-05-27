@@ -14,7 +14,6 @@ import 'address_service_data.dart';
 
 class DefaultAddressServiceDialog extends ConsumerWidget {
 
-
   const DefaultAddressServiceDialog({super.key});
 
   @override
@@ -32,15 +31,15 @@ class DefaultAddressServiceDialog extends ConsumerWidget {
                 alignment: Alignment.center,
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: const BoxDecoration(color: Colors.black),
-                child: Text('Ir a mi dirección',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white)),
+                decoration: const BoxDecoration(color: AppColors.primaryColor),
+                child: Text(AppStrings.goHomeDialogTitle,style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white)),
               ),
               const SizedBox(height: 10),
               const TransportTypeRow(),
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.horizontalPadding),
-                child: Text('Estas a punto de solicitar un conductor desde tu ubicación actual hasta tu dirección por defecto',style: Theme.of(context).textTheme.bodyLarge),
+                child: Text(AppStrings.goHomeDialogDescription,style: Theme.of(context).textTheme.bodyLarge),
               ),
               const SizedBox(height: 10),
               const AddressServiceData(),

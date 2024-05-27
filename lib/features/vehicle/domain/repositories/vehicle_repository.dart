@@ -18,4 +18,6 @@ abstract interface class VehicleRepository{
   void saveTransmissionType(String transmissionType);
   void saveMakeId(int makeId);
 
+  TransportType? getDefaultTransportType();
+
 }
