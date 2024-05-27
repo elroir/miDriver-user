@@ -29,8 +29,8 @@ class ProfilePage extends ConsumerWidget {
     if(userStatus is HttpPostStatusSuccess){
 
       ref.listen(getAddressesProvider, (previous, next) {
-        if(next is HttpPostStatusSuccess && previous is HttpPostStatusSuccess){
-          if(next.data!.isEmpty && previous!.data!.isEmpty){
+        if(next is HttpPostStatusSuccess && previous is HttpPostStatusNone){
+          if(next.data!.isEmpty){
             context.push(Routes.address);
           }
         }
