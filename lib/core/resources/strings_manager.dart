@@ -42,6 +42,7 @@ class AppStrings{
   static const String serviceCancelled      = 'Servicio cancelado';
   static const String serviceAccepted       = 'Servicio aceptado';
   static const String driverOnTheWay        = 'El conductor ya se encuentra en camino';
+  static const String improveThisMap        = 'Mejora este mapa';
 
   static const String continueRegister      = 'CONTINUAR REGISTRO';
   static const String finishRegister        = 'Registrarme';

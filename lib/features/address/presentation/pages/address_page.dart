@@ -6,6 +6,7 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
 import '../../../map/presentation/provider/current_location_provider.dart';
 import '../../../map/presentation/provider/pick_location_provider.dart';
+import '../../../map/presentation/widgets/mapbox_attribution.dart';
 import '../widgets/address_form.dart';
 
 class AddressPage extends ConsumerWidget {
@@ -25,12 +26,11 @@ class AddressPage extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           leadingWidth: 80,
+          forceMaterialTransparency: true,
           leading: const CircleAvatar(
             backgroundColor: Colors.white,
               child: BackButton(color: Colors.black54)
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
         ),
         extendBodyBehindAppBar: true,
         body: SafeArea(
@@ -61,6 +61,7 @@ class AddressPage extends ConsumerWidget {
                             ),
                         ]
                     ),
+                    const MapBoxAttribution()
                   ],
                 ),
               ),

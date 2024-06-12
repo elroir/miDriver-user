@@ -14,13 +14,19 @@ class BackGroundLogoWidget extends StatelessWidget {
         height: MediaQuery.of(context).size.height*0.4,
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: Colors.black,
+          color: Color(0xff363638),
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(AppBorder.cardMaxBorderRadius)),
         ),
         child: Container(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 20),
-            child: Image.asset(AssetsManager.logoDark,height: 200,width: 200)
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15)
+            ),
+            child: ClipRRect(
+               borderRadius: BorderRadius.circular(25),
+                child: Image.asset(AssetsManager.logo,height: 200,width: 200)
+            )
         ),
       ),
     );

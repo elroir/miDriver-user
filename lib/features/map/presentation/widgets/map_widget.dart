@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 
 import '../../../../core/resources/values_manager.dart';
@@ -13,6 +10,7 @@ import '../provider/map_controller_provider.dart';
 import '../provider/pick_location_provider.dart';
 import '../provider/polyline_provider.dart';
 import 'flag_marker.dart';
+import 'mapbox_attribution.dart';
 
 class MapWidget extends ConsumerWidget {
 
@@ -72,16 +70,11 @@ class MapWidget extends ConsumerWidget {
                 ],
               ),
             CurrentLocationLayer(),
-            RichAttributionWidget(
-              alignment: AttributionAlignment.bottomLeft,
-                showFlutterMapAttribution: false,
-                attributions: [
-                  LogoSourceAttribution(
-                      SvgPicture.asset(AssetsManager.mapboxIconBlack,alignment: Alignment.centerLeft,),
-                    height: 50,
-                  ),
-                ]
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontalPadding,vertical: AppPadding.topPadding),
+                child: MapBoxAttribution()
             )
+
           ],
         ),
         SafeArea(
