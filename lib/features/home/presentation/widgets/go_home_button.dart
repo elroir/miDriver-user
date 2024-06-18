@@ -5,8 +5,8 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/router/router.dart';
 import '../../../service/presentation/provider/get_current_service_provider.dart';
-import '../../../service/presentation/widgets/default_address_service_dialog.dart';
 
 class GoHomeButton extends ConsumerWidget {
   const GoHomeButton({super.key});
@@ -20,15 +20,12 @@ class GoHomeButton extends ConsumerWidget {
         error: (error,_) {
           if(error is NoServiceFailure){
             return FloatingActionButton.extended(
-              onPressed: () => showDialog(
-                  context: context,
-                  builder: (_) => const DefaultAddressServiceDialog()
-              ),
+              onPressed: () => context.push(Routes.address),
               backgroundColor: AppColors.primaryColor,
               label: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Iconsax.home,color: Colors.white,),
+                  Icon(Iconsax.home,color: Colors.white),
                   Text(AppStrings.goHome,style: TextStyle(color: Colors.white),)
                 ],
               ),

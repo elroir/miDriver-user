@@ -15,6 +15,7 @@ class Routes {
   static const String make = 'make';
   static const String terms = '/terms';
   static const String address = '/address';
+  static const String addressForm = '/addressForm';
 
 
   static const String profile = '/profile';

@@ -27,6 +27,16 @@ class TermsAndConditionsPage extends ConsumerWidget{
                 children: [
                   Html(
                       data: terms.description + terms.descriptionExtended,
+                      style: Theme.of(context).brightness == Brightness.dark
+                          ? {
+                        'span': Style(
+                            color: Colors.white
+                        ),
+                        'li': Style(
+                            color: Colors.white
+                        ),
+                      }
+                          : {}
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

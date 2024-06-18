@@ -17,16 +17,17 @@ class BackGroundLogoWidget extends StatelessWidget {
           color: Color(0xff363638),
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(AppBorder.cardMaxBorderRadius)),
         ),
-        child: Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.only(top: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15)
-            ),
-            child: ClipRRect(
-               borderRadius: BorderRadius.circular(25),
-                child: Image.asset(AssetsManager.logo,height: 200,width: 200)
-            )
+        child: SafeArea(
+          child: Container(
+              alignment: Alignment.topCenter,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: ClipRRect(
+                 borderRadius: BorderRadius.circular(AppBorder.logoBorderRadius),
+                  child: Image.asset(AssetsManager.logo,height: 200,width: 200)
+              )
+          ),
         ),
       ),
     );

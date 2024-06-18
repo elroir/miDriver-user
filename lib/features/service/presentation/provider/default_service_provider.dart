@@ -83,6 +83,7 @@ class DefaultServiceProvider extends StateNotifier<HttpPostStatus>{
                           (error) => HttpPostStatusError(message: error.errorMessage),
                           (success) {
                         _router.pop();
+                        _router.pop();
                         return HttpPostStatusSuccess();
                       }
                   );

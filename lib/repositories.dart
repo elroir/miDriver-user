@@ -26,6 +26,7 @@ import 'features/address/domain/use_cases/get_address_direction_use_case.dart';
 import 'features/address/domain/use_cases/get_address_use_case.dart';
 import 'features/address/domain/use_cases/get_addresses_use_case.dart';
 import 'features/address/domain/use_cases/get_default_address_use_case.dart';
+import 'features/address/domain/use_cases/pick_address_id_use_case.dart';
 import 'features/address/domain/use_cases/store_address_use_case.dart';
 import 'features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
@@ -188,7 +189,7 @@ class Repositories{
   static final storeOrEditAddressUseCase      = Provider<StoreOrEditAddress>((ref) => StoreOrEditAddress(ref.read(_addressRepository),ref.read(_secureStorageRepository)));
   static final getAddressUseCase              = Provider<GetAddress>((ref) => GetAddress(ref.read(_addressRepository)));
   static final getDefaultAddressUseCase       = Provider<GetDefaultAddress>((ref) => GetDefaultAddress(ref.read(_addressRepository)));
-
+  static final pickAddressIdUseCase           = Provider<PickAddressId>((ref) => PickAddressId(ref.read(_addressRepository)));
   static final deleteAddressUseCase           = Provider<DeleteAddress>((ref) => DeleteAddress(ref.read(_addressRepository)));
   static final getAddressDirectionUseCase     = Provider<GetAddressDirection>((ref) => GetAddressDirection(ref.read(_locationRepository),ref.read(_addressRepository),ref.read(_mapRepository)));
 

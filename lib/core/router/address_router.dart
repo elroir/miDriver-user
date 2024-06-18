@@ -1,8 +1,8 @@
 part of 'router.dart';
 
 class AddressRouter {
-  static GoRoute addressRoutes(GlobalKey<NavigatorState> key,ProviderRef ref) => GoRoute(
-      parentNavigatorKey: key,
+  static List<GoRoute> addressRoutes(GlobalKey<NavigatorState> key,ProviderRef ref) => [
+    GoRoute(
       path: Routes.address,
       pageBuilder: (context,state) {
         return MaterialPage(
@@ -10,18 +10,29 @@ class AddressRouter {
             child: const AddressPage()
         );
       },
-    routes: [
-      GoRoute(
-          path: ':id',
+    ),
+    GoRoute(
+        parentNavigatorKey: key,
+        path: Routes.addressForm,
         pageBuilder: (context,state) {
-            ref.read(storeAddressProvider.notifier).getInitialAddress(int.parse(state.pathParameters['id']!));
           return MaterialPage(
               key: state.pageKey,
-              child: const AddressPage()
+              child: const AddressFormPage()
           );
         },
-      )
+        routes: [
+          GoRoute(
+            path: ':id',
+            pageBuilder: (context,state) {
+              ref.read(storeAddressProvider.notifier).getInitialAddress(int.parse(state.pathParameters['id']!));
+              return MaterialPage(
+                  key: state.pageKey,
+                  child: const AddressFormPage()
+              );
+            },
+          )
 
-    ]
-  );
+        ]
+    )
+  ];
 }

@@ -10,7 +10,7 @@ class AddAddressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push(Routes.address),
+      onTap: () => context.push(Routes.addressForm),
       child: Container(
         height: 100,
         width: double.infinity,

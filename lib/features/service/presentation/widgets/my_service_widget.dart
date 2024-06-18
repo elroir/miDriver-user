@@ -19,7 +19,7 @@ class MyServiceWidget extends ConsumerWidget {
 
     return SliverToBoxAdapter(
       child: Container(
-        height:320,
+        height:340,
         width: 600,
         decoration: const BoxDecoration(
           color: Colors.black,

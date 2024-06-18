@@ -32,6 +32,7 @@ class StoreAddressProvider extends StateNotifier<HttpPostStatus>{
 
   StoreAddressProvider(this.key, this._router,this._storeOrEditAddress,this._getAddress,this._getOrigin,this._pickOrigin) : super(HttpPostStatusNone());
 
+  String title = '';
   String address = '';
   bool defaultAddress = true;
   bool isEditing = false;
@@ -48,15 +49,24 @@ class StoreAddressProvider extends StateNotifier<HttpPostStatus>{
               _pickOrigin(address.location);
               isEditing = true;
               addressId = address.id;
-              this.address = address.textual;
+              title = address.title;
+              this.address = address.address;
               canChangeDefaultAddress = !address.defaultAddress;
           defaultAddress = address.defaultAddress;
         }
     );
   }
 
+  void saveTitleField(String? value){
+    title = value ?? '';
+  }
+
   void saveAddressField(String? value){
     address = value ?? '';
+  }
+
+  String? validateTitle(String? value){
+    return FormValidators.validateNotShorter(value,length: 2);
   }
 
   String? validateAddress(String? value){
@@ -81,6 +91,7 @@ class StoreAddressProvider extends StateNotifier<HttpPostStatus>{
 
     final response = await _storeOrEditAddress(
       id: addressId,
+      title: title,
       address: address,
       location: location,
       defaultAddress: defaultAddress

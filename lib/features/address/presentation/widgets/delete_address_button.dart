@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
 import '../../../home/presentation/widgets/delete_dialog.dart';
 import '../../../map/presentation/provider/pick_location_provider.dart';
@@ -39,11 +40,12 @@ class DeleteAddressButton extends ConsumerWidget {
       }
     });
 
-    return FractionallySizedBox(
-      widthFactor: 0.9,
+    return Padding(
+      padding: const EdgeInsets.only(left: AppPadding.horizontalPadding),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Colors.red)
+            side: const BorderSide(color: Colors.red)    ,
+          padding: const EdgeInsets.symmetric(horizontal: AppPadding.horizontalPadding,vertical: 14)
         ),
         onPressed: () => ref.read(deleteAddressProvider.notifier).openDialog() ,
         child: const Text(AppStrings.delete,style: TextStyle(color: Colors.red),),

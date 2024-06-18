@@ -4,7 +4,8 @@ class AppStrings{
   static const String emailField          = 'Correo';
   static const String nameField           = 'Nombre(s)';
   static const String lastNameField       = 'Apellido(s)';
-  static const String addressField        = 'Domicilio';
+  static const String addressTitleField   = 'Nombre referencial';
+  static const String addressField        = 'Dirección';
   static const String phoneField          = 'Teléfono';
   static const String confirmPasswordField= 'Confirmar contraseña';
 
@@ -29,6 +30,7 @@ class AppStrings{
   static const String addAddress                = 'Agregar dirección';
   static const String deleteAddress             = 'Eliminar dirección';
   static const String deleteAddressDescription  = '¿Está seguro de que desea eliminar esta dirección?';
+  static const String whereYouGo                = '¿A dónde quieres ir?';
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';

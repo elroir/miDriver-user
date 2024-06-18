@@ -13,12 +13,13 @@ class StoreOrEditAddress{
 
   StoreOrEditAddress(this._addressRepository,this._storageRepository);
 
-  Future<Either<Failure,HttpSuccess>> call({required String address,required LatLng location,bool defaultAddress = true,int id = 0}) async {
+  Future<Either<Failure,HttpSuccess>> call({required String title,required String address,required LatLng location,bool defaultAddress = true,int id = 0}) async {
     final userId = await _storageRepository.getUserId();
     if(userId == null) return Left(CacheFailure());
     return await _addressRepository.storeOrEditAddress(Address(
       id: id,
-      textual: address,
+      title: title,
+      address: address,
       location: location,
       userId: userId,
       defaultAddress: defaultAddress

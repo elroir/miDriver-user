@@ -30,23 +30,17 @@ class AddressForm extends ConsumerWidget {
 
             mainAxisSize: MainAxisSize.max,
             children: [
-              (ref.read(getAddressesProvider).data!.isEmpty || !ref.read(storeAddressProvider.notifier).canChangeDefaultAddress)
-                ? const FractionallySizedBox(
-                    widthFactor: 0.9,
-                    child: Text(AppStrings.defaultAddressDescription)
-                )
-              : FractionallySizedBox(
+              const SizedBox(height: 10),
+              FractionallySizedBox(
                 widthFactor: 0.9,
-                child: SwitchListTile.adaptive(
-                  contentPadding: const EdgeInsets.all(0),
-                  title: const Text(AppStrings.defaultAddress),
-                    value: ref.watch(storeAddressSwitchProvider),
-                    onChanged: (value) => ref.read(storeAddressSwitchProvider.notifier).update(
-                            (state) {
-                              ref.read(storeAddressProvider.notifier).saveDefaultAddressField(value);
-                              return state = value;
-                            }
-                    ) ,
+                child: TextFormField(
+                    initialValue: ref.read(storeAddressProvider.notifier).title,
+                    onSaved: ref.read(storeAddressProvider.notifier).saveTitleField,
+                    validator: ref.read(storeAddressProvider.notifier).validateTitle,
+                    decoration: const InputDecoration(
+                      labelText: AppStrings.addressTitleField,
+                      hintText: 'Casa'
+                    )
                 ),
               ),
               const SizedBox(height: 10),
@@ -58,6 +52,7 @@ class AddressForm extends ConsumerWidget {
                     validator: ref.read(storeAddressProvider.notifier).validateAddress,
                     decoration: const InputDecoration(
                         labelText: AppStrings.addressField,
+                      hintText: 'Av. San martin, calle este, casa 4'
                     )
                 ),
               ),
@@ -66,14 +61,26 @@ class AddressForm extends ConsumerWidget {
               ErrorTextWidget(
                   errorText: addressStatus.message
               ),
-              LoadingButton(
-                  onPressed: () => ref.read(storeAddressProvider.notifier).storeOrEditAddress(),
-                  buttonText: AppStrings.save,
-                  isLoading: addressStatus is HttpPostStatusLoading
+              FractionallySizedBox(
+                widthFactor: 0.9,
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Center(
+                        child: LoadingButton(
+                          widthFactor: 1,
+                            onPressed: () => ref.read(storeAddressProvider.notifier).storeOrEditAddress(),
+                            buttonText: AppStrings.save,
+                            isLoading: addressStatus is HttpPostStatusLoading
+                        ),
+                      ),
+                    ),
+                    if(ref.read(storeAddressProvider.notifier).isEditing)
+                      const DeleteAddressButton()
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
-              if(ref.read(storeAddressProvider.notifier).isEditing)
-                const DeleteAddressButton()
+
 
             ],
           )

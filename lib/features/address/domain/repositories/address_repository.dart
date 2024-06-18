@@ -12,4 +12,6 @@ abstract interface class AddressRepository{
   Either<Failure,Address> getAddressById(int addressId);
   Either<Failure,Address> getDefaultAddress();
 
+  void pickAddressId(int addressId);
+
 }

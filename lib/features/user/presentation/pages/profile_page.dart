@@ -5,7 +5,6 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../core/http/entities/http_post_status.dart';
 import '../../../../core/router/router.dart';
 import '../../../address/presentation/provider/get_addresses_provider.dart';
-import '../../../address/presentation/widgets/address_list.dart';
 import '../../../auth/presentation/widgets/background_logo_widget.dart';
 
 import '../../../../core/resources/strings_manager.dart';
@@ -31,6 +30,8 @@ class ProfilePage extends ConsumerWidget {
       ref.listen(getAddressesProvider, (previous, next) {
         if(next is HttpPostStatusSuccess && previous is HttpPostStatusNone){
           if(next.data!.isEmpty){
+            context.push(Routes.addressForm);
+          }else{
             context.push(Routes.address);
           }
         }
@@ -62,10 +63,6 @@ class ProfilePage extends ConsumerWidget {
                         title: AppStrings.phoneField,
                         content: userStatus.data!.phoneNumber.toString(),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Text(AppStrings.addresses,style: Theme.of(context).textTheme.titleMedium),
-                      ),
 
                       // ProfileField(
                       //   icon: const Icon(Iconsax.location),
@@ -81,7 +78,6 @@ class ProfilePage extends ConsumerWidget {
                 ),
               ),
             ),
-            const AddressList(),
             // const VehicleSection(),
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
             const SliverToBoxAdapter(

@@ -20,6 +20,7 @@ class AddressRepositoryImpl implements AddressRepository{
   AddressRepositoryImpl(this._remoteDataSource, this._networkInfoRepository);
 
   List<Address> _addresses = [];
+  int? _addressId;
 
   @override
   Future<Either<Failure, List<Address>>> getAddresses() async {
@@ -91,11 +92,21 @@ class AddressRepositoryImpl implements AddressRepository{
 
   @override
   Either<Failure, Address> getDefaultAddress() {
-    if(_addresses.isNotEmpty){
 
-      return Right(_addresses.firstWhere((e) => e.defaultAddress));
+    if(_addresses.isEmpty){
+      return Left(CacheFailure());
     }
-    return Left(CacheFailure());
+
+    if(_addressId!=null){
+      return Right(_addresses.firstWhere((e) => e.id==_addressId));
+
+    }
+    return Right(_addresses.firstWhere((e) => e.defaultAddress));
+  }
+
+  @override
+  void pickAddressId(int addressId) {
+    _addressId = addressId;
   }
 
 }
