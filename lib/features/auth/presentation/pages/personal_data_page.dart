@@ -17,7 +17,7 @@ class PersonalDataPage extends ConsumerWidget {
       appBar: AppBar(),
       extendBodyBehindAppBar: true,
       body: Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         children: [
           const BackGroundLogoWidget(),
           Container(

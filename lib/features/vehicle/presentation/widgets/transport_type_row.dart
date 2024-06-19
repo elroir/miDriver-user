@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/network_or_svg_picture.dart';
 import '../../../home/presentation/widgets/custom_error_widget.dart';
@@ -27,26 +28,32 @@ class TransportTypeRow extends ConsumerWidget {
 
           final defaultTransportType = ref.watch(transportTypePickerProvider);
 
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: transports.map((e) => GestureDetector(
-              onTap: () {
-                ref.read(transportTypePickerProvider.notifier).changeTransportType(e);
-                ref.read(defaultServiceProvider.notifier).changeTransportType(e);
-              },
-              child: Container(
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                    border: e==defaultTransportType ? Border.all(color: AppColors.primaryColor,width: 5) : null
-                ),
-                child: NetworkOrSvgPicture(
-                  imageUrl: e.imageUrl,
-                  height:  e==defaultTransportType ? 60 : 50,
-                ),
+          return Column(
+            children: [
+              Text(AppStrings.pickTransportType,style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: transports.map((e) => GestureDetector(
+                  onTap: () {
+                    ref.read(transportTypePickerProvider.notifier).changeTransportType(e);
+                    ref.read(defaultServiceProvider.notifier).changeTransportType(e);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        border: e==defaultTransportType ? Border.all(color: AppColors.primaryColor,width: 5) : null
+                    ),
+                    child: NetworkOrSvgPicture(
+                      imageUrl: e.imageUrl,
+                      height:  e==defaultTransportType ? 60 : 50,
+                    ),
+                  ),
+                )).toList(),
               ),
-            )).toList(),
+            ],
           );
         },
         error: (error,stackTrace) => CustomErrorWidget(

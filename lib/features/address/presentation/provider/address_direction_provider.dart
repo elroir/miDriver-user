@@ -42,7 +42,7 @@ class AddressDirectionNotifier extends StateNotifier<HttpPostStatus<(double,Dire
                         final fare = fares.firstWhere((e) => e.defaultFare);
                         _pickFare(fare);
                         double price = fare.price * (direction.distanceInMeters/1000);
-                        price = price<50 ? 50 : price;
+                        price = price < 50 ? 50 : price;
                         return HttpPostStatusSuccess(data: (price,direction));
                       }
               );

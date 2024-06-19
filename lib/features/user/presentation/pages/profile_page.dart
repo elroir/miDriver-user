@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../core/http/entities/http_post_status.dart';
+import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
 import '../../../address/presentation/provider/get_addresses_provider.dart';
-import '../../../auth/presentation/widgets/background_logo_widget.dart';
 
 import '../../../../core/resources/strings_manager.dart';
+import '../../../auth/presentation/widgets/background_logo_widget.dart';
 import '../../../auth/presentation/widgets/logout_button.dart';
 import '../../../home/presentation/pages/error_view.dart';
 import '../provider/user_data_provider.dart';
@@ -39,9 +41,15 @@ class ProfilePage extends ConsumerWidget {
       });
 
       return CustomScrollView(
+
           slivers: [
-            const SliverToBoxAdapter(
-                child: BackGroundLogoWidget()
+            SliverAppBar(
+              expandedHeight:MediaQuery.sizeOf(context).height*0.35,
+                flexibleSpace: const FlexibleSpaceBar(
+                  background: BackGroundLogoWidget(),
+                  collapseMode: CollapseMode.pin,
+                ),
+
             ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 10),

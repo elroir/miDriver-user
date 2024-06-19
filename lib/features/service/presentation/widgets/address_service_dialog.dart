@@ -6,19 +6,21 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
+import '../../../address/presentation/provider/get_picked_address_provider.dart';
 import '../../../fare/presentation/provider/get_fares_provider.dart';
 
 import '../../../home/presentation/pages/error_view.dart';
 import '../../../vehicle/presentation/widgets/transport_type_row.dart';
 import 'address_service_data.dart';
 
-class DefaultAddressServiceDialog extends ConsumerWidget {
+class AddressServiceDialog extends ConsumerWidget {
 
-  const DefaultAddressServiceDialog({super.key});
+  const AddressServiceDialog({super.key});
 
   @override
   Widget build(BuildContext context,ref) {
     final faresProvider = ref.watch(getFaresProvider);
+    final pickedAddress = ref.read(pickedAddressProvider);
     return Dialog(
       clipBehavior: Clip.antiAlias,
       child: faresProvider.when(
@@ -32,7 +34,7 @@ class DefaultAddressServiceDialog extends ConsumerWidget {
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: const BoxDecoration(color: AppColors.primaryColor),
-                child: Text(AppStrings.goHomeDialogTitle,style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white)),
+                child: Text('${AppStrings.goTo} ${pickedAddress?.title ??''}',style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white)),
               ),
               const SizedBox(height: 10),
               const TransportTypeRow(),

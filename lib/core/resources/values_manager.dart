@@ -5,6 +5,7 @@ class AppPadding {
   static const double serviceFormPadding = 15.0;
   static const double horizontalPadding = 10.0;
   static const double addressListButtonPadding = 40.0;
+  static const double topAuthPadding = 40.0;
 
 
 }

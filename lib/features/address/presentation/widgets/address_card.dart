@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
-import '../../../service/presentation/widgets/default_address_service_dialog.dart';
+import '../../../service/presentation/widgets/address_service_dialog.dart';
 import '../../domain/entities/address.dart';
 import '../provider/pick_address_provider.dart';
 
@@ -40,7 +40,7 @@ class AddressCard extends StatelessWidget {
                   ref.read(pickAddressesProvider.notifier).pickAddressId(address.id);
                   showDialog(
                       context: context,
-                      builder: (_) => const DefaultAddressServiceDialog()
+                      builder: (_) => const AddressServiceDialog()
                   );
                 }
             );

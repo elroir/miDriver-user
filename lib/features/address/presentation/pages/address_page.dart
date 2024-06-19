@@ -20,8 +20,6 @@ class AddressPage extends StatelessWidget {
       )
       ),
       extendBodyBehindAppBar: true,
-
-
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(

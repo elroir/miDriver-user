@@ -31,6 +31,7 @@ class AppStrings{
   static const String deleteAddress             = 'Eliminar dirección';
   static const String deleteAddressDescription  = '¿Está seguro de que desea eliminar esta dirección?';
   static const String whereYouGo                = '¿A dónde quieres ir?';
+  static const String pickTransportType         = 'Elige el transporte';
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';
@@ -105,8 +106,8 @@ class AppStrings{
   static const String acceptI                     = 'Acepto';
 
   static const String goHome                      = 'Ir a casa';
-  static const String goHomeDialogTitle           = 'Ir a mi dirección';
-  static const String goHomeDialogDescription     = 'Estas a punto de solicitar un conductor desde tu ubicación actual hasta tu dirección por defecto';
+  static const String goTo                        = 'Ir a';
+  static const String goHomeDialogDescription     = 'Estas a punto de solicitar un conductor desde tu ubicación actual hasta tu dirección';
 
 
   static const String privacyPolicy         ='Política de privacidad';

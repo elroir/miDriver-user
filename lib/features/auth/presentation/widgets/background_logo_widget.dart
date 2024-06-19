@@ -20,6 +20,7 @@ class BackGroundLogoWidget extends StatelessWidget {
         child: SafeArea(
           child: Container(
               alignment: Alignment.topCenter,
+              padding: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15)
               ),
