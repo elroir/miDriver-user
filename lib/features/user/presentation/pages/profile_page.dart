@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../core/http/entities/http_post_status.dart';
-import '../../../../core/resources/assets_manager.dart';
-import '../../../../core/resources/values_manager.dart';
 import '../../../../core/router/router.dart';
 import '../../../address/presentation/provider/get_addresses_provider.dart';
 

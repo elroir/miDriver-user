@@ -27,7 +27,7 @@ class PicturePicker extends StatelessWidget {
           height: 150,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(AppBorder.cardBorderRadius)),
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
             border: hasBorders ? Border.all() : null
           ),
           child: image==null ? const Icon(Iconsax.image) : ClipRRect(

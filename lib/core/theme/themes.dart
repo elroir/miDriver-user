@@ -25,12 +25,12 @@ class Themes {
       navigationBarTheme: const NavigationBarThemeData(
         indicatorColor: Colors.white60,
         backgroundColor: Colors.white60,
-        iconTheme: MaterialStatePropertyAll(
+        iconTheme: WidgetStatePropertyAll(
             IconThemeData(
               color:  Colors.black,
             )
         ),
-        labelTextStyle: MaterialStatePropertyAll(
+        labelTextStyle: WidgetStatePropertyAll(
             TextStyle(
                 color: Colors.black
             )
