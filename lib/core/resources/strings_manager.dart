@@ -31,7 +31,7 @@ class AppStrings{
   static const String deleteAddress             = 'Eliminar dirección';
   static const String deleteAddressDescription  = '¿Está seguro de que desea eliminar esta dirección?';
   static const String whereYouGo                = '¿A dónde quieres ir?';
-  static const String pickTransportType         = 'Elige el transporte';
+  static const String pickTransportType         = '¿En que vehículo estás?';
 
   static const String forgotPasswordTitle   = 'Introduzca su correo, si tiene cuenta le llegará un correo para restablecer su contraseña';
   static const String sendRecovery          = 'Enviar correo';
